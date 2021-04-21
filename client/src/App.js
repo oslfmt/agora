@@ -12,7 +12,8 @@ import Dashboard from './components/dashboard/Dashboard';
 import IntroCourse from './components/IntroCourse';
 import ProposeBoard from './components/ProposalBoard';
 import Header from './components/layout/Header';
-import EditCourse from './components/EditCourse'
+import EditCourse from './components/EditCourse';
+import AgorumView from './components/agorum/AgorumView'
 
 // import contract abis
 import AGOToken from './build/contracts/AGOToken.json';
