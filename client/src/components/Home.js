@@ -12,6 +12,7 @@ function Home() {
       <div className="container">
         <div className="row">
           <h1 className="Agora_title">agora.</h1>
+          <h2 className="lead mb-4">Good vibes for <i>thirsty</i> learners</h2>
           <SearchBar />
         </div>
         <div className="row">
