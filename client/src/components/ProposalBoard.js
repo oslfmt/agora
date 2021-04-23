@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -52,7 +52,10 @@ function CourseProposalList(props) {
 
 function CourseModal(props) {
   const proposal = props.proposal;
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
   const [show, setShow] = useState(false);
+
+  const voteThreshold = 10;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -69,6 +72,47 @@ function CourseModal(props) {
     axios.request(options)
       .then(res => handleClose())
       .catch(err => console.error(err));
+
+    if (proposal.support >= voteThreshold) {
+      createCourse();
+    }
+  }
+
+  const createCourse = () => {
+    const options1 = {
+      method: 'POST',
+      url: `http://localhost:8000/api/agorum`,
+      data: {
+        name: proposal.title
+      }
+    }
+
+    axios.request(options1)
+      .then(res => {
+        console.log(res)
+        const options2 = {
+          method: 'POST',
+          url: `http://localhost:8000/api/agorum/${res.data.id}/course`,
+          data: {
+            name: proposal.title
+          }
+        }
+        axios.request(options2)
+        .then(res => {
+          console.log(res)
+          const options3 = {
+            method: 'DELETE',
+            url: `http://localhost:8000/api/proposal/${proposal.id}`,
+          }
+          axios.request(options3)
+            .then(res => console.log(res))
+            .catch(err => console.error(err));
+        })
+        .catch(err => console.error(err));
+      })
+      .catch(err => console.error(err));
+    
+    forceUpdate()
   }
 
   return (
@@ -79,7 +123,7 @@ function CourseModal(props) {
             {proposal.title ? proposal.title : "No title"}
           </div>
           <div className="col">
-            <p>Votes: {proposal.support}</p>
+            <p>Votes: {proposal.support}/{voteThreshold}</p>
           </div>
         </div>
       </li>
