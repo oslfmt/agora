@@ -8,11 +8,13 @@ import Home from './components/Home';
 import Proposals from './components/Proposals';
 import About from './components/About';
 import Browse from './components/Browse';
+import Courses from './components/Courses'
 import Dashboard from './components/dashboard/Dashboard';
 import IntroCourse from './components/IntroCourse';
 import ProposeBoard from './components/ProposalBoard';
 import Header from './components/layout/Header';
-import EditCourse from './components/EditCourse'
+import EditCourse from './components/EditCourse';
+import EditSection from './components/EditSection';
 
 // import contract abis
 import AGOToken from './build/contracts/AGOToken.json';
@@ -105,7 +107,7 @@ function App() {
             <About />
           </Route>
           <Route path = "/Browse">
-            <Browse />
+            <Courses />
           </Route>
 
           <Route path="/proposals">
@@ -113,13 +115,18 @@ function App() {
             <ProposeBoard />
           </Route>
 
-          <Route path="/agorum/:id" >
+          {/* <Route path="/agorum/:id" >
             <AgorumView />
-          </Route>
+          </Route> */}
 
-          <Route path="/editcourse:id">
+          <Route path="/editcourse/:id">
             <Header />
             <EditCourse />
+          </Route>
+
+          <Route path="/editsection/:id">
+            <Header />
+            <EditSection />
           </Route>
 
           <Route path="/proposecourse">
