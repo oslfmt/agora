@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import {useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Web3 from 'web3';
 
 // import components
@@ -23,6 +23,7 @@ function App() {
   const [web3js, setWeb3js] = useState(null);
   const [contracts, setContracts] = useState({agoToken: null, agorum: null});
   const [address, setAddress] = useState('');
+
 
   /**
    * Load web3 provider from dapp browser and set it in component state
@@ -127,6 +128,7 @@ function App() {
             <Header />
             <Proposals />
           </Route>
+
           <Route exact path="/">
             <Home />
           </Route>
