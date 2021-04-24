@@ -4,55 +4,73 @@ import MDEditor from '@uiw/react-md-editor';
 import axios from 'axios'
 
 export default function EditSection() {
-  const [section, setSection] = useState(0)
-  const sectionid = useParams();
+  const [course, setCourse] = useState(0)
+  const courseid = useParams();
   const [value, setValue] = useState("placeholder");
 
   useEffect(() => {
     const options = {
       method: 'GET',
-      url: `http://localhost:8000/api/section/${sectionid.id}`
+      url: `http://localhost:8000/api/course/${courseid.id}`
     }
 
     axios.request(options)
       .then(res => {
-        setSection(res.data)
+        setCourse(res.data)
       })
       .catch(err => console.error(err));
-  }, [setSection]);  
+  }, [setCourse]);  
 
   useEffect(() => {
-    setValue(section.content)
-  }, [section])
-  
-
-  const postContent = () => {
-    const options = {
-      method: 'PUT',
-      url: `http://localhost:8000/api/section/${sectionid.id}`,
-      data: {
-        content: value
-      }
+    if (course) {
+      setValue(course.coursesections[0].content)
     }
+  }, [course])
+
+
+
+  // const postContent = () => {
+  //   const options = {
+  //     method: 'PUT',
+  //     url: `http://localhost:8000/api/section/${sectionid.id}`,
+  //     data: {
+  //       content: value
+  //     }
+  //   }
   
-    axios.request(options)
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => console.error(err));
+  //   axios.request(options)
+  //     .then(res => {
+  //       console.log(res)
+  //     })
+  //     .catch(err => console.error(err));
+  // }
+
+  var sections;
+  if (course) {
+    sections = course.coursesections;
+    console.log(sections);
+  } else {
+    sections = [];
   }
 
   return (
-    <div className="container">
-      <div className="card p-4 m-5">
-        <h4 className="card-title">Edit Page</h4>
-        <MDEditor
-          value={value || ''}
-          onChange={setValue}
-        />
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col card p-4 m-3">
+          <ul className="list-group">
+            { sections.map((page, index) => <li variant="primary" className="list-group-item btn mb-3">Page {index+1}</li>)}
+          </ul>
+        </div>
+        <div className="col-10 card p-4 m-3">
+          <MDEditor
+            value={value || ''}
+            preview={'edit'}
+            height={700}
+            onChange={setValue}
+          />
+          <button className="btn btn-success">Save Changes</button>
+        </div>
       </div>
-      <button className="btn btn-success" onClick={postContent}>Save Changes</button>
     </div>
   );
 }
-
