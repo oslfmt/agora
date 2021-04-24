@@ -32,6 +32,16 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [skynetID, setSkynetID] = useState('');
 
+  // header variable
+  const header = (
+    <Header 
+      mysky={mysky}
+      loggedIn={loggedIn}
+      setLoggedIn={setLoggedIn}
+      setSkynetID={setSkynetID}
+    />
+  );
+
   // initialize skynet client on component mount
   useEffect(() => {
     const client = new SkynetClient('https://siasky.net/');
@@ -127,24 +137,27 @@ function App() {
       <Router>
         <Switch>
           <Route path="/dashboard">
-            <Header />
+            {header}
             <Dashboard web3={web3js} contracts={contracts} address={address} />
           </Route>
 
           <Route path="/introcourse">
-            <Header />
+            {header}
             <IntroCourse contracts={contracts} address={address} />
           </Route>
 
-          <Route path = "/About">
+          <Route path="/About">
+            {header}
             <About />
           </Route>
-          <Route path = "/Browse">
+
+          <Route path="/browse">
+            {header}
             <Courses />
           </Route>
 
           <Route path="/proposals">
-            <Header />
+            {header}
             <ProposeBoard />
           </Route>
 
@@ -153,29 +166,25 @@ function App() {
           </Route> */}
 
           <Route path="/editcourse/:id">
-            <Header />
+            {header}
             <EditCourse />
           </Route>
 
           <Route path="/editsection/:id">
-            <Header />
+            {header}
             <EditSection />
           </Route>
 
           <Route path="/proposecourse">
-            <Header />
+            {header}
             <Proposals />
           </Route>
 
           <Route exact path="/">
-            <Header 
-              mysky={mysky}
-              loggedIn={loggedIn}
-              setLoggedIn={setLoggedIn}
-              setSkynetID={setSkynetID}
-            />
+            {header}
             <Home />
           </Route>
+
         </Switch>
       </Router>
     </div>
