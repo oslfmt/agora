@@ -16,6 +16,7 @@ import ProposeBoard from './components/ProposalBoard';
 import Header from './components/layout/Header';
 import EditCourse from './components/EditCourse';
 import EditSection from './components/EditSection';
+import Footer from './components/layout/Footer'
 
 // import contract abis
 import AGOToken from './build/contracts/AGOToken.json';
@@ -201,6 +202,7 @@ function App() {
           <Route exact path="/">
             <Header {...skynet} />
             <Home />
+            <Footer />
           </Route>
 
         </Switch>
