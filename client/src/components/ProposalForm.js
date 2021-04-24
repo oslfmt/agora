@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { defaultPortalUrl, SkynetClient } from 'skynet-js';
 import axios from 'axios';
 
 class ProposalForm extends Component {
@@ -11,7 +10,7 @@ class ProposalForm extends Component {
       description: '',
       contributors: '',
       categories: '',
-      files: []
+      files: [],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,27 +19,24 @@ class ProposalForm extends Component {
     this.uploadToSkynet = this.uploadToSkynet.bind(this);
   }
 
-  // initiate the skynet client
-  static client = new SkynetClient('https://siasky.net/');
-
   // is async making 'this' undefined? because this works in other methods
   async uploadToSkynet() {
     try {
       // returns the skylink, which is used to retrieve the specific content that has been uploaded
-      const { skylink } = await ProposalForm.client.uploadFile(this.state.files[0]);
+      const { skylink } = await this.props.skynetClient.uploadFile(this.state.files[0]);
 
       // generate a url
-      const skylinkUrl = await ProposalForm.client.getSkylinkUrl(skylink);
+      const skylinkUrl = await this.props.skynetClient.getSkylinkUrl(skylink);
       console.log(skylinkUrl);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
   /**
    * Creates an course template in p/courseProposalName
    */
-  handleSubmit() {
+  async handleSubmit() {
     const courseProposal = {
       title: this.state.title,
       description: this.state.description,
@@ -48,16 +44,29 @@ class ProposalForm extends Component {
       categories: this.state.categories,
     };
 
+    try {
+      // setJSON to the given datapath, which starts at '0' and increments up
+      const { data, skylink } = await this.props.mysky.setJSON(this.props.dataPath, courseProposal);
+
+      console.log(data)
+      console.log(skylink)
+    } catch (err) {
+      console.error(err);
+    }
+
+    // ========= CENTRALIZED BACKEND STUFF ============= //
     const options = {
       method: 'POST',
       url: 'http://localhost:8000/api/proposal',
       data: courseProposal
     }
 
-    axios.request(options)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+    // axios.request(options)
+    //   .then(res => console.log(res))
+    //   .catch(err => console.log(err));
+    // ========= CENTRALIZED BACKEND STUFF ============= //
 
+    // reset the form, increment proposal count
     this.setState({
       title: '',
       description: '',
@@ -89,7 +98,7 @@ class ProposalForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <div className="Proposal_container">
           <h1 className="Proposal_title">Propose a Course.</h1>
           <div className="Topic_goal">

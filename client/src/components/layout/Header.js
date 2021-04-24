@@ -37,8 +37,8 @@ const Header = (props) => {
             null
           }
           {props.loggedIn ?
-            <Link className="nav-link" onClick={handleLogout}>Logout</Link> : 
-            <Link className="nav-link" onClick={handleLogin}>Login</Link>
+            <Link className="nav-link" onClick={handleLogout} to="">Logout</Link> : 
+            <Link className="nav-link" onClick={handleLogin} to="">Login</Link>
           }
         </div>
       </div>

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 import CourseData from './CourseData';
 import Profile from './Profile'
 import Wallet from './Wallet';
 
 function Dashboard(props) {
-  const { user } = useAuth0();
   const web3 = props.web3;
   const agoToken = props.contracts.agoToken;
   const agorum = props.contracts.agorum;
   const address =props.address;
+
+  // skynet
+  const skynetID = props.skynetID;
 
   const [addedTokens, setAddedTokens] = useState(false);
   const [tokenBalance, setTokenBalance] = useState(0);
@@ -66,11 +66,11 @@ function Dashboard(props) {
       <div className="container-fluid">
         <div className="row m-3">
           <div className="col">
-            <CourseData />
+            <CourseData skynet={props} />
           </div>
           <div className="col">
             <div className="row">
-              <Profile user={user} />
+              <Profile skynetID={skynetID} />
             </div>
             <div className="row">
               <Wallet addTokensToWallet={addTokensToWallet} balance={tokenBalance} />

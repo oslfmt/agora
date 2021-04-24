@@ -6,7 +6,7 @@ import { SkynetClient } from 'skynet-js';
 
 // import components
 import Home from './components/Home';
-import Proposals from './components/Proposals';
+import ProposalForm from './components/ProposalForm';
 import About from './components/About';
 import Browse from './components/Browse';
 import Courses from './components/Courses'
@@ -32,15 +32,29 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [skynetID, setSkynetID] = useState('');
 
-  // header variable
-  const header = (
-    <Header 
-      mysky={mysky}
-      loggedIn={loggedIn}
-      setLoggedIn={setLoggedIn}
-      setSkynetID={setSkynetID}
-    />
-  );
+  const [dataPath, setDataPath] = useState('');
+  const [proposalCount, setProposalCount] = useState(0);
+
+  // object passing in all skynet related objects
+  const skynet = {
+    skynetClient,
+    mysky,
+    loggedIn,
+    skynetID,
+    dataPath,
+    setLoggedIn,
+    setSkynetID,
+    setProposalCount,
+  };
+
+  useEffect(() => {
+    const dataDomain = 'localhost';
+    const base = '/proposals';
+
+    let dataPath = dataDomain + base + `/proposal${proposalCount}.json`;
+    setDataPath(dataPath);
+
+  }, [setDataPath]);
 
   // initialize skynet client on component mount
   useEffect(() => {
@@ -48,7 +62,7 @@ function App() {
     setSkynetClient(client);
   }, [])
 
-  // initialize mySky
+  // initialize mySky: decentralized identity provider
   useEffect(() => {
     async function initMySky() {
       try {
@@ -57,7 +71,11 @@ function App() {
           setMySky(mySky);
           // try to login silently
           const loggedIn = await mySky.checkLogin();
-          setLoggedIn(loggedIn);
+
+          if (loggedIn) {
+            setLoggedIn(loggedIn);
+            setSkynetID(await mySky.userID());
+          }
         }
       } catch (err) {
         console.error(err);
@@ -137,27 +155,27 @@ function App() {
       <Router>
         <Switch>
           <Route path="/dashboard">
-            {header}
-            <Dashboard web3={web3js} contracts={contracts} address={address} />
+            <Header {...skynet} />
+            <Dashboard web3={web3js} contracts={contracts} address={address} {...skynet} />
           </Route>
 
           <Route path="/introcourse">
-            {header}
+            <Header {...skynet} />
             <IntroCourse contracts={contracts} address={address} />
           </Route>
 
           <Route path="/About">
-            {header}
+            <Header {...skynet} />
             <About />
           </Route>
 
           <Route path="/browse">
-            {header}
+            <Header {...skynet} />
             <Courses />
           </Route>
 
           <Route path="/proposals">
-            {header}
+            <Header {...skynet} />
             <ProposeBoard />
           </Route>
 
@@ -166,22 +184,22 @@ function App() {
           </Route> */}
 
           <Route path="/editcourse/:id">
-            {header}
+            <Header {...skynet} />
             <EditCourse />
           </Route>
 
           <Route path="/editsection/:id">
-            {header}
+            <Header {...skynet} />
             <EditSection />
           </Route>
 
           <Route path="/proposecourse">
-            {header}
-            <Proposals />
+            <Header {...skynet} />
+            <ProposalForm {...skynet} />
           </Route>
 
           <Route exact path="/">
-            {header}
+            <Header {...skynet} />
             <Home />
           </Route>
 
