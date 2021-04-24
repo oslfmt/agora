@@ -30,12 +30,12 @@ export default class Footer extends Component {
 						</a>
 
 						{/* Linkedin */}
-						<a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+						<a className="btn btn-outline-light btn-floating m-1" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" role="button" target="_blank">
 							<i className="fab fa-linkedin-in"></i>
 						</a>
 
 						{/* Github */}
-						<a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+						<a className="btn btn-outline-light btn-floating m-1" href="https://github.com/agora-education/agora" role="button" target="_blank">
 							<i className="fab fa-github"></i>
 						</a>
 						</section>
