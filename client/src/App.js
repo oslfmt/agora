@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Web3 from 'web3';
+import { SkynetClient } from 'skynet-js';
 
 // import components
 import Home from './components/Home';
@@ -25,6 +26,35 @@ function App() {
   const [contracts, setContracts] = useState({agoToken: null, agorum: null});
   const [address, setAddress] = useState('');
 
+  // skynet stuff
+  const [skynetClient, setSkynetClient] = useState(null);
+  const [mysky, setMySky] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  // initialize skynet client on component mount
+  useEffect(() => {
+    const client = new SkynetClient('https://siasky.net/');
+    setSkynetClient(client);
+  }, [])
+
+  // initialize mySky
+  useEffect(() => {
+    async function initMySky() {
+      try {
+        if (skynetClient) {
+          const mySky = await skynetClient.loadMySky('localhost');
+          setMySky(mySky);
+          // try to login silently
+          const loggedIn = await mySky.checkLogin();
+          setLoggedIn(loggedIn);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    initMySky();
+  }, [skynetClient]);
 
   /**
    * Load web3 provider from dapp browser and set it in component state
@@ -136,7 +166,7 @@ function App() {
           </Route>
 
           <Route exact path="/">
-            <Home />
+            <Home mysky={mysky} loggedIn={loggedIn} />
           </Route>
         </Switch>
       </Router>

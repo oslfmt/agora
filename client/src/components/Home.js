@@ -1,46 +1,14 @@
-import React, {useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { SkynetClient } from 'skynet-js';
+import React from 'react';
 
 // import components
 import SearchBar from './SearchBar';
 import Trending from './Trending';
 import Header from './layout/Header';
 
-function Home() {
-  const [skynetClient, setSkynetClient] = useState(null);
-
-  // initialize skynet client on component mount
-  useEffect(() => {
-    const client = new SkynetClient('https://siasky.net/');
-    setSkynetClient(client);
-  }, [])
-
-  // initialize mySky
-  useEffect(() => {
-    async function initMySky() {
-      try {
-        console.log(skynetClient);
-
-        if (skynetClient) {
-          const mySky = await skynetClient.loadMySky('localhost');
-          console.log('here')
-  
-          // try to login silently
-          const loggedIn = await mySky.checkLogin();
-          console.log(loggedIn);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    }
-
-    initMySky();
-  }, [skynetClient]);
-
+function Home(props) {
   return (
     <section className="home">
-      <Header />
+      <Header mysky={props.mysky} loggedIn={props.loggedIn} />
       <div className="container">
         <div className="row">
           <h1 className="Agora_title">agora.</h1>
