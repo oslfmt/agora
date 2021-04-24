@@ -30,6 +30,7 @@ function App() {
   const [skynetClient, setSkynetClient] = useState(null);
   const [mysky, setMySky] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [skynetID, setSkynetID] = useState('');
 
   // initialize skynet client on component mount
   useEffect(() => {
@@ -54,7 +55,7 @@ function App() {
     }
 
     initMySky();
-  }, [skynetClient]);
+  }, [skynetClient, loggedIn]);
 
   /**
    * Load web3 provider from dapp browser and set it in component state
@@ -125,7 +126,8 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/Dashboard">
+          <Route path="/dashboard">
+            <Header />
             <Dashboard web3={web3js} contracts={contracts} address={address} />
           </Route>
 
@@ -166,7 +168,13 @@ function App() {
           </Route>
 
           <Route exact path="/">
-            <Home mysky={mysky} loggedIn={loggedIn} />
+            <Header 
+              mysky={mysky}
+              loggedIn={loggedIn}
+              setLoggedIn={setLoggedIn}
+              setSkynetID={setSkynetID}
+            />
+            <Home />
           </Route>
         </Switch>
       </Router>

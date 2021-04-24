@@ -3,6 +3,26 @@ import { Link } from 'react-router-dom';
 
 const Header = (props) => {
   const mysky = props.mysky;
+  const setLoggedIn = props.setLoggedIn;
+  const setSkynetID = props.setSkynetID;
+
+  const handleLogin = async () => {
+    const status = await mysky.requestLoginAccess();
+    setLoggedIn(status);
+
+    if (status) {
+      const id = await mysky.userID();
+      setSkynetID(id);
+    }
+  }
+
+  const handleLogout = async () => {
+    // globally logout of mysky
+    await mysky.logout();
+
+    setLoggedIn(false);
+    setSkynetID('');
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light navbar-color">
@@ -12,8 +32,14 @@ const Header = (props) => {
           <Link className="nav-link" to="/proposals">Proposals</Link>
           <Link className="nav-link" to="/browse">Browse</Link>
           <Link className="nav-link" to="/about">About</Link>
-          <Link className="nav-link" to="/dashboard">Dashboard</Link>
-          {props.loggedIn ? null : <Link className="nav-link" onClick={() => {mysky.requestLoginAccess()}}>Login</Link>}
+          {props.loggedIn ?
+            <Link className="nav-link" to="/dashboard">Dashboard</Link> :
+            null
+          }
+          {props.loggedIn ?
+            <Link className="nav-link" onClick={handleLogout}>Logout</Link> : 
+            <Link className="nav-link" onClick={handleLogin}>Login</Link>
+          }
         </div>
       </div>
     </nav>

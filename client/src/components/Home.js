@@ -8,7 +8,6 @@ import Header from './layout/Header';
 function Home(props) {
   return (
     <section className="home">
-      <Header mysky={props.mysky} loggedIn={props.loggedIn} />
       <div className="container">
         <div className="row">
           <h1 className="Agora_title">agora.</h1>
