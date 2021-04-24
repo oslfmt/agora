@@ -31,7 +31,7 @@ module.exports = {
   },
   update(req, res) {
     return CourseSection
-      .find(req.params.userId)
+      .findByPk(req.params.sectionId)
       .then(CourseSection => {
         if (!CourseSection) {
           return res.status(404).send({
@@ -40,7 +40,7 @@ module.exports = {
         }
         return CourseSection
           .update({
-            name: req.body.content || CourseSection.content,
+            content: req.body.content || CourseSection.content,
           })
           .then(CourseSection => res.status(200).send(CourseSection))
           .catch(error => res.status(400).send(error));

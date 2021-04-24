@@ -41,8 +41,9 @@ module.exports = (app) => {
 
   app.post('/api/course/:courseId/section', section.create);
   app.get('/api/course/:courseId/section', section.list);
-  app.get('/api/course/:courseId/section/:sectionId', section.retrieve);
-  app.put('/api/course/:courseId/section/:sectionId', section.update);
+  // app.get('/api/course/:courseId/section/:sectionId', section.retrieve);
+  app.get('/api/section/:sectionId', section.retrieve);
+  app.put('/api/section/:sectionId', section.update);
   app.delete('/api/course/:courseId/section/:sectionId', section.destroy);
 
   app.post('/api/agorum/:agorumId/forum', forum.create);

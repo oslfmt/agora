@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Proposal_form from './Proposal_form';
+import ProposalForm from './ProposalForm';
 import CourseList from './CourseList';
 
 
@@ -8,7 +8,7 @@ function Proposals() {
     return (
       <section className="proposals">
         <div className="container">
-            <Proposal_form />
+            <ProposalForm />
         </div>
       </section>
     );

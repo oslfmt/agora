@@ -24,7 +24,12 @@ module.exports = {
   },
   retrieve(req, res) {
     return Course
-      .findByPk(req.params.courseId)
+      .findByPk(req.params.courseId, {
+        include: [{
+          model: CourseSection,
+          as: 'coursesections',
+        }]
+      })
       .then(Course => {
         if (!Course) {
           return res.status(404).send({

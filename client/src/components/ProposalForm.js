@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { defaultPortalUrl, SkynetClient } from 'skynet-js';
 import axios from 'axios';
 
-class Proposal_form extends Component {
+class ProposalForm extends Component {
   constructor(props) {
     super(props);
 
@@ -10,10 +11,30 @@ class Proposal_form extends Component {
       description: '',
       contributors: '',
       categories: '',
+      files: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFileUpload = this.handleFileUpload.bind(this);
+    this.uploadToSkynet = this.uploadToSkynet.bind(this);
+  }
+
+  // initiate the skynet client
+  static client = new SkynetClient('https://siasky.net/');
+
+  // is async making 'this' undefined? because this works in other methods
+  async uploadToSkynet() {
+    try {
+      // returns the skylink, which is used to retrieve the specific content that has been uploaded
+      const { skylink } = await ProposalForm.client.uploadFile(this.state.files[0]);
+
+      // generate a url
+      const skylinkUrl = await ProposalForm.client.getSkylinkUrl(skylink);
+      console.log(skylinkUrl);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   /**
@@ -55,6 +76,17 @@ class Proposal_form extends Component {
     });
   }
 
+  handleFileUpload(e) {
+    const fileList = e.target.files;
+    let files = [];
+
+    for (let i = 0; i < fileList.length; i++) {
+      files.push(fileList[i]);
+    }
+
+    this.setState({ files });
+  }
+
   render() {
     return (
       <div>
@@ -84,12 +116,16 @@ class Proposal_form extends Component {
               <input type="deadline" class="form-control" id="exampleFormControlInput5" placeholder="30" readOnly/>
             </div> 
           </div>
-            <div className="Categories_div">
-              <label for="exampleFormControlInput6" className="Form_label">Category</label>
-              <input type="categories" class="form-control" name="categories" placeholder="Enter one category your course falls..." value={this.state.categories} onChange={this.handleInputChange}/>
-            </div>
+          <div className="Categories_div">
+            <label for="exampleFormControlInput6" className="Form_label">Category</label>
+            <input type="categories" class="form-control" name="categories" placeholder="Enter one category your course falls..." value={this.state.categories} onChange={this.handleInputChange}/>
+          </div>
+          <div className="input-group">
+            <input id="fileItem" type="file" onChange={this.handleFileUpload} multiple/>
+          </div>
           <div className="Button_div m-5">
             <button type="submit" class="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
+            <button type="submit" class="btn btn-primary" onClick={this.uploadToSkynet}>Upload File</button>
           </div>
         </div>
       </div>
@@ -97,4 +133,4 @@ class Proposal_form extends Component {
   }
 }
 
-export default Proposal_form;
+export default ProposalForm;
