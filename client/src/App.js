@@ -20,6 +20,7 @@ import EditSection from './components/EditSection';
 // import contract abis
 import AGOToken from './build/contracts/AGOToken.json';
 import Agorum from './build/contracts/Agorum.json';
+import Footer from './components/layout/Footer';
 
 function App() {
   const [web3js, setWeb3js] = useState(null);
@@ -139,26 +140,31 @@ function App() {
           <Route path="/dashboard">
             {header}
             <Dashboard web3={web3js} contracts={contracts} address={address} />
+            <Footer />
           </Route>
 
           <Route path="/introcourse">
             {header}
             <IntroCourse contracts={contracts} address={address} />
+            <Footer />
           </Route>
 
           <Route path="/About">
             {header}
             <About />
+            <Footer />
           </Route>
 
           <Route path="/browse">
             {header}
             <Courses />
+            <Footer />
           </Route>
 
           <Route path="/proposals">
             {header}
             <ProposeBoard />
+            <Footer />
           </Route>
 
           {/* <Route path="/agorum/:id" >
@@ -168,21 +174,25 @@ function App() {
           <Route path="/editcourse/:id">
             {header}
             <EditCourse />
+            <Footer />
           </Route>
 
           <Route path="/editsection/:id">
             {header}
             <EditSection />
+            <Footer />
           </Route>
 
           <Route path="/proposecourse">
             {header}
             <Proposals />
+            <Footer />
           </Route>
 
           <Route exact path="/">
             {header}
             <Home />
+            <Footer />
           </Route>
 
         </Switch>
