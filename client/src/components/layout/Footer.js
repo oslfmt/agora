@@ -46,7 +46,7 @@ export default class Footer extends Component {
 					{/* Copyright */}
 					{/* style="background-color: rgba(0, 0, 0, 0.2);"*/}
 					<div className="text-center p-3">
-						<p>© 2021 Copyright <a className="text-white" href="http://localhost:3000/">Collancer</a></p>
+						<p>© 2021 Copyright <a className="text-white" href="http://localhost:3000/">Agora</a></p>
 					</div>
 					{/* Copyright */}
 					</footer>
