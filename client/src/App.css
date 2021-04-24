@@ -237,3 +237,21 @@
 .quote {
   font-family: 'Josefin Slab', serif;
 }
+
+.section-edit-container {
+  position: absolute;
+  width: 90%;
+  height: 80vh;
+  left: 0;
+}
+
+.section-edit {
+  width: 90%;
+  position: relative;
+  height: 100%;
+  right: 0;
+}
+
+.md-editor {
+  height: 100%;
+}
