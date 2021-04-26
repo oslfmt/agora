@@ -66,7 +66,7 @@ function Dashboard(props) {
       <div className="container-fluid">
         <div className="row m-3">
           <div className="col">
-            <CourseData skynet={props} />
+            <CourseData mysky={props.mysky} proposalCount={props.proposalCount} />
           </div>
           <div className="col">
             <div className="row">

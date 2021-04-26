@@ -32,8 +32,6 @@ function App() {
   const [mysky, setMySky] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const [skynetID, setSkynetID] = useState('');
-
-  const [dataPath, setDataPath] = useState('');
   const [proposalCount, setProposalCount] = useState(0);
 
   // object passing in all skynet related objects
@@ -42,20 +40,41 @@ function App() {
     mysky,
     loggedIn,
     skynetID,
-    dataPath,
+    proposalCount,
     setLoggedIn,
     setSkynetID,
     setProposalCount,
   };
 
+  // retrieves the user proposal count; if no proposals have been made by this user yet, initializes count to 0
+  // and writes this to MySky
   useEffect(() => {
-    const dataDomain = 'localhost';
-    const base = '/proposals';
+    // retrieves the current proposal count of the user
+    async function getTotalProposalCount() {
+      // this is the "global variable" of the proposal counts for each user
+      const proposalCountPath = 'localhost/proposals/count';
+      let count;
 
-    let dataPath = dataDomain + base + `/proposal${proposalCount}.json`;
-    setDataPath(dataPath);
+      // attempt to retrieve the proposalCount
+      const { data } = await mysky.getJSON(proposalCountPath);
 
-  }, [setDataPath]);
+      // if the datapath has been set, then retrieve the current count
+      // otherwise, initialize count to 0 and store it
+      if (data) {
+        count = data;
+      } else {
+        count = { proposalCount: 0 };
+        await mysky.setJSON(proposalCountPath, count);
+      }
+
+      // set react state
+      setProposalCount(count);
+    }
+
+    if (mysky) {
+      getTotalProposalCount();
+    }
+  }, [mysky]);
 
   // initialize skynet client on component mount
   useEffect(() => {

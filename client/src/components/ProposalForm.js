@@ -33,6 +33,8 @@ class ProposalForm extends Component {
     }
   }
 
+
+
   /**
    * Creates an course template in p/courseProposalName
    */
@@ -45,28 +47,28 @@ class ProposalForm extends Component {
     };
 
     try {
-      // setJSON to the given datapath, which starts at '0' and increments up
-      const { data, skylink } = await this.props.mysky.setJSON(this.props.dataPath, courseProposal);
+      let count = this.props.proposalCount;
 
-      console.log(data)
-      console.log(skylink)
+      // writes the courseProposal data to MySky at the appropriate proposalCount, which starts
+      // at 0 and increments by 1 for every proposal submitted
+      const { data, skylink } = await this.props.mysky.setJSON(`localhost/proposals/proposal${count.proposalCount}.json`, courseProposal);
+      
+      // increment proposalCount
+      count.proposalCount++;
+
+      // update the count to MySky
+      await this.props.mysky.setJSON('localhost/proposals/count', count);
+
+      // update the local react state proposalCount as well, for current session consistency
+      this.props.setProposalCount(count);
+
+      console.log(data);
+      console.log(skylink);
     } catch (err) {
       console.error(err);
     }
 
-    // ========= CENTRALIZED BACKEND STUFF ============= //
-    const options = {
-      method: 'POST',
-      url: 'http://localhost:8000/api/proposal',
-      data: courseProposal
-    }
-
-    // axios.request(options)
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log(err));
-    // ========= CENTRALIZED BACKEND STUFF ============= //
-
-    // reset the form, increment proposal count
+    // reset the form
     this.setState({
       title: '',
       description: '',

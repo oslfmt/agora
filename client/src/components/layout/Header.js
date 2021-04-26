@@ -5,6 +5,7 @@ const Header = (props) => {
   const mysky = props.mysky;
   const setLoggedIn = props.setLoggedIn;
   const setSkynetID = props.setSkynetID;
+  const setProposalCount = props.setProposalCount;
 
   const handleLogin = async () => {
     const status = await mysky.requestLoginAccess();
@@ -22,6 +23,7 @@ const Header = (props) => {
 
     setLoggedIn(false);
     setSkynetID('');
+    setProposalCount(0);
   }
 
   return (

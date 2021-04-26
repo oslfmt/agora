@@ -3,39 +3,37 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function CourseData(props) {
-  const skynet = props.skynet;
-  const [proposals, setProposals] = useState('');
+  const [proposals, setProposals] = useState(null);
 
-  // POSTGRESQL IMPLEMENTATION
-  // useEffect(() => {
-  //   const options = {
-  //     method: 'GET',
-  //     url: 'http://localhost:8000/api/proposal'
-  //   }
+  // count contains the total proposals made by the user thus far
+  const count = props.proposalCount;
+  const mysky = props.mysky;
 
-  //   axios.request(options)
-  //     .then(res => {
-  //       setProposals(res.data);
-  //     })
-  //     .catch(err => console.error(err));
-  // }, [setProposals]);
-
-  // SKYNET IMPLEMENTATION: get courses
+  // retrieve all course proposals and set to component state
+  // this effect is dependent on the props.proposalCount, since that value takes time to load since it a request
+  // to skynet
   useEffect(() => {
     async function getCourseProposals() {
-      if (skynet.mysky) {
-        try {
-          const { data, skylink } = await skynet.mysky.getJSON(skynet.dataPath);
+      try {
+        let array = []; // local array to store proposals
 
-          setProposals(data)
-        } catch(err) {
-          console.error(err);
+        // retrieve all the course proposals that the user has made, using the global count variable
+        for (let proposal = 0; proposal < count.proposalCount; proposal++) {
+          const { data } = await mysky.getJSON(`localhost/proposals/proposal${proposal}.json`);
+          array.push(data);
         }
+
+        // set react state to the proposals
+        setProposals(array);
+      } catch(err) {
+        console.error(err);
       }
     }
 
-    getCourseProposals();
-  }, [setProposals])
+    if (count) {
+      getCourseProposals();
+    }
+  }, [count, mysky]);
 
   return (
     <div className="card bg-light" style={{"height": "650px"}}>
@@ -49,13 +47,7 @@ function CourseData(props) {
           <li className="list-group-item">And a fifth one</li>
         </ul>
         <h5 className="card-title mt-3">My Created Course</h5>
-        <li className="list-group-item">
-          <p>Proposal Title: {proposals.title}</p>
-          <p>Description: {proposals.description}</p>
-          <p>Contributors: {proposals.contributors}</p>
-          <p>Category: {proposals.categories}</p>
-        </li>
-        {/* <CourseProposalsList proposals={proposals} /> */}
+        {proposals ? <CourseProposalsList proposals={proposals} /> : null}
       </div>
     </div>
   );
@@ -67,7 +59,7 @@ const CourseProposalsList = (props) => {
 
   if (props.proposals) {
     proposals = props.proposals.map((proposal, index) => {
-      return <Link className="list-group-item btn" key={index} to={`/editcourse:${proposal.id}`}>{proposal.title}</Link>
+      return <Link className="list-group-item btn" key={index} to={`/editcourse`}>{proposal.title}</Link>
     });
   }
   
@@ -75,7 +67,7 @@ const CourseProposalsList = (props) => {
     <ul className="list-group">
       {proposals}
     </ul>
-  )
+  );
 }
 
 export default CourseData;
