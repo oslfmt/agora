@@ -22,6 +22,7 @@ import Footer from './components/layout/Footer'
 // import contract abis
 import AGOToken from './build/contracts/AGOToken.json';
 import Agorum from './build/contracts/Agorum.json';
+import Footer from './components/layout/Footer';
 
 function App() {
   const [web3js, setWeb3js] = useState(null);
@@ -186,47 +187,60 @@ function App() {
       <Router>
         <Switch>
           <Route path="/dashboard">
+<<<<<<< HEAD
             <Header {...skynet} />
             <Dashboard web3={web3js} contracts={contracts} address={address} {...skynet} />
+=======
+            {header}
+            <Dashboard web3={web3js} contracts={contracts} address={address} />
+            <Footer />
+>>>>>>> 70d591e12559b45c205cd8628d6f7ebde54e2d61
           </Route>
 
           <Route path="/introcourse">
             <Header {...skynet} />
             <IntroCourse contracts={contracts} address={address} />
+            <Footer />
           </Route>
 
           <Route path="/About">
             <Header {...skynet} />
             <About />
+            <Footer />
           </Route>
 
           <Route path="/browse">
             <Header {...skynet} />
             <Courses />
+            <Footer />
           </Route>
 
           <Route path="/proposals">
             <Header {...skynet} />
             <ProposeBoard />
+            <Footer />
           </Route>
 
           {/* <Route path="/agorum/:id" >
             <AgorumView />
           </Route> */}
 
+          {/* <Route path="/editcourse/:id">
+            {header}
+            <EditCourse />
+            <Footer />
+          </Route> */}
+
           <Route path="/editcourse/:id">
             <Header {...skynet} />
             <EditSection />
+            <Footer />
           </Route>
 
-          {/* <Route path="/editsection/:id">
-            <Header {...skynet} />
-            <EditSection />
-          </Route> */}
-
           <Route path="/proposecourse">
-            <Header {...skynet} />
-            <ProposalForm {...skynet} />
+            {header}
+            <Proposals />
+            <Footer />
           </Route>
 
           <Route exact path="/">

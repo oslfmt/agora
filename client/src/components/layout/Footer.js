@@ -35,7 +35,11 @@ export default class Footer extends Component {
 						</a>
 
 						{/* Github */}
+<<<<<<< HEAD
 						<a className="btn btn-outline-light btn-floating m-1" href="https://github.com/agora-education/agora" role="button" target="_blank">
+=======
+						<a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+>>>>>>> 70d591e12559b45c205cd8628d6f7ebde54e2d61
 							<i className="fab fa-github"></i>
 						</a>
 						</section>
