@@ -81,7 +81,7 @@ function App() {
 
   // initialize skynet client on component mount
   useEffect(() => {
-    const client = new SkynetClient('https://siasky.net/');
+    const client = new SkynetClient();
     setSkynetClient(client);
   }, [])
 
