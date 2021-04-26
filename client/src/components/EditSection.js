@@ -27,8 +27,6 @@ export default function EditSection() {
     }
   }, [course])
 
-
-
   // const postContent = () => {
   //   const options = {
   //     method: 'PUT',
@@ -58,7 +56,7 @@ export default function EditSection() {
       <div className="row">
         <div className="col card p-4 m-3">
           <ul className="list-group">
-            { sections.map((page, index) => <li variant="primary" className="list-group-item btn mb-3">Page {index+1}</li>)}
+            { sections.map((page, index) => <li variant="primary" onClick={() => setValue(course.coursesections[index].content)} className="list-group-item btn mb-3">Page {index+1}</li>)}
           </ul>
         </div>
         <div className="col-10 card p-4 m-3">
