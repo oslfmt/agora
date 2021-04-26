@@ -33,8 +33,6 @@ class ProposalForm extends Component {
     }
   }
 
-
-
   /**
    * Creates an course template in p/courseProposalName
    */
@@ -61,6 +59,11 @@ class ProposalForm extends Component {
 
       // update the local react state proposalCount as well, for current session consistency
       this.props.setProposalCount(count);
+
+      // record new content
+      this.props.contentRecord.recordNewContent({
+        skylink: skylink,
+      });
 
       console.log(data);
       console.log(skylink);

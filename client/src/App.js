@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import { SkynetClient } from 'skynet-js';
+import { ContentRecordDAC } from '@skynetlabs/content-record-library';
 
 // import components
 import Home from './components/Home';
@@ -33,6 +34,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [skynetID, setSkynetID] = useState('');
   const [proposalCount, setProposalCount] = useState(0);
+  const [contentRecord, setDAC] = useState(null);
 
   // object passing in all skynet related objects
   const skynet = {
@@ -41,6 +43,7 @@ function App() {
     loggedIn,
     skynetID,
     proposalCount,
+    contentRecord,
     setLoggedIn,
     setSkynetID,
     setProposalCount,
@@ -83,12 +86,20 @@ function App() {
   }, [])
 
   // initialize mySky: decentralized identity provider
+  // initialize DAC
   useEffect(() => {
     async function initMySky() {
       try {
         if (skynetClient) {
           const mySky = await skynetClient.loadMySky('localhost');
           setMySky(mySky);
+
+          // create content record
+          const contentRecord = new ContentRecordDAC();
+          // load DACs
+          await mySky.loadDacs(contentRecord);
+          setDAC(contentRecord);
+
           // try to login silently
           const loggedIn = await mySky.checkLogin();
 
