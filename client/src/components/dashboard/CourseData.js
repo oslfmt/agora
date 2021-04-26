@@ -46,8 +46,9 @@ function CourseData(props) {
           <li className="list-group-item">A fourth item</li>
           <li className="list-group-item">And a fifth one</li>
         </ul>
-        <h5 className="card-title mt-3">My Created Course</h5>
+        <h5 className="card-title mt-3">My Course Proposals</h5>
         {proposals ? <CourseProposalsList proposals={proposals} /> : null}
+        <h5 className="card-title mt-3">My Created Courses</h5>
       </div>
     </div>
   );
