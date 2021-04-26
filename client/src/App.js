@@ -216,13 +216,13 @@ function App() {
 
           <Route path="/editcourse/:id">
             <Header {...skynet} />
-            <EditCourse />
-          </Route>
-
-          <Route path="/editsection/:id">
-            <Header {...skynet} />
             <EditSection />
           </Route>
+
+          {/* <Route path="/editsection/:id">
+            <Header {...skynet} />
+            <EditSection />
+          </Route> */}
 
           <Route path="/proposecourse">
             <Header {...skynet} />
