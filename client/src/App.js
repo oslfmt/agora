@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import { SkynetClient } from 'skynet-js';
@@ -93,6 +93,7 @@ function App() {
         if (skynetClient) {
           const mySky = await skynetClient.loadMySky('localhost');
           setMySky(mySky);
+          console.log('here')
 
           // create content record
           const contentRecord = new ContentRecordDAC();
