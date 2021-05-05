@@ -8,12 +8,14 @@ const Header = (props) => {
   const setProposalCount = props.setProposalCount;
 
   const handleLogin = async () => {
-    const status = await mysky.requestLoginAccess();
-    setLoggedIn(status);
-
-    if (status) {
-      const id = await mysky.userID();
-      setSkynetID(id);
+    if (mysky) {
+      const status = await mysky.requestLoginAccess();
+      setLoggedIn(status);
+  
+      if (status) {
+        const id = await mysky.userID();
+        setSkynetID(id);
+      }
     }
   }
 

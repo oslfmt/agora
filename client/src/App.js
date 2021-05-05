@@ -91,7 +91,7 @@ function App() {
     async function initMySky() {
       try {
         if (skynetClient) {
-          const mySky = await skynetClient.loadMySky('localhost');
+          const mySky = await skynetClient.loadMySky();
           setMySky(mySky);
           console.log('here')
 
