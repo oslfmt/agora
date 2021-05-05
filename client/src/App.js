@@ -2,8 +2,6 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Web3 from 'web3';
-import { SkynetClient } from 'skynet-js';
-import { ContentRecordDAC } from '@skynetlabs/content-record-library';
 
 // import components
 import Home from './components/Home';
@@ -22,100 +20,11 @@ import Footer from './components/layout/Footer'
 // import contract abis
 import AGOToken from './build/contracts/AGOToken.json';
 import Agorum from './build/contracts/Agorum.json';
-import Footer from './components/layout/Footer';
 
 function App() {
   const [web3js, setWeb3js] = useState(null);
   const [contracts, setContracts] = useState({agoToken: null, agorum: null});
   const [address, setAddress] = useState('');
-
-  // skynet stuff
-  const [skynetClient, setSkynetClient] = useState(null);
-  const [mysky, setMySky] = useState(null);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [skynetID, setSkynetID] = useState('');
-  const [proposalCount, setProposalCount] = useState(0);
-  const [contentRecord, setDAC] = useState(null);
-
-  // object passing in all skynet related objects
-  const skynet = {
-    skynetClient,
-    mysky,
-    loggedIn,
-    skynetID,
-    proposalCount,
-    contentRecord,
-    setLoggedIn,
-    setSkynetID,
-    setProposalCount,
-  };
-
-  // retrieves the user proposal count; if no proposals have been made by this user yet, initializes count to 0
-  // and writes this to MySky
-  useEffect(() => {
-    // retrieves the current proposal count of the user
-    async function getTotalProposalCount() {
-      // this is the "global variable" of the proposal counts for each user
-      const proposalCountPath = 'localhost/proposals/count';
-      let count;
-
-      // attempt to retrieve the proposalCount
-      const { data } = await mysky.getJSON(proposalCountPath);
-
-      // if the datapath has been set, then retrieve the current count
-      // otherwise, initialize count to 0 and store it
-      if (data) {
-        count = data;
-      } else {
-        count = { proposalCount: 0 };
-        await mysky.setJSON(proposalCountPath, count);
-      }
-
-      // set react state
-      setProposalCount(count);
-    }
-
-    if (mysky) {
-      getTotalProposalCount();
-    }
-  }, [mysky]);
-
-  // initialize skynet client on component mount
-  useEffect(() => {
-    const client = new SkynetClient('https://siasky.net/');
-    setSkynetClient(client);
-  }, [])
-
-  // initialize mySky: decentralized identity provider
-  // initialize DAC
-  useEffect(() => {
-    async function initMySky() {
-      try {
-        if (skynetClient) {
-          const mySky = await skynetClient.loadMySky('localhost');
-          setMySky(mySky);
-
-          // create content record
-          const contentRecord = new ContentRecordDAC();
-          // load DACs
-          await mySky.loadDacs(contentRecord);
-          setDAC(contentRecord);
-
-          // try to login silently
-          const loggedIn = await mySky.checkLogin();
-
-          if (loggedIn) {
-            setLoggedIn(loggedIn);
-            setSkynetID(await mySky.userID());
-          }
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    }
-
-    initMySky();
-  }, [skynetClient, loggedIn]);
 
   /**
    * Load web3 provider from dapp browser and set it in component state
@@ -187,30 +96,30 @@ function App() {
       <Router>
         <Switch>
           <Route path="/dashboard">
-            <Header {...skynet} />
-            <Dashboard web3={web3js} contracts={contracts} address={address} {...skynet} />
+            <Header />
+            <Dashboard web3={web3js} contracts={contracts} address={address} />
           </Route>
 
           <Route path="/introcourse">
-            <Header {...skynet} />
+            <Header />
             <IntroCourse contracts={contracts} address={address} />
             <Footer />
           </Route>
 
           <Route path="/About">
-            <Header {...skynet} />
+            <Header />
             <About />
             <Footer />
           </Route>
 
           <Route path="/browse">
-            <Header {...skynet} />
+            <Header />
             <Courses />
             <Footer />
           </Route>
 
           <Route path="/proposals">
-            <Header {...skynet} />
+            <Header />
             <ProposeBoard />
             <Footer />
           </Route>
@@ -226,19 +135,18 @@ function App() {
           </Route> */}
 
           <Route path="/editcourse/:id">
-            <Header {...skynet} />
+            <Header />
             <EditSection />
             <Footer />
           </Route>
 
           <Route path="/proposecourse">
-            {header}
-            <Proposals />
+            {/* <Proposals /> */}
             <Footer />
           </Route>
 
           <Route exact path="/">
-            <Header {...skynet} />
+            <Header />
             <Home />
             <Footer />
           </Route>

@@ -9,9 +9,6 @@ function Dashboard(props) {
   const agorum = props.contracts.agorum;
   const address =props.address;
 
-  // skynet
-  const skynetID = props.skynetID;
-
   const [addedTokens, setAddedTokens] = useState(false);
   const [tokenBalance, setTokenBalance] = useState(0);
 
@@ -66,11 +63,11 @@ function Dashboard(props) {
       <div className="container-fluid">
         <div className="row m-3">
           <div className="col">
-            <CourseData mysky={props.mysky} proposalCount={props.proposalCount} />
+            <CourseData />
           </div>
           <div className="col">
             <div className="row">
-              <Profile skynetID={skynetID} />
+              <Profile />
             </div>
             <div className="row">
               <Wallet addTokensToWallet={addTokensToWallet} balance={tokenBalance} />

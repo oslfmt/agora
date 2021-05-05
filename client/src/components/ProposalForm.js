@@ -15,22 +15,6 @@ class ProposalForm extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleFileUpload = this.handleFileUpload.bind(this);
-    this.uploadToSkynet = this.uploadToSkynet.bind(this);
-  }
-
-  // is async making 'this' undefined? because this works in other methods
-  async uploadToSkynet() {
-    try {
-      // returns the skylink, which is used to retrieve the specific content that has been uploaded
-      const { skylink } = await this.props.skynetClient.uploadFile(this.state.files[0]);
-
-      // generate a url
-      const skylinkUrl = await this.props.skynetClient.getSkylinkUrl(skylink);
-      console.log(skylinkUrl);
-    } catch (error) {
-      console.error(error);
-    }
   }
 
   /**
@@ -43,33 +27,6 @@ class ProposalForm extends Component {
       contributors: this.state.contributors,
       categories: this.state.categories,
     };
-
-    try {
-      let count = this.props.proposalCount;
-
-      // writes the courseProposal data to MySky at the appropriate proposalCount, which starts
-      // at 0 and increments by 1 for every proposal submitted
-      const { data, skylink } = await this.props.mysky.setJSON(`localhost/proposals/proposal${count.proposalCount}.json`, courseProposal);
-      
-      // increment proposalCount
-      count.proposalCount++;
-
-      // update the count to MySky
-      await this.props.mysky.setJSON('localhost/proposals/count', count);
-
-      // update the local react state proposalCount as well, for current session consistency
-      this.props.setProposalCount(count);
-
-      // record new content
-      this.props.contentRecord.recordNewContent({
-        skylink: skylink,
-      });
-
-      console.log(data);
-      console.log(skylink);
-    } catch (err) {
-      console.error(err);
-    }
 
     // reset the form
     this.setState({
@@ -139,7 +96,7 @@ class ProposalForm extends Component {
           </div>
           <div className="Button_div m-5">
             <button type="submit" class="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
-            <button type="submit" class="btn btn-primary" onClick={this.uploadToSkynet}>Upload File</button>
+            <button type="submit" class="btn btn-primary" >Upload File</button>
           </div>
         </div>
       </div>
