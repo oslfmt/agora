@@ -11,11 +11,11 @@ const Header = (props) => {
           <Link className="nav-link" to="/proposals">Proposals</Link>
           <Link className="nav-link" to="/browse">Browse</Link>
           <Link className="nav-link" to="/about">About</Link>
-          {props.loggedIn ?
+          {true?
             <Link className="nav-link" to="/dashboard">Dashboard</Link> :
             null
           }
-          {props.loggedIn ?
+          {true?
             <Link className="nav-link" to="">Logout</Link> : 
             <Link className="nav-link" to="">Login</Link>
           }
