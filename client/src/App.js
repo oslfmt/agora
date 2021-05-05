@@ -187,14 +187,8 @@ function App() {
       <Router>
         <Switch>
           <Route path="/dashboard">
-<<<<<<< HEAD
             <Header {...skynet} />
             <Dashboard web3={web3js} contracts={contracts} address={address} {...skynet} />
-=======
-            {header}
-            <Dashboard web3={web3js} contracts={contracts} address={address} />
-            <Footer />
->>>>>>> 70d591e12559b45c205cd8628d6f7ebde54e2d61
           </Route>
 
           <Route path="/introcourse">
