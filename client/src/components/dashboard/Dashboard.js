@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 import CourseData from './CourseData';
 import Profile from './Profile'
 import Wallet from './Wallet';
 
 function Dashboard(props) {
-  const { user } = useAuth0();
   const web3 = props.web3;
   const agoToken = props.contracts.agoToken;
   const agorum = props.contracts.agorum;
   const address =props.address;
+
+  // skynet
+  const skynetID = props.skynetID;
 
   const [addedTokens, setAddedTokens] = useState(false);
   const [tokenBalance, setTokenBalance] = useState(0);
@@ -63,15 +63,14 @@ function Dashboard(props) {
 
   return (
     <section className="home">
-      <HomeNavbar />
       <div className="container-fluid">
         <div className="row m-3">
           <div className="col">
-            <CourseData />
+            <CourseData mysky={props.mysky} proposalCount={props.proposalCount} />
           </div>
           <div className="col">
             <div className="row">
-              <Profile user={user} />
+              <Profile skynetID={skynetID} />
             </div>
             <div className="row">
               <Wallet addTokensToWallet={addTokensToWallet} balance={tokenBalance} />
@@ -82,21 +81,5 @@ function Dashboard(props) {
     </section>
   );
 }
-
-  const HomeNavbar = () => {
-    return (
-      <nav className="navbar navbar-expand-lg navbar-light navbar-color">
-        <div className="container-fluid">
-          <div className="navbar-nav">
-            <Link className="nav-link" to="/">Home</Link>
-            <Link className="nav-link" to="/proposals">Proposals</Link>
-            <Link className="nav-link" to="/browse">Browse</Link>
-            <Link className="nav-link" to="/about">About</Link>
-            <Link className="nav-link" to="/dashboard">Dashboard</Link>
-          </div>
-        </div>
-      </nav>
-    );
-  }
 
   export default Dashboard;

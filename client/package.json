@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.4.0",
+    "@skynetlabs/content-record-library": "^0.4.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -15,6 +16,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "rich-markdown-editor": "^11.6.4",
+    "skynet-js": "^4.0.2-beta",
     "web-vitals": "^1.1.1",
     "web3": "^1.3.5"
   },

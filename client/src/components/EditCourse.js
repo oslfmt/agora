@@ -1,19 +1,59 @@
-import React from 'react';
-import MDEditor from '@uiw/react-md-editor';
+import React, { Component, useState } from 'react'
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router';
+import axios from 'axios'
 
-export default function EditCourse() {
-  const [value, setValue] = React.useState("**Edit course content here!!!**");
-  return (
-    <div className="container">
-      <div className="card p-4 m-5">
-        <h4 className="card-title">Edit Course</h4>
-        <MDEditor
-          value={value}
-          onChange={setValue}
-        />
-        <MDEditor.Markdown source={value} />
-      </div>
-      <button className="btn btn-success">Save Changes</button>
+class EditCourse extends Component {
+  state = {
+    courses: {}
+  }
+
+  componentDidMount() {
+    const { id } = this.props.params;
+    const options = {
+      method: 'GET',
+      url: `http://localhost:8000/api/course/${id}`
+    }
+
+    axios.request(options)
+      .then(res => {
+        const course = res.data
+        this.setState({ course })
+      })
+      .catch(err => console.error(err));
+  }
+  
+  render() {
+    var sections;
+    if (this.state.course) {
+      sections = this.state.course.coursesections;
+      console.log(sections);
+    } else {
+      sections = [];
+    }
+    return (
+      <div>
+      <section className="container d-flex justify-content-center">
+        <div className="col-8">
+          <div className="card m-5 bg-light">
+            <div className="card-body">
+              <h5 className="card-title">Edit or create a new page</h5>
+              <ul className="list-group">
+              { sections.map((page, index) => <li variant="primary" className="list-group-item btn"><Link className="nav-link" to={`/editsection/${page.id}`}>{index+1}</Link></li>)}
+              </ul>
+            </div>
+            <button className="btn btn-success" onClick="">Add Section</button>
+          </div>
+        </div>
+      </section>
     </div>
-  );
+    )
+  }
 }
+
+export default (props) => (
+  <EditCourse
+      {...props}
+      params={useParams()}
+  />
+);
