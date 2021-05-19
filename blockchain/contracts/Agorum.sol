@@ -2,88 +2,60 @@
 pragma solidity ^0.8.0;
 
 import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
+import './Payroll.sol';
+import './Course.sol';
+import './Crowdfund.sol';
 
+/**
+ * Represents an Agorum object.
+ */
 contract Agorum {
-  // course struct stores a record of course metadata
-  struct Course {
-    address payable creator;
-    string title;
-    string description;
-    string[] categories;
-    uint256 created_at;
-  }
-
-  // state variables
-  Course course; // course metadata of the agorum
-  // payroll of Agorum contributors
-  mapping(address => uint) public contributors;
+  // storage variables
+  string public name;
+  string[] public creators;
+  string public description;
+  string[] public categoryTags;
+  uint public createdAt;
+  // array of courses belonging to agorum
+  Course[] public courses;
+  // payroll contract
+  Payroll public payroll;
+  // crowdfund contract
+  Crowdfund public crowdfund;
 
   // event emitted whenever a new agorum is created
   event AgorumCreated(
     address agorumCreator,
     string title,
     string description,
-    string[] categories,
-    uint created_at
+    string[] categoryTags,
+    uint createdAt
   );
 
-  // event emitted whenever someone pays tokens to contract, such as unlocking course content
-  event ReceivedTokens(address from, uint amount);
+  // creates a new Agorum contract, stored on the blockchain, as well as 1 Course contract
+  constructor (
+    string memory _name,
+    string[] memory _creators,
+    string memory _description,
+    string[] memory _categoryTags,
+    uint _goalAmount,
+    uint _deadline
+  ) {
+    name = _name;
+    creators = _creators;
+    description = _description;
+    categoryTags = _categoryTags;
+    // sets date to block timestamp
+    createdAt = block.timestamp;
 
-  /** @dev Creates a new course skeleton and pushes it to list
-    * @param _title course title
-    * @param _description course description
-    * @param _categories the categories the course belongs to
-   */
-  function createNewCourseSkeleton(
-    string calldata _title,
-    string calldata _description,
-    string[] calldata _categories
-  ) external {
-    uint created_at = block.timestamp;
-    course = Course(payable(msg.sender), _title, _description, _categories, created_at);
+    // creates a new course and pushes it to array
+    courses.push(new Course(_name, _creators, _description, _categoryTags, createdAt));
+    // creates payroll with balance initialized to 0
+    payroll = new Payroll();
+    // creates crowdfund contract with amountRaised initialized to 0
+    crowdfund = new Crowdfund(_goalAmount, _deadline);
 
-    emit AgorumCreated(msg.sender, _title, _description, _categories, created_at);
-  }
-
-  /** @dev Adds a new contributor to payroll along with their reward
-    * @param _contributorAddress the address of the contributor to add
-    * @param _reward the reward set by community standard
-   */
-  function addContributor(address _contributorAddress,  uint _reward) external {
-    contributors[_contributorAddress] = _reward;
-  }
-
-  /** @dev Pays a contributor on the payroll when funds are available
-   */
-  function payContributor() internal {
-    
-  }
-
-  receive() external payable {
-    emit ReceivedTokens(msg.sender, msg.value);
+    // emit AgorumCreated event
+    emit AgorumCreated(msg.sender, _name, _description, _categoryTags, createdAt);
   }
 }
-
-// contract Course {
-//   // state variables
-
-
-//   constructor(
-//     address payable _creator,
-//     string memory _title,
-//     string memory _description,
-//     string[] memory _categories,
-//     uint256 _created_at
-//   ) {
-//     creator = _creator;
-//     title = _title;
-//     description = _description;
-//     categories = _categories;
-//     created_at = _created_at;
-//   }
-
-//   function getCourseDetails() public {
-
-//   }
-// }
