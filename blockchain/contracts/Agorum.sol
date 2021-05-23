@@ -10,9 +10,10 @@ import './Crowdfund.sol';
  * Represents an Agorum object.
  */
 contract Agorum {
-  // storage variables
+  using SafeMath for uint;
+  // storage variables...could store in a struct?
   string public name;
-  string[] public creators;
+  address[] public creators;
   string public description;
   string[] public categoryTags;
   uint public createdAt;
@@ -24,18 +25,38 @@ contract Agorum {
   Crowdfund public crowdfund;
 
   // event emitted whenever a new agorum is created
-  event AgorumCreated(
-    address agorumCreator,
-    string title,
-    string description,
-    string[] categoryTags,
-    uint createdAt
-  );
+  event AgorumCreated(address agorumCreator, string title, string description, string[] categoryTags, uint createdAt);
+  event AgorumNameChanged(address changer, string name);
+  event AgorumDescriptionChanged(address changer,string description);
+  event AgorumTagAdded(address changer, string tag);
+  event AgorumTagRemoved(address changer, uint tagIndex);
+  event CourseAdded(string title, address[] creators, string description, string[] categoryTags);
+
+  /**
+   * @dev Checks for message sender is one of the Agorum creators
+   * @param agorumCreators array of addresses of the creators
+   */
+  modifier onlyCreator(address[] memory agorumCreators) {
+    // loop through agorum's creators until one is found
+    bool creator = false;
+    uint index = 0;
+    while (!creator && index < agorumCreators.length) {
+      if (msg.sender == agorumCreators[index]) {
+        creator = true;
+      }
+      index++;
+    }
+
+    // if creator is found, execute the function body
+    if (creator) {
+      _;
+    }
+  }
 
   // creates a new Agorum contract, stored on the blockchain, as well as 1 Course contract
   constructor (
     string memory _name,
-    string[] memory _creators,
+    address[] memory _creators,
     string memory _description,
     string[] memory _categoryTags,
     uint _goalAmount,
@@ -57,5 +78,79 @@ contract Agorum {
 
     // emit AgorumCreated event
     emit AgorumCreated(msg.sender, _name, _description, _categoryTags, createdAt);
+  }
+
+  function editName(string calldata _name) external {
+    name = _name;
+    emit AgorumNameChanged(msg.sender, _name);
+  }
+
+  function editDescription(string calldata _description) external {
+    description = _description;
+    emit AgorumDescriptionChanged(msg.sender, _description);
+  }
+
+  /**
+   * @dev Pushes a new category tag to the Agorum
+   * @param _tag the tag to add
+   */
+  function addCategoryTag(string calldata _tag) external {
+    categoryTags.push(_tag);
+    emit AgorumTagAdded(msg.sender, _tag);
+  }
+
+  function removeCategoryTag(uint tagIndex) external returns(string[] memory) {
+    require(tagIndex >= categoryTags.length);
+
+    for (uint i = tagIndex; i < categoryTags.length - 1; i++) {
+      categoryTags[i] = categoryTags[i + 1];
+    }
+    categoryTags.pop();
+    emit AgorumTagRemoved(msg.sender, tagIndex);
+
+    return categoryTags;
+  }
+
+  /**
+   * @dev Merges two Agorums by adding the course of an agorum to another agorum, and then deleting the previous one
+   * @param agorumMerger the agorum to merge into
+   * @param agorumMergee the agorum to be merged
+   */
+  function mergeAgorums(Agorum agorumMerger, Agorum agorumMergee) public {
+    // add the mergee's courses into the merger
+    Course[] memory mergeeCourses = agorumMergee.getCourses();
+    Course[] memory mergerCourses = agorumMerger.getCourses();
+
+    // for (uint i = 0; i < mergeeCourses.length; i++) {
+    //   mergerCourses.push(mergeeCourses[i]);
+    // }
+
+    deleteAgorum(agorumMergee);
+  }
+
+  function deleteAgorum(Agorum agorum) public onlyCreator(agorum.getCreators()) {
+    selfdestruct(payable(address(agorum)));
+  }
+
+  /**
+   * @dev Returns all the creators of the agorum
+   */
+  function getCreators() public view returns (address[] memory) {
+    return creators;
+  }
+
+  /**
+   * @dev Return the entire array of courses belonging to an Agorum
+   */
+  function getCourses() public view returns (Course[] memory) {
+    return courses;
+  }
+
+  /**
+   * @dev Add a new course to an Agorum
+   */
+  function addCourse(string calldata _title, string calldata _description, address[] calldata _creators, string[] calldata _categoryTags) public {
+    courses.push(new Course(_title, _creators, _description, _categoryTags, block.timestamp));
+    emit CourseAdded(_title, _creators, _description, _categoryTags);
   }
 }

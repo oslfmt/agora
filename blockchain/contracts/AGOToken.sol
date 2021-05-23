@@ -17,4 +17,11 @@ contract AGOToken is ERC20 {
   function mintTokensOnNewLevel() external {
     _mint(msg.sender, 10);
   }
+
+  /**
+   * @dev Sets the decimals to 2 such that token balances are displayed as (balance / 10 ** 2)
+   */
+  function decimals() public pure override returns (uint8) {
+    return 2;
+  }
 }
