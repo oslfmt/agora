@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
@@ -54,31 +54,31 @@ contract Agorum {
   }
 
   // creates a new Agorum contract, stored on the blockchain, as well as 1 Course contract
-  constructor (
-    string memory _name,
-    address[] memory _creators,
-    string memory _description,
-    string[] memory _categoryTags,
-    uint _goalAmount,
-    uint _deadline
-  ) {
-    name = _name;
-    creators = _creators;
-    description = _description;
-    categoryTags = _categoryTags;
-    // sets date to block timestamp
-    createdAt = block.timestamp;
+  // constructor (
+  //   string memory _name,
+  //   address[] memory _creators,
+  //   string memory _description,
+  //   string[] memory _categoryTags,
+  //   uint _goalAmount,
+  //   uint _deadline
+  // ) {
+  //   name = _name;
+  //   creators = _creators;
+  //   description = _description;
+  //   categoryTags = _categoryTags;
+  //   // sets date to block timestamp
+  //   createdAt = block.timestamp;
 
-    // creates a new course and pushes it to array
-    courses.push(new Course(_name, _creators, _description, _categoryTags, createdAt));
-    // creates payroll with balance initialized to 0
-    payroll = new Payroll();
-    // creates crowdfund contract with amountRaised initialized to 0
-    crowdfund = new Crowdfund(_goalAmount, _deadline);
+  //   // creates a new course and pushes it to array
+  //   // courses.push(new Course(_name, _creators, _description, _categoryTags, createdAt));
+  //   // creates payroll with balance initialized to 0
+  //   // payroll = new Payroll();
+  //   // creates crowdfund contract with amountRaised initialized to 0
+  //   // crowdfund = new Crowdfund(_goalAmount, _deadline);
 
-    // emit AgorumCreated event
-    emit AgorumCreated(msg.sender, _name, _description, _categoryTags, createdAt);
-  }
+  //   // emit AgorumCreated event
+  //   emit AgorumCreated(msg.sender, _name, _description, _categoryTags, createdAt);
+  // }
 
   function editName(string calldata _name) external {
     name = _name;

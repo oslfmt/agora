@@ -1,0 +1,2089 @@
+{
+  "contractName": "AgorumTracker",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [],
+      "name": "getAgorums",
+      "outputs": [
+        {
+          "internalType": "contract Agorum[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getAgorums\",\"outputs\":[{\"internalType\":\"contract Agorum[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getAgorums()\":{\"returns\":{\"_0\":\"array of Agorums\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getAgorums()\":{\"notice\":\"Return the array of agorums on the platform\"}},\"notice\":\"Keeps track of all the Agorum addresses in the application\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/victor/agora/blockchain/contracts/AgorumTracker.sol\":\"AgorumTracker\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/victor/agora/blockchain/contracts/Agorum.sol\":{\"keccak256\":\"0xc26417814f23ae7e6a166c97f4ef3c4d8b57a25769cbd9c8d41ed95ec04ac9a3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://919576e680883a4ee5539b1372e230b2810abe0bafcd4c7202a7bb5bbea4ca19\",\"dweb:/ipfs/QmYt5KesFW1JT2RAU9TNVhPmvZzNtKNSVWb9zfvMWX8TyF\"]},\"/home/victor/agora/blockchain/contracts/AgorumTracker.sol\":{\"keccak256\":\"0xf8050dcd7e4daef3753f88b9537f530ec8e15ef2945309294f02b5f7bef83203\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://eb6e5fd13a0dc5813debb3dbb5b556320bf50f03db861df310168292588b6a96\",\"dweb:/ipfs/QmekWeiXTvwaUD9qG7RReq2Ld9mnnnfmUkcK7vSAj9HDm6\"]},\"/home/victor/agora/blockchain/contracts/Course.sol\":{\"keccak256\":\"0xd27cc4169865440910416975b2295f1fdd9f40abd636713d97a40e0e829bda87\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://78ce08c6e20ed5cc6fb1c4a8dea959028b563283dce6ee89bc7735d36bcfeb3e\",\"dweb:/ipfs/QmQm17hsA9ETE1YUWnVaQBCRm5PGZsBoWs8R1j6aTXzMM2\"]},\"/home/victor/agora/blockchain/contracts/Crowdfund.sol\":{\"keccak256\":\"0x80843fc910102311b2c2bb5725d23ef9630c7d539ab039a103e710131c087651\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://7b7d4b04ba6872cb71278632ec99aaec189f68ac133aec32d8ef2d0529ccf971\",\"dweb:/ipfs/QmVm1htYB3gdopjiokpubu9r4sCPsmdZPyj5ouBYZpMu1o\"]},\"/home/victor/agora/blockchain/contracts/Payroll.sol\":{\"keccak256\":\"0xd663425677628d9a5ecf71ab315258d0f6f8628ff17a135c1d5ddc162d6e55e1\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://2efdde6f440b64fdb6404fcdbacd125d936d0acef33eb7bb9b7bdb742d150b74\",\"dweb:/ipfs/QmbCjiCMoF7ybWMyHWfwFRAAYJLWzkDkTfi4CUC59wBqmN\"]},\"/home/victor/agora/blockchain/node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol\":{\"keccak256\":\"0x2526b7c6a366fc211bbc176078ab02b83833e7682abcc5b3bed9d700b34e2a3e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5f9529d3d365e8415155cee11394e0f7c0de2152b601b7e77508fce16cb4a509\",\"dweb:/ipfs/QmVhbcLVsAzvqfjsdLwy25XMjgVJm7Z3w2JCNiNbZF2GHT\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5033600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506102c1806100616000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c806325687a1f1461003b5780638da5cb5b14610059575b600080fd5b610043610077565b60405161005091906101da565b60405180910390f35b610061610105565b60405161006e91906101bf565b60405180910390f35b606060008054806020026020016040519081016040528092919081815260200182805480156100fb57602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190600101908083116100b1575b5050505050905090565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600061013783836101b0565b60208301905092915050565b61014c81610235565b82525050565b600061015d8261020c565b6101678185610224565b9350610172836101fc565b8060005b838110156101a357815161018a888261012b565b975061019583610217565b925050600181019050610176565b5085935050505092915050565b6101b981610267565b82525050565b60006020820190506101d46000830184610143565b92915050565b600060208201905081810360008301526101f48184610152565b905092915050565b6000819050602082019050919050565b600081519050919050565b6000602082019050919050565b600082825260208201905092915050565b600061024082610247565b9050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b600061027282610279565b9050919050565b600061028482610247565b905091905056fea264697066735822122085813774a2cf4494a76dc734423b88c0d6fa07cf1b081925f8a58d75a5092ef664736f6c63430008000033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c806325687a1f1461003b5780638da5cb5b14610059575b600080fd5b610043610077565b60405161005091906101da565b60405180910390f35b610061610105565b60405161006e91906101bf565b60405180910390f35b606060008054806020026020016040519081016040528092919081815260200182805480156100fb57602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190600101908083116100b1575b5050505050905090565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600061013783836101b0565b60208301905092915050565b61014c81610235565b82525050565b600061015d8261020c565b6101678185610224565b9350610172836101fc565b8060005b838110156101a357815161018a888261012b565b975061019583610217565b925050600181019050610176565b5085935050505092915050565b6101b981610267565b82525050565b60006020820190506101d46000830184610143565b92915050565b600060208201905081810360008301526101f48184610152565b905092915050565b6000819050602082019050919050565b600081519050919050565b6000602082019050919050565b600082825260208201905092915050565b600061024082610247565b9050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b600061027282610279565b9050919050565b600061028482610247565b905091905056fea264697066735822122085813774a2cf4494a76dc734423b88c0d6fa07cf1b081925f8a58d75a5092ef664736f6c63430008000033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [
+    {
+      "ast": {
+        "nodeType": "YulBlock",
+        "src": "0:3113:6",
+        "statements": [
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "101:113:6",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "value0",
+                        "nodeType": "YulIdentifier",
+                        "src": "159:6:6"
+                      },
+                      {
+                        "name": "pos",
+                        "nodeType": "YulIdentifier",
+                        "src": "167:3:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "abi_encode_t_contract$_Agorum_$342_to_t_address",
+                      "nodeType": "YulIdentifier",
+                      "src": "111:47:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "111:60:6"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "111:60:6"
+                },
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "180:28:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "pos",
+                        "nodeType": "YulIdentifier",
+                        "src": "198:3:6"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "203:4:6",
+                        "type": "",
+                        "value": "0x20"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "194:3:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "194:14:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "updatedPos",
+                      "nodeType": "YulIdentifier",
+                      "src": "180:10:6"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "abi_encodeUpdatedPos_t_contract$_Agorum_$342_to_t_address",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "74:6:6",
+                "type": ""
+              },
+              {
+                "name": "pos",
+                "nodeType": "YulTypedName",
+                "src": "82:3:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "updatedPos",
+                "nodeType": "YulTypedName",
+                "src": "90:10:6",
+                "type": ""
+              }
+            ],
+            "src": "7:207:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "285:53:6",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "pos",
+                        "nodeType": "YulIdentifier",
+                        "src": "302:3:6"
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "name": "value",
+                            "nodeType": "YulIdentifier",
+                            "src": "325:5:6"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "cleanup_t_address",
+                          "nodeType": "YulIdentifier",
+                          "src": "307:17:6"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "307:24:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "mstore",
+                      "nodeType": "YulIdentifier",
+                      "src": "295:6:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "295:37:6"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "295:37:6"
+                }
+              ]
+            },
+            "name": "abi_encode_t_address_to_t_address_fromStack",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "value",
+                "nodeType": "YulTypedName",
+                "src": "273:5:6",
+                "type": ""
+              },
+              {
+                "name": "pos",
+                "nodeType": "YulTypedName",
+                "src": "280:3:6",
+                "type": ""
+              }
+            ],
+            "src": "220:118:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "520:664:6",
+              "statements": [
+                {
+                  "nodeType": "YulVariableDeclaration",
+                  "src": "530:82:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "value",
+                        "nodeType": "YulIdentifier",
+                        "src": "606:5:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "array_length_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr",
+                      "nodeType": "YulIdentifier",
+                      "src": "544:61:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "544:68:6"
+                  },
+                  "variables": [
+                    {
+                      "name": "length",
+                      "nodeType": "YulTypedName",
+                      "src": "534:6:6",
+                      "type": ""
+                    }
+                  ]
+                },
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "621:93:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "pos",
+                        "nodeType": "YulIdentifier",
+                        "src": "702:3:6"
+                      },
+                      {
+                        "name": "length",
+                        "nodeType": "YulIdentifier",
+                        "src": "707:6:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "array_storeLengthForEncoding_t_array$_t_address_$dyn_memory_ptr_fromStack",
+                      "nodeType": "YulIdentifier",
+                      "src": "628:73:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "628:86:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "pos",
+                      "nodeType": "YulIdentifier",
+                      "src": "621:3:6"
+                    }
+                  ]
+                },
+                {
+                  "nodeType": "YulVariableDeclaration",
+                  "src": "723:85:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "value",
+                        "nodeType": "YulIdentifier",
+                        "src": "802:5:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "array_dataslot_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr",
+                      "nodeType": "YulIdentifier",
+                      "src": "738:63:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "738:70:6"
+                  },
+                  "variables": [
+                    {
+                      "name": "baseRef",
+                      "nodeType": "YulTypedName",
+                      "src": "727:7:6",
+                      "type": ""
+                    }
+                  ]
+                },
+                {
+                  "nodeType": "YulVariableDeclaration",
+                  "src": "817:21:6",
+                  "value": {
+                    "name": "baseRef",
+                    "nodeType": "YulIdentifier",
+                    "src": "831:7:6"
+                  },
+                  "variables": [
+                    {
+                      "name": "srcPtr",
+                      "nodeType": "YulTypedName",
+                      "src": "821:6:6",
+                      "type": ""
+                    }
+                  ]
+                },
+                {
+                  "body": {
+                    "nodeType": "YulBlock",
+                    "src": "907:252:6",
+                    "statements": [
+                      {
+                        "nodeType": "YulVariableDeclaration",
+                        "src": "921:34:6",
+                        "value": {
+                          "arguments": [
+                            {
+                              "name": "srcPtr",
+                              "nodeType": "YulIdentifier",
+                              "src": "948:6:6"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "mload",
+                            "nodeType": "YulIdentifier",
+                            "src": "942:5:6"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "942:13:6"
+                        },
+                        "variables": [
+                          {
+                            "name": "elementValue0",
+                            "nodeType": "YulTypedName",
+                            "src": "925:13:6",
+                            "type": ""
+                          }
+                        ]
+                      },
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "968:84:6",
+                        "value": {
+                          "arguments": [
+                            {
+                              "name": "elementValue0",
+                              "nodeType": "YulIdentifier",
+                              "src": "1033:13:6"
+                            },
+                            {
+                              "name": "pos",
+                              "nodeType": "YulIdentifier",
+                              "src": "1048:3:6"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "abi_encodeUpdatedPos_t_contract$_Agorum_$342_to_t_address",
+                            "nodeType": "YulIdentifier",
+                            "src": "975:57:6"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "975:77:6"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "pos",
+                            "nodeType": "YulIdentifier",
+                            "src": "968:3:6"
+                          }
+                        ]
+                      },
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "1065:84:6",
+                        "value": {
+                          "arguments": [
+                            {
+                              "name": "srcPtr",
+                              "nodeType": "YulIdentifier",
+                              "src": "1142:6:6"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "array_nextElement_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr",
+                            "nodeType": "YulIdentifier",
+                            "src": "1075:66:6"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "1075:74:6"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "srcPtr",
+                            "nodeType": "YulIdentifier",
+                            "src": "1065:6:6"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "arguments": [
+                      {
+                        "name": "i",
+                        "nodeType": "YulIdentifier",
+                        "src": "869:1:6"
+                      },
+                      {
+                        "name": "length",
+                        "nodeType": "YulIdentifier",
+                        "src": "872:6:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "lt",
+                      "nodeType": "YulIdentifier",
+                      "src": "866:2:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "866:13:6"
+                  },
+                  "nodeType": "YulForLoop",
+                  "post": {
+                    "nodeType": "YulBlock",
+                    "src": "880:18:6",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "882:14:6",
+                        "value": {
+                          "arguments": [
+                            {
+                              "name": "i",
+                              "nodeType": "YulIdentifier",
+                              "src": "891:1:6"
+                            },
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "894:1:6",
+                              "type": "",
+                              "value": "1"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "add",
+                            "nodeType": "YulIdentifier",
+                            "src": "887:3:6"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "887:9:6"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "i",
+                            "nodeType": "YulIdentifier",
+                            "src": "882:1:6"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "pre": {
+                    "nodeType": "YulBlock",
+                    "src": "851:14:6",
+                    "statements": [
+                      {
+                        "nodeType": "YulVariableDeclaration",
+                        "src": "853:10:6",
+                        "value": {
+                          "kind": "number",
+                          "nodeType": "YulLiteral",
+                          "src": "862:1:6",
+                          "type": "",
+                          "value": "0"
+                        },
+                        "variables": [
+                          {
+                            "name": "i",
+                            "nodeType": "YulTypedName",
+                            "src": "857:1:6",
+                            "type": ""
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "src": "847:312:6"
+                },
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "1168:10:6",
+                  "value": {
+                    "name": "pos",
+                    "nodeType": "YulIdentifier",
+                    "src": "1175:3:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "end",
+                      "nodeType": "YulIdentifier",
+                      "src": "1168:3:6"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "abi_encode_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr_to_t_array$_t_address_$dyn_memory_ptr_fromStack",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "value",
+                "nodeType": "YulTypedName",
+                "src": "499:5:6",
+                "type": ""
+              },
+              {
+                "name": "pos",
+                "nodeType": "YulTypedName",
+                "src": "506:3:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "end",
+                "nodeType": "YulTypedName",
+                "src": "515:3:6",
+                "type": ""
+              }
+            ],
+            "src": "382:802:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "1259:80:6",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "pos",
+                        "nodeType": "YulIdentifier",
+                        "src": "1276:3:6"
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "name": "value",
+                            "nodeType": "YulIdentifier",
+                            "src": "1326:5:6"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "convert_t_contract$_Agorum_$342_to_t_address",
+                          "nodeType": "YulIdentifier",
+                          "src": "1281:44:6"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "1281:51:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "mstore",
+                      "nodeType": "YulIdentifier",
+                      "src": "1269:6:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "1269:64:6"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "1269:64:6"
+                }
+              ]
+            },
+            "name": "abi_encode_t_contract$_Agorum_$342_to_t_address",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "value",
+                "nodeType": "YulTypedName",
+                "src": "1247:5:6",
+                "type": ""
+              },
+              {
+                "name": "pos",
+                "nodeType": "YulTypedName",
+                "src": "1254:3:6",
+                "type": ""
+              }
+            ],
+            "src": "1190:149:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "1443:124:6",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "1453:26:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "1465:9:6"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "1476:2:6",
+                        "type": "",
+                        "value": "32"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "1461:3:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "1461:18:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "tail",
+                      "nodeType": "YulIdentifier",
+                      "src": "1453:4:6"
+                    }
+                  ]
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "value0",
+                        "nodeType": "YulIdentifier",
+                        "src": "1533:6:6"
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "name": "headStart",
+                            "nodeType": "YulIdentifier",
+                            "src": "1546:9:6"
+                          },
+                          {
+                            "kind": "number",
+                            "nodeType": "YulLiteral",
+                            "src": "1557:1:6",
+                            "type": "",
+                            "value": "0"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "add",
+                          "nodeType": "YulIdentifier",
+                          "src": "1542:3:6"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "1542:17:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "abi_encode_t_address_to_t_address_fromStack",
+                      "nodeType": "YulIdentifier",
+                      "src": "1489:43:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "1489:71:6"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "1489:71:6"
+                }
+              ]
+            },
+            "name": "abi_encode_tuple_t_address__to_t_address__fromStack_reversed",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "1415:9:6",
+                "type": ""
+              },
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "1427:6:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "tail",
+                "nodeType": "YulTypedName",
+                "src": "1438:4:6",
+                "type": ""
+              }
+            ],
+            "src": "1345:222:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "1735:239:6",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "1745:26:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "1757:9:6"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "1768:2:6",
+                        "type": "",
+                        "value": "32"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "1753:3:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "1753:18:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "tail",
+                      "nodeType": "YulIdentifier",
+                      "src": "1745:4:6"
+                    }
+                  ]
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "name": "headStart",
+                            "nodeType": "YulIdentifier",
+                            "src": "1792:9:6"
+                          },
+                          {
+                            "kind": "number",
+                            "nodeType": "YulLiteral",
+                            "src": "1803:1:6",
+                            "type": "",
+                            "value": "0"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "add",
+                          "nodeType": "YulIdentifier",
+                          "src": "1788:3:6"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "1788:17:6"
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "name": "tail",
+                            "nodeType": "YulIdentifier",
+                            "src": "1811:4:6"
+                          },
+                          {
+                            "name": "headStart",
+                            "nodeType": "YulIdentifier",
+                            "src": "1817:9:6"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "sub",
+                          "nodeType": "YulIdentifier",
+                          "src": "1807:3:6"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "1807:20:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "mstore",
+                      "nodeType": "YulIdentifier",
+                      "src": "1781:6:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "1781:47:6"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "1781:47:6"
+                },
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "1837:130:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "value0",
+                        "nodeType": "YulIdentifier",
+                        "src": "1953:6:6"
+                      },
+                      {
+                        "name": "tail",
+                        "nodeType": "YulIdentifier",
+                        "src": "1962:4:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "abi_encode_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr_to_t_array$_t_address_$dyn_memory_ptr_fromStack",
+                      "nodeType": "YulIdentifier",
+                      "src": "1845:107:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "1845:122:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "tail",
+                      "nodeType": "YulIdentifier",
+                      "src": "1837:4:6"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "abi_encode_tuple_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr__to_t_array$_t_address_$dyn_memory_ptr__fromStack_reversed",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "1707:9:6",
+                "type": ""
+              },
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "1719:6:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "tail",
+                "nodeType": "YulTypedName",
+                "src": "1730:4:6",
+                "type": ""
+              }
+            ],
+            "src": "1573:401:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "2066:60:6",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "2076:11:6",
+                  "value": {
+                    "name": "ptr",
+                    "nodeType": "YulIdentifier",
+                    "src": "2084:3:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "data",
+                      "nodeType": "YulIdentifier",
+                      "src": "2076:4:6"
+                    }
+                  ]
+                },
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "2097:22:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "ptr",
+                        "nodeType": "YulIdentifier",
+                        "src": "2109:3:6"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "2114:4:6",
+                        "type": "",
+                        "value": "0x20"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "2105:3:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "2105:14:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "data",
+                      "nodeType": "YulIdentifier",
+                      "src": "2097:4:6"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "array_dataslot_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "ptr",
+                "nodeType": "YulTypedName",
+                "src": "2053:3:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "data",
+                "nodeType": "YulTypedName",
+                "src": "2061:4:6",
+                "type": ""
+              }
+            ],
+            "src": "1980:146:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "2220:40:6",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "2231:22:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "value",
+                        "nodeType": "YulIdentifier",
+                        "src": "2247:5:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "mload",
+                      "nodeType": "YulIdentifier",
+                      "src": "2241:5:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "2241:12:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "length",
+                      "nodeType": "YulIdentifier",
+                      "src": "2231:6:6"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "array_length_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "value",
+                "nodeType": "YulTypedName",
+                "src": "2203:5:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "length",
+                "nodeType": "YulTypedName",
+                "src": "2213:6:6",
+                "type": ""
+              }
+            ],
+            "src": "2132:128:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "2355:38:6",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "2365:22:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "ptr",
+                        "nodeType": "YulIdentifier",
+                        "src": "2377:3:6"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "2382:4:6",
+                        "type": "",
+                        "value": "0x20"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "2373:3:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "2373:14:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "next",
+                      "nodeType": "YulIdentifier",
+                      "src": "2365:4:6"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "array_nextElement_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "ptr",
+                "nodeType": "YulTypedName",
+                "src": "2342:3:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "next",
+                "nodeType": "YulTypedName",
+                "src": "2350:4:6",
+                "type": ""
+              }
+            ],
+            "src": "2266:127:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "2510:73:6",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "pos",
+                        "nodeType": "YulIdentifier",
+                        "src": "2527:3:6"
+                      },
+                      {
+                        "name": "length",
+                        "nodeType": "YulIdentifier",
+                        "src": "2532:6:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "mstore",
+                      "nodeType": "YulIdentifier",
+                      "src": "2520:6:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "2520:19:6"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "2520:19:6"
+                },
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "2548:29:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "pos",
+                        "nodeType": "YulIdentifier",
+                        "src": "2567:3:6"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "2572:4:6",
+                        "type": "",
+                        "value": "0x20"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "2563:3:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "2563:14:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "updated_pos",
+                      "nodeType": "YulIdentifier",
+                      "src": "2548:11:6"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "array_storeLengthForEncoding_t_array$_t_address_$dyn_memory_ptr_fromStack",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "pos",
+                "nodeType": "YulTypedName",
+                "src": "2482:3:6",
+                "type": ""
+              },
+              {
+                "name": "length",
+                "nodeType": "YulTypedName",
+                "src": "2487:6:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "updated_pos",
+                "nodeType": "YulTypedName",
+                "src": "2498:11:6",
+                "type": ""
+              }
+            ],
+            "src": "2399:184:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "2634:51:6",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "2644:35:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "value",
+                        "nodeType": "YulIdentifier",
+                        "src": "2673:5:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "cleanup_t_uint160",
+                      "nodeType": "YulIdentifier",
+                      "src": "2655:17:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "2655:24:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "cleaned",
+                      "nodeType": "YulIdentifier",
+                      "src": "2644:7:6"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "cleanup_t_address",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "value",
+                "nodeType": "YulTypedName",
+                "src": "2616:5:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "cleaned",
+                "nodeType": "YulTypedName",
+                "src": "2626:7:6",
+                "type": ""
+              }
+            ],
+            "src": "2589:96:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "2736:81:6",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "2746:65:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "value",
+                        "nodeType": "YulIdentifier",
+                        "src": "2761:5:6"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "2768:42:6",
+                        "type": "",
+                        "value": "0xffffffffffffffffffffffffffffffffffffffff"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "and",
+                      "nodeType": "YulIdentifier",
+                      "src": "2757:3:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "2757:54:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "cleaned",
+                      "nodeType": "YulIdentifier",
+                      "src": "2746:7:6"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "cleanup_t_uint160",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "value",
+                "nodeType": "YulTypedName",
+                "src": "2718:5:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "cleaned",
+                "nodeType": "YulTypedName",
+                "src": "2728:7:6",
+                "type": ""
+              }
+            ],
+            "src": "2691:126:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "2897:80:6",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "2907:64:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "value",
+                        "nodeType": "YulIdentifier",
+                        "src": "2965:5:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "convert_t_contract$_Agorum_$342_to_t_uint160",
+                      "nodeType": "YulIdentifier",
+                      "src": "2920:44:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "2920:51:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "converted",
+                      "nodeType": "YulIdentifier",
+                      "src": "2907:9:6"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "convert_t_contract$_Agorum_$342_to_t_address",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "value",
+                "nodeType": "YulTypedName",
+                "src": "2877:5:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "converted",
+                "nodeType": "YulTypedName",
+                "src": "2887:9:6",
+                "type": ""
+              }
+            ],
+            "src": "2823:154:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "3057:53:6",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "3067:37:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "value",
+                        "nodeType": "YulIdentifier",
+                        "src": "3098:5:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "cleanup_t_uint160",
+                      "nodeType": "YulIdentifier",
+                      "src": "3080:17:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "3080:24:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "converted",
+                      "nodeType": "YulIdentifier",
+                      "src": "3067:9:6"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "convert_t_contract$_Agorum_$342_to_t_uint160",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "value",
+                "nodeType": "YulTypedName",
+                "src": "3037:5:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "converted",
+                "nodeType": "YulTypedName",
+                "src": "3047:9:6",
+                "type": ""
+              }
+            ],
+            "src": "2983:127:6"
+          }
+        ]
+      },
+      "contents": "{\n\n    function abi_encodeUpdatedPos_t_contract$_Agorum_$342_to_t_address(value0, pos) -> updatedPos {\n        abi_encode_t_contract$_Agorum_$342_to_t_address(value0, pos)\n        updatedPos := add(pos, 0x20)\n    }\n\n    function abi_encode_t_address_to_t_address_fromStack(value, pos) {\n        mstore(pos, cleanup_t_address(value))\n    }\n\n    // contract Agorum[] -> address[]\n    function abi_encode_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr_to_t_array$_t_address_$dyn_memory_ptr_fromStack(value, pos)  -> end  {\n        let length := array_length_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_array$_t_address_$dyn_memory_ptr_fromStack(pos, length)\n        let baseRef := array_dataslot_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr(value)\n        let srcPtr := baseRef\n        for { let i := 0 } lt(i, length) { i := add(i, 1) }\n        {\n            let elementValue0 := mload(srcPtr)\n            pos := abi_encodeUpdatedPos_t_contract$_Agorum_$342_to_t_address(elementValue0, pos)\n            srcPtr := array_nextElement_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr(srcPtr)\n        }\n        end := pos\n    }\n\n    function abi_encode_t_contract$_Agorum_$342_to_t_address(value, pos) {\n        mstore(pos, convert_t_contract$_Agorum_$342_to_t_address(value))\n    }\n\n    function abi_encode_tuple_t_address__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_address_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr__to_t_array$_t_address_$dyn_memory_ptr__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr_to_t_array$_t_address_$dyn_memory_ptr_fromStack(value0,  tail)\n\n    }\n\n    function array_dataslot_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr(ptr) -> data {\n        data := ptr\n\n        data := add(ptr, 0x20)\n\n    }\n\n    function array_length_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_nextElement_t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr(ptr) -> next {\n        next := add(ptr, 0x20)\n    }\n\n    function array_storeLengthForEncoding_t_array$_t_address_$dyn_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function cleanup_t_address(value) -> cleaned {\n        cleaned := cleanup_t_uint160(value)\n    }\n\n    function cleanup_t_uint160(value) -> cleaned {\n        cleaned := and(value, 0xffffffffffffffffffffffffffffffffffffffff)\n    }\n\n    function convert_t_contract$_Agorum_$342_to_t_address(value) -> converted {\n        converted := convert_t_contract$_Agorum_$342_to_t_uint160(value)\n    }\n\n    function convert_t_contract$_Agorum_$342_to_t_uint160(value) -> converted {\n        converted := cleanup_t_uint160(value)\n    }\n\n}\n",
+      "id": 6,
+      "language": "Yul",
+      "name": "#utility.yul"
+    }
+  ],
+  "sourceMap": "151:349:1:-:0;;;275:43;;;;;;;;;;303:10;295:5;;:18;;;;;;;;;;;;;;;;;;151:349;;;;;;",
+  "deployedSourceMap": "151:349:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;413:85;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;198:20;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;413:85;456:15;486:7;479:14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;413:85;:::o;198:20::-;;;;;;;;;;;;;:::o;7:207:6:-;;111:60;167:3;159:6;111:60;:::i;:::-;203:4;198:3;194:14;180:28;;101:113;;;;:::o;220:118::-;307:24;325:5;307:24;:::i;:::-;302:3;295:37;285:53;;:::o;382:802::-;;544:68;606:5;544:68;:::i;:::-;628:86;707:6;702:3;628:86;:::i;:::-;621:93;;738:70;802:5;738:70;:::i;:::-;831:7;862:1;847:312;872:6;869:1;866:13;847:312;;;948:6;942:13;975:77;1048:3;1033:13;975:77;:::i;:::-;968:84;;1075:74;1142:6;1075:74;:::i;:::-;1065:84;;907:252;894:1;891;887:9;882:14;;847:312;;;851:14;1175:3;1168:10;;520:664;;;;;;;:::o;1190:149::-;1281:51;1326:5;1281:51;:::i;:::-;1276:3;1269:64;1259:80;;:::o;1345:222::-;;1476:2;1465:9;1461:18;1453:26;;1489:71;1557:1;1546:9;1542:17;1533:6;1489:71;:::i;:::-;1443:124;;;;:::o;1573:401::-;;1768:2;1757:9;1753:18;1745:26;;1817:9;1811:4;1807:20;1803:1;1792:9;1788:17;1781:47;1845:122;1962:4;1953:6;1845:122;:::i;:::-;1837:130;;1735:239;;;;:::o;1980:146::-;;2084:3;2076:11;;2114:4;2109:3;2105:14;2097:22;;2066:60;;;:::o;2132:128::-;;2247:5;2241:12;2231:22;;2220:40;;;:::o;2266:127::-;;2382:4;2377:3;2373:14;2365:22;;2355:38;;;:::o;2399:184::-;;2532:6;2527:3;2520:19;2572:4;2567:3;2563:14;2548:29;;2510:73;;;;:::o;2589:96::-;;2655:24;2673:5;2655:24;:::i;:::-;2644:35;;2634:51;;;:::o;2691:126::-;;2768:42;2761:5;2757:54;2746:65;;2736:81;;;:::o;2823:154::-;;2920:51;2965:5;2920:51;:::i;:::-;2907:64;;2897:80;;;:::o;2983:127::-;;3080:24;3098:5;3080:24;:::i;:::-;3067:37;;3057:53;;;:::o",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport \"./Agorum.sol\";\n\n/**\n * Keeps track of all the Agorum addresses in the application\n */\ncontract AgorumTracker {\n  Agorum[] agorums;\n  address public owner;\n\n  // owner of contract is the deployer (developers)\n  constructor() {\n    owner = msg.sender;\n  }\n\n  /**\n   * Return the array of agorums on the platform\n   * @return array of Agorums\n   */\n  function getAgorums() public view returns (Agorum[] memory) {\n    return agorums;\n  }\n}",
+  "sourcePath": "/home/victor/agora/blockchain/contracts/AgorumTracker.sol",
+  "ast": {
+    "absolutePath": "/home/victor/agora/blockchain/contracts/AgorumTracker.sol",
+    "exportedSymbols": {
+      "Agorum": [
+        342
+      ],
+      "AgorumTracker": [
+        373
+      ],
+      "Course": [
+        428
+      ],
+      "Crowdfund": [
+        458
+      ],
+      "Payroll": [
+        495
+      ],
+      "SafeMath": [
+        807
+      ]
+    },
+    "id": 374,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 344,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:1"
+      },
+      {
+        "absolutePath": "/home/victor/agora/blockchain/contracts/Agorum.sol",
+        "file": "./Agorum.sol",
+        "id": 345,
+        "nodeType": "ImportDirective",
+        "scope": 374,
+        "sourceUnit": 343,
+        "src": "57:22:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 346,
+          "nodeType": "StructuredDocumentation",
+          "src": "81:69:1",
+          "text": " Keeps track of all the Agorum addresses in the application"
+        },
+        "fullyImplemented": true,
+        "id": 373,
+        "linearizedBaseContracts": [
+          373
+        ],
+        "name": "AgorumTracker",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 350,
+            "mutability": "mutable",
+            "name": "agorums",
+            "nodeType": "VariableDeclaration",
+            "scope": 373,
+            "src": "178:16:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_contract$_Agorum_$342_$dyn_storage",
+              "typeString": "contract Agorum[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 348,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 347,
+                  "name": "Agorum",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 342,
+                  "src": "178:6:1"
+                },
+                "referencedDeclaration": 342,
+                "src": "178:6:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_Agorum_$342",
+                  "typeString": "contract Agorum"
+                }
+              },
+              "id": 349,
+              "nodeType": "ArrayTypeName",
+              "src": "178:8:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_contract$_Agorum_$342_$dyn_storage_ptr",
+                "typeString": "contract Agorum[]"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "functionSelector": "8da5cb5b",
+            "id": 352,
+            "mutability": "mutable",
+            "name": "owner",
+            "nodeType": "VariableDeclaration",
+            "scope": 373,
+            "src": "198:20:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 351,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "198:7:1",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 360,
+              "nodeType": "Block",
+              "src": "289:29:1",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 358,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 355,
+                      "name": "owner",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 352,
+                      "src": "295:5:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 356,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967281,
+                        "src": "303:3:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 357,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "src": "303:10:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "295:18:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 359,
+                  "nodeType": "ExpressionStatement",
+                  "src": "295:18:1"
+                }
+              ]
+            },
+            "id": 361,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 353,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "286:2:1"
+            },
+            "returnParameters": {
+              "id": 354,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "289:0:1"
+            },
+            "scope": 373,
+            "src": "275:43:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 371,
+              "nodeType": "Block",
+              "src": "473:25:1",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 369,
+                    "name": "agorums",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 350,
+                    "src": "486:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_contract$_Agorum_$342_$dyn_storage",
+                      "typeString": "contract Agorum[] storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 368,
+                  "id": 370,
+                  "nodeType": "Return",
+                  "src": "479:14:1"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 362,
+              "nodeType": "StructuredDocumentation",
+              "src": "322:88:1",
+              "text": " Return the array of agorums on the platform\n @return array of Agorums"
+            },
+            "functionSelector": "25687a1f",
+            "id": 372,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAgorums",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 363,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "432:2:1"
+            },
+            "returnParameters": {
+              "id": 368,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 367,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 372,
+                  "src": "456:15:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr",
+                    "typeString": "contract Agorum[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 365,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 364,
+                        "name": "Agorum",
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 342,
+                        "src": "456:6:1"
+                      },
+                      "referencedDeclaration": 342,
+                      "src": "456:6:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_Agorum_$342",
+                        "typeString": "contract Agorum"
+                      }
+                    },
+                    "id": 366,
+                    "nodeType": "ArrayTypeName",
+                    "src": "456:8:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_contract$_Agorum_$342_$dyn_storage_ptr",
+                      "typeString": "contract Agorum[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "455:17:1"
+            },
+            "scope": 373,
+            "src": "413:85:1",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 374,
+        "src": "151:349:1"
+      }
+    ],
+    "src": "32:468:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/victor/agora/blockchain/contracts/AgorumTracker.sol",
+    "exportedSymbols": {
+      "Agorum": [
+        342
+      ],
+      "AgorumTracker": [
+        373
+      ],
+      "Course": [
+        428
+      ],
+      "Crowdfund": [
+        458
+      ],
+      "Payroll": [
+        495
+      ],
+      "SafeMath": [
+        807
+      ]
+    },
+    "id": 374,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 344,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:1"
+      },
+      {
+        "absolutePath": "/home/victor/agora/blockchain/contracts/Agorum.sol",
+        "file": "./Agorum.sol",
+        "id": 345,
+        "nodeType": "ImportDirective",
+        "scope": 374,
+        "sourceUnit": 343,
+        "src": "57:22:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 346,
+          "nodeType": "StructuredDocumentation",
+          "src": "81:69:1",
+          "text": " Keeps track of all the Agorum addresses in the application"
+        },
+        "fullyImplemented": true,
+        "id": 373,
+        "linearizedBaseContracts": [
+          373
+        ],
+        "name": "AgorumTracker",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 350,
+            "mutability": "mutable",
+            "name": "agorums",
+            "nodeType": "VariableDeclaration",
+            "scope": 373,
+            "src": "178:16:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_contract$_Agorum_$342_$dyn_storage",
+              "typeString": "contract Agorum[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 348,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 347,
+                  "name": "Agorum",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 342,
+                  "src": "178:6:1"
+                },
+                "referencedDeclaration": 342,
+                "src": "178:6:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_Agorum_$342",
+                  "typeString": "contract Agorum"
+                }
+              },
+              "id": 349,
+              "nodeType": "ArrayTypeName",
+              "src": "178:8:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_contract$_Agorum_$342_$dyn_storage_ptr",
+                "typeString": "contract Agorum[]"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "functionSelector": "8da5cb5b",
+            "id": 352,
+            "mutability": "mutable",
+            "name": "owner",
+            "nodeType": "VariableDeclaration",
+            "scope": 373,
+            "src": "198:20:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 351,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "198:7:1",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 360,
+              "nodeType": "Block",
+              "src": "289:29:1",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 358,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 355,
+                      "name": "owner",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 352,
+                      "src": "295:5:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 356,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967281,
+                        "src": "303:3:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 357,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "src": "303:10:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "295:18:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 359,
+                  "nodeType": "ExpressionStatement",
+                  "src": "295:18:1"
+                }
+              ]
+            },
+            "id": 361,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 353,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "286:2:1"
+            },
+            "returnParameters": {
+              "id": 354,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "289:0:1"
+            },
+            "scope": 373,
+            "src": "275:43:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 371,
+              "nodeType": "Block",
+              "src": "473:25:1",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 369,
+                    "name": "agorums",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 350,
+                    "src": "486:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_contract$_Agorum_$342_$dyn_storage",
+                      "typeString": "contract Agorum[] storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 368,
+                  "id": 370,
+                  "nodeType": "Return",
+                  "src": "479:14:1"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 362,
+              "nodeType": "StructuredDocumentation",
+              "src": "322:88:1",
+              "text": " Return the array of agorums on the platform\n @return array of Agorums"
+            },
+            "functionSelector": "25687a1f",
+            "id": 372,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAgorums",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 363,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "432:2:1"
+            },
+            "returnParameters": {
+              "id": 368,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 367,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 372,
+                  "src": "456:15:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_contract$_Agorum_$342_$dyn_memory_ptr",
+                    "typeString": "contract Agorum[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 365,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 364,
+                        "name": "Agorum",
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 342,
+                        "src": "456:6:1"
+                      },
+                      "referencedDeclaration": 342,
+                      "src": "456:6:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_Agorum_$342",
+                        "typeString": "contract Agorum"
+                      }
+                    },
+                    "id": 366,
+                    "nodeType": "ArrayTypeName",
+                    "src": "456:8:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_contract$_Agorum_$342_$dyn_storage_ptr",
+                      "typeString": "contract Agorum[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "455:17:1"
+            },
+            "scope": 373,
+            "src": "413:85:1",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 374,
+        "src": "151:349:1"
+      }
+    ],
+    "src": "32:468:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x3f90CCC372a4B908b578129883Bb36758f4aE654",
+      "transactionHash": "0x5e4be24c12e15d8dbeaafac3d71a16b2b7e4f2aa344eeaf897802a9591428001"
+    }
+  },
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-05-23T20:31:04.620Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "getAgorums()": {
+        "returns": {
+          "_0": "array of Agorums"
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "getAgorums()": {
+        "notice": "Return the array of agorums on the platform"
+      }
+    },
+    "notice": "Keeps track of all the Agorum addresses in the application",
+    "version": 1
+  }
+}
