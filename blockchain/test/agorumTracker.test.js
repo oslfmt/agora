@@ -34,7 +34,10 @@ contract("AgorumTracker", accounts => {
     });
 
     it('pushes a new agorum to the array', async () => {
-      
+      // test beginning length of array
+      // length is undefined!!!
+      const length1 = await agorumTracker.getAgorums().length;
+      console.log(length1)
     });
 
   });

@@ -6,9 +6,6 @@ import './Payroll.sol';
 import './Course.sol';
 import './Crowdfund.sol';
 
-/**
- * Represents an Agorum object.
- */
 contract Agorum {
   using SafeMath for uint;
   // storage variables...could store in a struct?

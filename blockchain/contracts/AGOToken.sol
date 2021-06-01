@@ -3,8 +3,7 @@ pragma solidity ^0.8.0;
 
 import "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract AGOToken is ERC20 {
-  constructor() ERC20("AgoraToken", "AGO") {}
+contract AGOToken is ERC20("AgoraToken", "AGO") {
 
   /** @dev Mints tokens when user has complete the introductory course
    */
