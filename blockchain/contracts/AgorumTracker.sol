@@ -27,7 +27,8 @@ contract AgorumTracker {
    * @dev Add a new Agorum to the tracker. Can only be called internally
    * @param agorum the agorum to add
    */
-  function _addAgorum(Agorum agorum) internal {
-    agorums.push(agorum);
+  function _createAgorum(Agorum agorum) internal {
+    
+    // agorums.push(agorum);
   }
 }

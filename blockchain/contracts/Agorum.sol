@@ -11,9 +11,6 @@ contract Agorum {
   // storage variables...could store in a struct?
   string public name;
   address[] public creators;
-  string public description;
-  string[] public categoryTags;
-  uint public createdAt;
   // array of courses belonging to agorum
   Course[] public courses;
   // payroll contract
@@ -22,11 +19,8 @@ contract Agorum {
   Crowdfund public crowdfund;
 
   // event emitted whenever a new agorum is created
-  event AgorumCreated(address agorumCreator, string title, string description, string[] categoryTags, uint createdAt);
+  event AgorumCreated(address agorumCreator, string title);
   event AgorumNameChanged(address changer, string name);
-  event AgorumDescriptionChanged(address changer,string description);
-  event AgorumTagAdded(address changer, string tag);
-  event AgorumTagRemoved(address changer, uint tagIndex);
   event CourseAdded(string title, address[] creators, string description, string[] categoryTags);
 
   /**
@@ -51,61 +45,24 @@ contract Agorum {
   }
 
   // creates a new Agorum contract, stored on the blockchain, as well as 1 Course contract
-  // constructor (
-  //   string memory _name,
-  //   address[] memory _creators,
-  //   string memory _description,
-  //   string[] memory _categoryTags,
-  //   uint _goalAmount,
-  //   uint _deadline
-  // ) {
-  //   name = _name;
-  //   creators = _creators;
-  //   description = _description;
-  //   categoryTags = _categoryTags;
-  //   // sets date to block timestamp
-  //   createdAt = block.timestamp;
+  constructor (string memory _name, address[] memory _creators) {
+    name = _name;
+    creators = _creators;
 
-  //   // creates a new course and pushes it to array
-  //   // courses.push(new Course(_name, _creators, _description, _categoryTags, createdAt));
-  //   // creates payroll with balance initialized to 0
-  //   // payroll = new Payroll();
-  //   // creates crowdfund contract with amountRaised initialized to 0
-  //   // crowdfund = new Crowdfund(_goalAmount, _deadline);
+    // creates a new course and pushes it to array
+    // courses.push(new Course(_name, _creators, _description, _categoryTags, createdAt));
+    // creates payroll with balance initialized to 0
+    // payroll = new Payroll();
+    // creates crowdfund contract with amountRaised initialized to 0
+    // crowdfund = new Crowdfund(_goalAmount, _deadline);
 
-  //   // emit AgorumCreated event
-  //   emit AgorumCreated(msg.sender, _name, _description, _categoryTags, createdAt);
-  // }
+    // emit AgorumCreated event
+    emit AgorumCreated(msg.sender, _name);
+  }
 
   function editName(string calldata _name) external {
     name = _name;
     emit AgorumNameChanged(msg.sender, _name);
-  }
-
-  function editDescription(string calldata _description) external {
-    description = _description;
-    emit AgorumDescriptionChanged(msg.sender, _description);
-  }
-
-  /**
-   * @dev Pushes a new category tag to the Agorum
-   * @param _tag the tag to add
-   */
-  function addCategoryTag(string calldata _tag) external {
-    categoryTags.push(_tag);
-    emit AgorumTagAdded(msg.sender, _tag);
-  }
-
-  function removeCategoryTag(uint tagIndex) external returns(string[] memory) {
-    require(tagIndex >= categoryTags.length);
-
-    for (uint i = tagIndex; i < categoryTags.length - 1; i++) {
-      categoryTags[i] = categoryTags[i + 1];
-    }
-    categoryTags.pop();
-    emit AgorumTagRemoved(msg.sender, tagIndex);
-
-    return categoryTags;
   }
 
   /**
