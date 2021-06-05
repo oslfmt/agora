@@ -16,8 +16,8 @@ contract Payroll {
   uint public balance = 0;
 
   /** @dev Adds a new contributor to payroll along with their reward
-  * @param _contributorAddress the address of the contributor to add
-  * @param _reward the reward set by community standard
+   * @param _contributorAddress the address of the contributor to add
+   * @param _reward the reward set by community standard
    */
   function addContributor(address _contributorAddress,  uint _reward) external {
     contributors[_contributorAddress] = _reward;

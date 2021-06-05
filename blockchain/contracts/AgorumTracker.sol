@@ -3,46 +3,49 @@ pragma solidity ^0.8.0;
 
 import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
 
+struct Crowdfund {
+  uint goalAmount;
+  uint deadline;
+  uint amountRaised;
+  // tracks supporters and their donated amounts
+  mapping (address => uint) supporters;
+}
+
+struct Payroll {
+  // uint represents contributor payment amount
+  mapping (address => uint) contributors;
+  // uint represents mentor payment amount
+  mapping (address => uint) mentors;
+  // string is (contributor; mentor; creator) and uint is % of a payment they receive
+  mapping (string => uint) distributionRates;
+  // the balance of the payroll
+  uint balance;
+}
+
+/**
+ * The main contract of the app
+ */
 contract AgorumTracker {
   // an Agorum object
   struct Agorum {
     string name;
-    address[] agorumCreators;
+    address payable[] agorumCreators;
     Course[] courses;
     Payroll payroll;
     Crowdfund crowdfund;
   }
 
-  struct Crowdfund {
-    uint goalAmount;
-    uint deadline;
-    uint amountRaised;
-    // tracks supporters and their donated amounts
-    mapping (address => uint) supporters;
-  }
-
-  struct Payroll {
-    // uint represents contributor payment amount
-    mapping (address => uint) contributors;
-    // uint represents mentor payment amount
-    mapping (address => uint) mentors;
-    // string is (contributor; mentor; creator) and uint is % of a payment they receive
-    mapping (string => uint) distributionRates;
-    // the balance of the payroll
-    uint balance;
-  }
-
   // an agorum has at least 1 course
   struct Course {
     string title;
-    address[] courseCreators;
+    address payable[] courseCreators;
   }
 
-  // keeps track of all agorums created
-  Agorum[] agorums;
-  // mapping (uint => Agorum) agorums;
-  // owner of contract (platform developers)
-  address public owner;
+  // contract state variables
+  uint public numAgorums;
+  // tracker of all agorums, mapping AgorumID to Agorum struct
+  mapping (uint => Agorum) agorums;
+  address owner;
 
   // set the contract owner to be the deployer
   constructor () {
@@ -53,7 +56,7 @@ contract AgorumTracker {
    * @dev Checks for message sender is one of the Agorum creators
    * @param agorumCreators array of addresses of the creators
    */
-  modifier onlyCreator(address[] memory agorumCreators) {
+  modifier onlyCreator(address payable[] memory agorumCreators) {
     // loop through agorum's creators until one is found
     bool creator = false;
     uint index = 0;
@@ -71,70 +74,57 @@ contract AgorumTracker {
   }
 
   /**
-   * @dev Creates a new agorum with given name and array of creators. Pushes new Agorum to tracker array.
-   * @dev Since an Agorum must be composed of at least one course, a course is also created and pushed to Agorum courses.
+   * @dev Creates a new agorum with given name and array of creators. Adds new Agorum to the mapping tracker.
+   * @dev Since an Agorum must be composed of at least one course, a course is also created and pushed to Agorum's courses.
    * @param _name the agorum name
    * @param _creators address of the creators
+   * @return the new Agorum's ID
    */
-  function _createNewAgorum(string calldata _name, address payable[] calldata _creators) internal {
-    Agorum storage a;
+  function createNewAgorum(string calldata _name, address payable[] calldata _creators) public returns (uint) {
+    // New Agorum receives ID of corresponding number of Agorums
+    uint agorumID = numAgorums++;
+    // Assign agorum to mapping, assigning name and creators
+    Agorum storage a = agorums[agorumID];
     a.name = _name;
     a.agorumCreators = _creators;
-    // create and add the corresponding course to Agorum
-    a.courses.push(addNewCourse(_name, _creators));
-    // push new Agorum to tracker array
-    agorums.push(a);
-    emit AgorumCreated(_name, _creators);
+    // create and add the corresponding course to the Agorum
+    addNewCourse(agorumID, _name, _creators);
+
+    emit AgorumCreated(agorumID, _name, _creators);
+    return agorumID;
   }
 
   /**
    * @dev Add a new course to an Agorum
+   * @param _title the course title
+   * @param _courseCreators the course creators
+   * @return the newly created course
    */
-  function addNewCourse(string calldata _title, address payable[] calldata _courseCreators) internal returns (Course storage) {
-    Course storage c;
+  function _createNewCourse(string calldata _title, address payable[] calldata _courseCreators) pure internal returns (Course memory) {
+    Course memory c;
     c.title = _title;
     c.courseCreators = _courseCreators;
     return c;
   }
 
   /**
-   * @dev Return the array of agorums on the platform
-   * @return array of Agorums
+   * @dev Adds a new course to an Agorum
    */
-  function getAgorums() public view returns (Agorum[] memory) {
-    return agorums;
+  function addNewCourse(uint _agorumID, string calldata _name, address payable[] calldata _courseCreators) public {
+    Agorum storage a = agorums[_agorumID];
+    a.courses.push(_createNewCourse(_name, _courseCreators));
   }
 
   /**
-   * @dev Return the entire array of courses belonging to a specific Agorum
-   * @param _index the index into the Agorum tracker array
+   * @dev Retrieves the metadata of an Agorum, ie, name, creators, and courses
+   * @dev Does not return Crowdfund or Payroll information
+   * @param _agorumID the ID of the Agorum
+   * @return the Agorum name, creators, and courses
    */
-  function getCourses(uint _index) public view returns (Course[] memory) {
-    return agorums[_index].courses;
+  function getAgorumMetadata(uint _agorumID) public view returns (string memory, address payable[] memory, Course[] memory) {
+    Agorum storage a = agorums[_agorumID];
+    return (a.name, a.agorumCreators, a.courses);
   }
 
-  /**
-   * @dev Merges two Agorums by adding the course of an agorum to another agorum, and then deleting the previous one
-   * @param agorumMerger the agorum to merge into
-   * @param agorumMergee the agorum to be merged
-   */
-  function mergeAgorums(Agorum calldata agorumMerger, Agorum calldata agorumMergee) public {
-    // add the mergee's courses into the merger
-    Course[] memory mergeeCourses = agorumMergee.getCourses();
-    Course[] memory mergerCourses = agorumMerger.getCourses();
-
-    // for (uint i = 0; i < mergeeCourses.length; i++) {
-    //   mergerCourses.push(mergeeCourses[i]);
-    // }
-
-    deleteAgorum(agorumMergee);
-  }
-
-  function deleteAgorum(Agorum calldata agorum) public onlyCreator(agorum.getCreators()) {
-    selfdestruct(payable(address(agorum)));
-  }
-
-  // event emitted whenever a new agorum is created
-  event AgorumCreated(string name, address payable[] agorumCreators);
-  event CourseAdded(string title, address[] creators, string description, string[] categoryTags);
+  event AgorumCreated(uint agorumID, string name, address payable[] agorumCreators);
 }
