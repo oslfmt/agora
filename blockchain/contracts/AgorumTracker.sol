@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
+import * as AGOToken from "./AGOToken.sol";
 
 struct Crowdfund {
   uint goalAmount;
@@ -11,14 +11,16 @@ struct Crowdfund {
   mapping (address => uint) supporters;
 }
 
+/**
+ * Global Payroll struct
+ * Represents the Payroll belonging to each Agorum
+ */
 struct Payroll {
-  // uint represents contributor payment amount
+  // list of contributors/mentors and their respective compensation amount
   mapping (address => uint) contributors;
-  // uint represents mentor payment amount
   mapping (address => uint) mentors;
   // string is (contributor; mentor; creator) and uint is % of a payment they receive
   mapping (string => uint) distributionRates;
-  // the balance of the payroll
   uint balance;
 }
 
@@ -74,6 +76,40 @@ contract AgorumTracker {
   }
 
   /**
+   * PAYROLL SPECIFIC METHODS
+   */
+  function addNewContributor(uint _agorumID, address payable _contributorAddress, uint _reward) public {
+    agorums[_agorumID].payroll.contributors[_contributorAddress] = _reward;
+  }
+
+  function addNewMentor(uint _agorumID, address payable _mentorAddress, uint _reward) public {
+    agorums[_agorumID].payroll.mentors[_mentorAddress] = _reward;
+  }
+
+  function setDistributionRates(uint _agorumID, uint _contributorRate, uint _mentorRate, uint _creatorRate) public onlyCreator(agorums[_agorumID].agorumCreators) {
+    // storage pointer to the Agorum's payroll
+    Payroll storage p = agorums[_agorumID].payroll;
+    p.distributionRates["contributor"] = _contributorRate;
+    p.distributionRates["mentor"] = _mentorRate;
+    p.distributionRates["creator"] = _creatorRate;
+  }
+
+  // can we make this so it is automatically called at a certain time, say every x blocks?
+  // can maybe automatically call function on some specific event occurrance
+  function distributeFunds(uint _agorumID) public {
+    // AGOToken.mintTokensOnNewLevel();
+  }
+
+  // payable function that accepts token payments to an agorum
+  function acceptPayments(uint _agorumID, uint _amount) public {
+    agorums[_agorumID].payroll.balance += _amount;
+
+    emit NewPayment(_agorumID, _amount);
+  }
+
+  event NewPayment(uint agorumID, uint amount);
+
+  /**
    * @dev Creates a new agorum with given name and array of creators. Adds new Agorum to the mapping tracker.
    * @dev Since an Agorum must be composed of at least one course, a course is also created and pushed to Agorum's courses.
    * @param _name the agorum name
@@ -113,6 +149,8 @@ contract AgorumTracker {
   function addNewCourse(uint _agorumID, string calldata _name, address payable[] calldata _courseCreators) public {
     Agorum storage a = agorums[_agorumID];
     a.courses.push(_createNewCourse(_name, _courseCreators));
+
+    emit CourseAdded(_agorumID, _name, _courseCreators);
   }
 
   /**
@@ -126,5 +164,10 @@ contract AgorumTracker {
     return (a.name, a.agorumCreators, a.courses);
   }
 
+  // function getAgorumPayroll(uint _agorumID) internal view returns (Payroll memory) {
+  //   return agorums[_agorumID].payroll;
+  // }
+
   event AgorumCreated(uint agorumID, string name, address payable[] agorumCreators);
+  event CourseAdded(uint agorumID, string title, address payable[] courseCreators);
 }
