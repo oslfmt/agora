@@ -1,0 +1,187 @@
+{
+  "contractName": "PayrollMethods",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/victor/agora/blockchain/contracts/Payroll.sol\":\"PayrollMethods\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/victor/agora/blockchain/contracts/Payroll.sol\":{\"keccak256\":\"0x1628d49750b6bb63c930283b0b236d77b13b1eb9a43aa7d006240ab66adccab3\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://7bb676280d13abc5de78a360292bd00879ce5f97e2369ddf2260be3f0426518b\",\"dweb:/ipfs/QmYU6wYTRdsJygEzGvHxKMQP3bei6SWLyp2czzBU83kMsq\"]},\"/home/victor/agora/blockchain/node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol\":{\"keccak256\":\"0x2526b7c6a366fc211bbc176078ab02b83833e7682abcc5b3bed9d700b34e2a3e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5f9529d3d365e8415155cee11394e0f7c0de2152b601b7e77508fce16cb4a509\",\"dweb:/ipfs/QmVhbcLVsAzvqfjsdLwy25XMjgVJm7Z3w2JCNiNbZF2GHT\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212203a9e7a3a83c8768fccf3efe62cfe0fd00dc53ef560f1527a9f24989760b1f59564736f6c63430008000033",
+  "deployedBytecode": "0x6080604052600080fdfea26469706673582212203a9e7a3a83c8768fccf3efe62cfe0fd00dc53ef560f1527a9f24989760b1f59564736f6c63430008000033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "136:57:2:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "136:57:2:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: GPL-3.0\npragma solidity ^0.8.0;\n\nimport \"../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol\";\n\ncontract PayrollMethods {\n  using SafeMath for uint256;\n}",
+  "sourcePath": "/home/victor/agora/blockchain/contracts/Payroll.sol",
+  "ast": {
+    "absolutePath": "/home/victor/agora/blockchain/contracts/Payroll.sol",
+    "exportedSymbols": {
+      "PayrollMethods": [
+        451
+      ],
+      "SafeMath": [
+        1365
+      ]
+    },
+    "id": 452,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 446,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:23:2"
+      },
+      {
+        "absolutePath": "/home/victor/agora/blockchain/node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol",
+        "file": "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol",
+        "id": 447,
+        "nodeType": "ImportDirective",
+        "scope": 452,
+        "sourceUnit": 1366,
+        "src": "61:73:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 451,
+        "linearizedBaseContracts": [
+          451
+        ],
+        "name": "PayrollMethods",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "id": 450,
+            "libraryName": {
+              "id": 448,
+              "name": "SafeMath",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 1365,
+              "src": "170:8:2"
+            },
+            "nodeType": "UsingForDirective",
+            "src": "164:27:2",
+            "typeName": {
+              "id": 449,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "183:7:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            }
+          }
+        ],
+        "scope": 452,
+        "src": "136:57:2"
+      }
+    ],
+    "src": "36:157:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/victor/agora/blockchain/contracts/Payroll.sol",
+    "exportedSymbols": {
+      "PayrollMethods": [
+        451
+      ],
+      "SafeMath": [
+        1365
+      ]
+    },
+    "id": 452,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 446,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:23:2"
+      },
+      {
+        "absolutePath": "/home/victor/agora/blockchain/node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol",
+        "file": "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol",
+        "id": 447,
+        "nodeType": "ImportDirective",
+        "scope": 452,
+        "sourceUnit": 1366,
+        "src": "61:73:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 451,
+        "linearizedBaseContracts": [
+          451
+        ],
+        "name": "PayrollMethods",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "id": 450,
+            "libraryName": {
+              "id": 448,
+              "name": "SafeMath",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 1365,
+              "src": "170:8:2"
+            },
+            "nodeType": "UsingForDirective",
+            "src": "164:27:2",
+            "typeName": {
+              "id": 449,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "183:7:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            }
+          }
+        ],
+        "scope": 452,
+        "src": "136:57:2"
+      }
+    ],
+    "src": "36:157:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-06-06T16:24:53.409Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

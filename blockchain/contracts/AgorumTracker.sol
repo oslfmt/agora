@@ -44,10 +44,10 @@ contract AgorumTracker {
   }
 
   // contract state variables
-  uint public numAgorums;
+  uint public numAgorums = 0;
   // tracker of all agorums, mapping AgorumID to Agorum struct
   mapping (uint => Agorum) agorums;
-  address owner;
+  address public owner;
 
   // set the contract owner to be the deployer
   constructor () {
@@ -109,14 +109,14 @@ contract AgorumTracker {
 
   event NewPayment(uint agorumID, uint amount);
 
+  // AGORUM SPECFIC METHODS
   /**
    * @dev Creates a new agorum with given name and array of creators. Adds new Agorum to the mapping tracker.
    * @dev Since an Agorum must be composed of at least one course, a course is also created and pushed to Agorum's courses.
    * @param _name the agorum name
    * @param _creators address of the creators
-   * @return the new Agorum's ID
    */
-  function createNewAgorum(string calldata _name, address payable[] calldata _creators) public returns (uint) {
+  function createNewAgorum(string calldata _name, address payable[] calldata _creators) public {
     // New Agorum receives ID of corresponding number of Agorums
     uint agorumID = numAgorums++;
     // Assign agorum to mapping, assigning name and creators
@@ -127,7 +127,6 @@ contract AgorumTracker {
     addNewCourse(agorumID, _name, _creators);
 
     emit AgorumCreated(agorumID, _name, _creators);
-    return agorumID;
   }
 
   /**
