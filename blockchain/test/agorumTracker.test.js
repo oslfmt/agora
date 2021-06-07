@@ -99,8 +99,26 @@ contract("AgorumTracker", accounts => {
   });
 
   // TEST: Correct metadata of an Agorum is retrieved
-  describe('Correct metadata retrieval', async () => {
+  describe('Metadata retrieval', async () => {
+    let txID;
+    before(async () => {
+      txID = await agorumTracker.createNewAgorum('Blockchain Intro', [accounts[4], accounts[5], accounts[2]]);
+    });
 
+    it('retrieves the agorum name, creators, and courses', async () => {
+      const metadata = await agorumTracker.getAgorumMetadata(1);
+      const agorumName = metadata[0];
+      const agorumCreators = metadata[1];
+      const courseTitle = metadata[2][0].title;
+      const courseCreators = metadata[2][0].courseCreators;
+      const numAgorums = await agorumTracker.numAgorums();
+
+      assert.equal(agorumName, 'Blockchain Intro', 'Agorum name is incorrect');
+      assert.deepStrictEqual(agorumCreators, [accounts[4], accounts[5], accounts[2]], 'agorum creators incorrect');
+      assert.equal(courseTitle, agorumName, 'course title does not match agorum name');
+      assert.deepStrictEqual(courseCreators, agorumCreators, 'course and agorum creators are the same');
+      assert.equal(numAgorums, 2, 'number of agorums is not correct');
+    });
   });
 
 });
