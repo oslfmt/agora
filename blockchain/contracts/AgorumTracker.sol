@@ -44,6 +44,14 @@ contract AgorumTracker is AGOToken {
     }
   }
 
+  // checks to see if the mentor has a reputation greater than the agorum requirement
+  // is there a way we can query off-chain data to retrieve the reputation from user account (stored in IDX)??
+  modifier mentorRequirements(address payable _mentorAddress, uint _agorumID) {
+    // if (_mentorAddress.reputation > agorums[_agorumID].mentorReputationLevel) {
+    //   _;
+    // }
+  }
+
   /**
    * PAYROLL SPECIFIC METHODS
    */
@@ -79,7 +87,18 @@ contract AgorumTracker is AGOToken {
   function setMentorPaymentRate(uint _agorumID, uint _mentorPaymentRate) public {
     agorums[_agorumID].mentorPaymentRate = _mentorPaymentRate;
   }
-
+  
+  /**
+   * @dev Adds a new mentor to an Agorum mentor list if they meet the Agorum mentor requirements
+   * @param _agorumID the ID of the Agorum mentor wishes to join
+   * @param _mentorAddress the mentor's address
+   */
+  function addNewMentor(uint _agorumID, address payable _mentorAddress) public mentorRequirements(_mentorAddress, _agorumID) {
+    // add mentor to payroll mentors tracker
+    Agorum storage a = agorums[_agorumID];
+    a.payroll.mentors[_mentorAddress] = a.mentorPaymentRate;
+    emit NewMentor(_agorumID, _mentorAddress);
+  }
 
   /**
    * @dev Calculates the final mentor payment, based on an average of cohort taker ratings.

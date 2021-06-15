@@ -6,4 +6,6 @@ contract Cohort {
 
   // instead of Payroll, Crowdfund being part of Agorum, perhaps there can be a separate contract, with a mapping from
   // agorumID => Payroll/Crowdfund
+
+  // lskjdf;alksjd
 }
