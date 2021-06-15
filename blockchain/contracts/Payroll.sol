@@ -13,5 +13,9 @@ contract PayrollManager {
   //   emit NewContributor(_contributorAddress, _reward);
   // }
 
+  // TESTING
+  function code() {
+    
+  }
   
 }
