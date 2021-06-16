@@ -1,0 +1,219 @@
+{
+  "contractName": "Cohort",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/victor/agora/blockchain/contracts/Cohort.sol\":\"Cohort\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/victor/agora/blockchain/contracts/Cohort.sol\":{\"keccak256\":\"0xda4f35ab244e64f6f8474f6e4b895a2c84dc7f6fc76a1a12ed83ac154d1a010d\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://af8a66b8f5a04a7daf4c5b4def81e020e5b9f3c00b60856f7ab6aa0b279c2937\",\"dweb:/ipfs/QmYnbc1AZ9Q4nxsynkVEdWfKB7fjwLB7moVUwkjvyNiVhK\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220bd800c5972b3ef8fc23c517530ae4608bd7c2432a3bcd86243169f499dce181a64736f6c63430008000033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220bd800c5972b3ef8fc23c517530ae4608bd7c2432a3bcd86243169f499dce181a64736f6c63430008000033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "61:213:2:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "61:213:2:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: GPL-3.0\npragma solidity ^0.8.0;\n\ncontract Cohort {\n  mapping (address => Cohort) cohorts;\n\n  // instead of Payroll, Crowdfund being part of Agorum, perhaps there can be a separate contract, with a mapping from\n  // agorumID => Payroll/Crowdfund\n}",
+  "sourcePath": "/home/victor/agora/blockchain/contracts/Cohort.sol",
+  "ast": {
+    "absolutePath": "/home/victor/agora/blockchain/contracts/Cohort.sol",
+    "exportedSymbols": {
+      "Cohort": [
+        583
+      ]
+    },
+    "id": 584,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 577,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:23:2"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 583,
+        "linearizedBaseContracts": [
+          583
+        ],
+        "name": "Cohort",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 582,
+            "mutability": "mutable",
+            "name": "cohorts",
+            "nodeType": "VariableDeclaration",
+            "scope": 583,
+            "src": "81:35:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_contract$_Cohort_$583_$",
+              "typeString": "mapping(address => contract Cohort)"
+            },
+            "typeName": {
+              "id": 581,
+              "keyType": {
+                "id": 578,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "90:7:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "81:27:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_contract$_Cohort_$583_$",
+                "typeString": "mapping(address => contract Cohort)"
+              },
+              "valueType": {
+                "id": 580,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 579,
+                  "name": "Cohort",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 583,
+                  "src": "101:6:2"
+                },
+                "referencedDeclaration": 583,
+                "src": "101:6:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_Cohort_$583",
+                  "typeString": "contract Cohort"
+                }
+              }
+            },
+            "visibility": "internal"
+          }
+        ],
+        "scope": 584,
+        "src": "61:213:2"
+      }
+    ],
+    "src": "36:238:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/victor/agora/blockchain/contracts/Cohort.sol",
+    "exportedSymbols": {
+      "Cohort": [
+        583
+      ]
+    },
+    "id": 584,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 577,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:23:2"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 583,
+        "linearizedBaseContracts": [
+          583
+        ],
+        "name": "Cohort",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 582,
+            "mutability": "mutable",
+            "name": "cohorts",
+            "nodeType": "VariableDeclaration",
+            "scope": 583,
+            "src": "81:35:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_contract$_Cohort_$583_$",
+              "typeString": "mapping(address => contract Cohort)"
+            },
+            "typeName": {
+              "id": 581,
+              "keyType": {
+                "id": 578,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "90:7:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "81:27:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_contract$_Cohort_$583_$",
+                "typeString": "mapping(address => contract Cohort)"
+              },
+              "valueType": {
+                "id": 580,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 579,
+                  "name": "Cohort",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 583,
+                  "src": "101:6:2"
+                },
+                "referencedDeclaration": 583,
+                "src": "101:6:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_Cohort_$583",
+                  "typeString": "contract Cohort"
+                }
+              }
+            },
+            "visibility": "internal"
+          }
+        ],
+        "scope": 584,
+        "src": "61:213:2"
+      }
+    ],
+    "src": "36:238:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-06-15T19:11:33.827Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -6,17 +6,17 @@ struct Agorum {
   string name;
   address payable[] agorumCreators;
   Course[] courses;
-  mapping (address => Cohort) cohorts;
-  Payroll payroll;
-  Crowdfund crowdfund;
+  // mapping (address => Cohort) cohorts;
+  // Payroll payroll;
+  // Crowdfund crowdfund;
 }
 
 struct Payroll {
   // list of contributors/mentors and their respective compensation amount
   mapping (address => uint) contributors;
-  mapping (address => uint) mentors;
-  // string is (contributor; mentor; creator) and uint is % of a payment they receive
-  mapping (string => uint) distributionRates;
+  mapping (address => Cohort) mentors;
+  uint mentorReputationLevel;
+  uint mentorPaymentRate;
   uint balance;
 }
 
@@ -36,9 +36,7 @@ struct Course {
 
 // temporary struct for a cohort
 struct Cohort {
-  uint mentorReputationLevel;
-  uint mentorPaymentRate;
-  address payable mentorAddress;
+  uint mentorPayment;
   int[] learnerRatings;
 }
 
