@@ -106,3 +106,4 @@ contract AgorumTracker is AGOToken {
   event AgorumCreated(uint agorumID, string name, address payable[] agorumCreators);
   event CourseAdded(uint agorumID, string title, address payable[] courseCreators);
 }
+

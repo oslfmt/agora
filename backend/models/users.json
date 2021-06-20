@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgoraProfile",
+  "description": "User profile",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string"
+    },
+    "activeCourses": {
+      "description": "current courses user is taking",
+      "type": "array",
+      "items": "COURSE",
+      "uniqueItems": true
+    },
+    "completedCourses": {
+      "description": "courses the user has completed",
+      "type": "array",
+      "items": "COURSE"
+    },
+    "courseProposals": {
+      "description": "a list of the course proposals user has created",
+      "type": "array",
+      "items": "COURSEPROPOSALS"
+    },
+    "proposalSupport": {
+      "description": "proposals user has supported",
+      "type": "array"
+    },
+    "contributions": {
+
+    }
+  },
+  "required": ["username"]
+}

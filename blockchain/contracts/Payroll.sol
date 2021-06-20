@@ -5,6 +5,8 @@ import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "./Structs.sol";
 import "./AGOToken.sol";
 
+import "./AgorumTracker.sol";
+
 /**
   * Mentors are responsible for guiding cohorts. For compensation, they are paid x tokens from the Agorum fund. This fund
   * is supplied by tokens of course takers. In order for a mentor to be added as an official mentor of the Agorum, they
@@ -31,6 +33,7 @@ contract PayrollManager is AGOToken {
     // }
   }
 
+  // THESE TWO FUNCTIONS SHOULD ONLY BE ABLE TO BE CALLED BY CREATORS
   /**
    * @dev Set the Agorum mentor requirements. At this time, the only supported requirement is a level of reputation.
    * @param _agorumID ID of Agorum
@@ -86,11 +89,8 @@ contract PayrollManager is AGOToken {
     uint mentorPayment = payrolls[_agorumID].mentors[_mentorAddress].mentorPayment;
 
     // transfer ERC20 tokens using ERC20 transfer function
-    // need to figure out how to import, probably just make contract inherit from AGOToken
     transfer(_mentorAddress, mentorPayment);
   }
-
-  event NewMentor(uint agoruMID, address payable mentorAddress);
 
   // PAYMENT FUNCTION
   // payable function that accepts token payments to an agorum
@@ -101,8 +101,6 @@ contract PayrollManager is AGOToken {
     emit NewPayment(_agorumID, _amount);
   }
 
-  event NewPayment(uint agorumID, uint amount);
-
   // CONTRIBUTOR METHODS
   function addNewContributor(uint _agorumID, address payable _contributorAddress, uint _reward) public {
     payrolls[_agorumID].contributors[_contributorAddress] = _reward;
@@ -110,5 +108,19 @@ contract PayrollManager is AGOToken {
     emit NewContributor(_contributorAddress, _reward);
   }
 
+  function payContributor(uint _agorumID, address payable _contributorAddress) internal {
+    uint payment = payrolls[_agorumID].contributors[_contributorAddress];
+
+    transfer(_contributorAddress, payment);
+  }
+
   event NewContributor(address payable contributorAddress, uint reward);
+  event NewMentor(uint agoruMID, address payable mentorAddress);
+  event NewPayment(uint agorumID, uint amount);
 }
+
+// TODO
+// 1. Make setter functions onlyCreator
+// 2. Make sure transfer method pays from the Payroll balance
+// 3. Subtract mentorPayment from the cohort struct
+// 4. Work on contributor methods

@@ -1,0 +1,13 @@
+SOLIDITY DESIGN PRINCIPLES
+- Can use a "factory" contract whose main functionality is to create new objects, or structs, of a certain type, as well
+  as store an array or mapping to keep track of all those new objects.
+  A new struct can be created by simply calling: Struct("params"), similar to how new objects are created in OOP,
+  however, no "new" keyword is necessary.
+  This is a differing point from OOP. A contract is not analogous to a class. A constructor for a contract creates
+  a new copy of the contract everytime it is called, which can be costly.
+  It seems that an OOP "object" is more similar to a "struct" in solidity
+- Solidity supports inheritance, so a contract inheriting from another contract has access to all public functions
+  in the contract it is inheriting from.
+- Inheritance can be used logically, with subclasses. However, a differing point from OOP is that inheritance can also
+  simply be used for organizing code by grouping similar logic together in different contracts.
+

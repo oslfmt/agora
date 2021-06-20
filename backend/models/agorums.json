@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/agorum.schema.json",
+  "title": "Agorum",
+  "description": "Agorum is a sublearning community, revolving around a course",
+  "type": "object",
+  "properties": {
+    "agorumID": {
+      "description": "UUID for the Agorum",
+      "type": "integer"
+    },
+    "name": {
+      "description": "name of Agorum",
+      "type": "string"
+    },
+    "description": {
+      "description": "agorum description",
+      "type": "string"
+    },
+    "userCount": {
+      "description": "number of users apart of the agorum",
+      "type": "string"
+    },
+    "dateCreated": {
+      "description": "date agorum was created",
+      "type": "string"
+    },
+    "categories": {
+      "description": "subjects that agorum is classified as",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "courses": {
+      "description": "courses belonging to the agorum",
+      "$ref": "https://example.com/course.schema.json"
+    }
+  },
+  "required": ["agorumID", "name", "description", "userCount"]
+}

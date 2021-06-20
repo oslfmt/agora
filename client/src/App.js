@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     async function loadWeb3() {
       // modern dapp browser
-      if(window.ethereum) {
+      if (window.ethereum) {
         setWeb3js(new Web3(window.ethereum));
         try {
           await window.ethereum.enable();

@@ -6,9 +6,6 @@ struct Agorum {
   string name;
   address payable[] agorumCreators;
   Course[] courses;
-  // mapping (address => Cohort) cohorts;
-  // Payroll payroll;
-  // Crowdfund crowdfund;
 }
 
 struct Payroll {
