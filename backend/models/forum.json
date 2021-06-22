@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/forum.schema.json",
+  "title": "Forum",
+  "description": "each agorum has a forum, a place for people to post and interact",
+  "type": "object",
+  "required": ["id", "postCount", "agorumID"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "unique forumID, which matches the agorumID that the forum is in",
+      "type": "integer"
+    },
+    "postCount": {
+      "description": "number of posts in agorum",
+      "type": "integer"
+    },
+    "posts": {
+      "description": "all the posts in the forum",
+      "type": "array",
+      "items": {
+        "type": "POST REF HERE"
+      }
+    }
+  }
+}

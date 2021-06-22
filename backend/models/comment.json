@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/comment.schema.json",
+  "title": "Comment",
+  "description": "a comment is a piece of text on a post",
+  "type": "object",
+  "required": ["id", "content", "votes", "author"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "identifier for a comment",
+      "type": "integer"
+    },
+    "content": {
+      "description": "the comment body",
+      "type": "string"
+    },
+    "votes": {
+      "description": "a count of the upvotes on a comment",
+      "type": "integer"
+    },
+    "author": {
+      "description": "the comment author's id",
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/post.schema.json",
+  "title": "Post",
+  "description": "posts are user-generated content, reddit-style",
+  "type": "object",
+  "required": ["id", "title", "support"],
+  "properties": {
+    "id": {
+      "description": "identifier to find a post in an specific forum",
+      "type": "integer"
+    },
+    "title": {
+      "description": "post title",
+      "type": "string"
+    },
+    "content": {
+      "description": "the post body",
+      "type": "string"
+    },
+    "author": {
+      "description": "the post author's ID",
+      "type": "integer"
+    },
+    "support": {
+      "description": "the number of post upvotes",
+      "type": "integer"
+    },
+    "bounty": {
+      "description": "a bounty attached to the post, for example, for CIPs",
+      "type": "number"
+    },
+    "comments": {
+      "description": "the comments on the post",
+      "type": "array",
+      "items": {
+        "type": "COMMENT REF HERE"
+      }
+    }
+  }
+}

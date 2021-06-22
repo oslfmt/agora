@@ -3,25 +3,30 @@ pragma solidity ^0.8.0;
 
 // import "../node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol";
 import "../node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol";
-import "./AGOToken.sol";
-import "./Payroll.sol";
-import "./Structs.sol";
+// import "./Structs.sol";
+import "./PayrollFactory.sol";
 
 /**
  * The main contract of the app
  */
-contract AgorumTracker is AGOToken {
+contract AgorumFactory is PayrollFactory {
   using SafeCast for uint256;
-  // contract state variables
-  uint public numAgorums = 0;
-  // tracker of all agorums, mapping AgorumID to Agorum struct
-  mapping (uint => Agorum) agorums;
-  address public owner;
 
-  // set the contract owner to be the deployer
-  constructor () {
-    owner = msg.sender;
+  struct Agorum {
+    string name;
+    address payable[] agorumCreators;
+    Course[] courses;
   }
+
+  // potentially don't need to store courses, just store in decentralized storage
+  struct Course {
+    string title;
+    address payable[] courseCreators;
+  }
+
+  // tracker of all agorums, mapping AgorumID to Agorum struct
+  mapping (uint => Agorum) public agorums;
+  uint public numAgorums = 0;
 
   /**
    * @dev Checks for message sender is one of the Agorum creators
@@ -50,19 +55,29 @@ contract AgorumTracker is AGOToken {
    * @param _name the agorum name
    * @param _creators address of the creators
    */
-  function createNewAgorum(string calldata _name, address payable[] calldata _creators) public {
+  function createNewAgorum(string calldata _name, address payable[] calldata _creators, uint _reputationLevel, uint _mentorPaymentRate) public {
     // New Agorum receives ID of corresponding number of Agorums
     uint agorumID = numAgorums++;
     // Assign agorum to mapping, assigning name and creators
-    Agorum storage a = agorums[agorumID];
-    a.name = _name;
-    a.agorumCreators = _creators;
+    agorums[agorumID].name = _name;
+    agorums[agorumID].agorumCreators = _creators;
     // create and add the corresponding course to the Agorum
     addNewCourse(agorumID, _name, _creators);
 
     // INITIALIZE CROWDFUND & PAYROLL???
+    createPayroll(agorumID, _reputationLevel, _mentorPaymentRate);
 
     emit AgorumCreated(agorumID, _name, _creators);
+  }
+
+  /**
+   * @dev Adds a new course to an Agorum
+   */
+  function addNewCourse(uint _agorumID, string calldata _name, address payable[] calldata _courseCreators) public {
+    Agorum storage a = agorums[_agorumID];
+    a.courses.push(_createNewCourse(_name, _courseCreators));
+
+    emit CourseAdded(_agorumID, _name, _courseCreators);
   }
 
   /**
@@ -79,16 +94,6 @@ contract AgorumTracker is AGOToken {
   }
 
   /**
-   * @dev Adds a new course to an Agorum
-   */
-  function addNewCourse(uint _agorumID, string calldata _name, address payable[] calldata _courseCreators) public {
-    Agorum storage a = agorums[_agorumID];
-    a.courses.push(_createNewCourse(_name, _courseCreators));
-
-    emit CourseAdded(_agorumID, _name, _courseCreators);
-  }
-
-  /**
    * @dev Retrieves the metadata of an Agorum, ie, name, creators, and courses
    * @dev Does not return Crowdfund or Payroll information
    * @param _agorumID the ID of the Agorum
@@ -98,10 +103,6 @@ contract AgorumTracker is AGOToken {
     Agorum storage a = agorums[_agorumID];
     return (a.name, a.agorumCreators, a.courses);
   }
-
-  // function getAgorumPayroll(uint _agorumID) internal view returns (Payroll memory) {
-  //   return agorums[_agorumID].payroll;
-  // }
 
   event AgorumCreated(uint agorumID, string name, address payable[] agorumCreators);
   event CourseAdded(uint agorumID, string title, address payable[] courseCreators);

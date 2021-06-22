@@ -4,6 +4,8 @@
   "title": "Agorum",
   "description": "Agorum is a sublearning community, revolving around a course",
   "type": "object",
+  "required": ["agorumID", "name", "dateCreated"],
+  "additionalProperties": false,
   "properties": {
     "agorumID": {
       "description": "UUID for the Agorum",
@@ -23,10 +25,11 @@
     },
     "dateCreated": {
       "description": "date agorum was created",
-      "type": "string"
+      "type": "string",
+      "format": "date-time"
     },
     "categories": {
-      "description": "subjects that agorum is classified as",
+      "description": "subjects that agorum is classified as. may be restricted to enums later",
       "type": "array",
       "items": {
         "type": "string"
@@ -36,8 +39,11 @@
     },
     "courses": {
       "description": "courses belonging to the agorum",
+      "type": "array",
+      "items": {
+        "type": "COURSE"
+      },
       "$ref": "https://example.com/course.schema.json"
     }
-  },
-  "required": ["agorumID", "name", "description", "userCount"]
+  }
 }

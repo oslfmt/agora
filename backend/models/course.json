@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/course.schema.json",
+  "title": "Course",
+  "description": "a user-created course",
+  "type": "object",
+  "required": ["courseID", "title", "agorumID"],
+  "properties": {
+    "courseID": {
+      "description": "ID for course, unique per Agorum",
+      "type": "integer"
+    },
+    "title": {
+      "description": "title of course",
+      "type": "string"
+    },
+    "agorumID": {
+      "description": "the agorum the course is in",
+      "type": "integer"
+    },
+    "content": {
+      "description": "content of the course",
+      "type": "string"
+    }
+  }
+}

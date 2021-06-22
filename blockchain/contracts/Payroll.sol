@@ -5,7 +5,8 @@ import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "./Structs.sol";
 import "./AGOToken.sol";
 
-import "./AgorumTracker.sol";
+import "./AgorumFactory.sol";
+import "./PayrollFactory.sol";
 
 /**
   * Mentors are responsible for guiding cohorts. For compensation, they are paid x tokens from the Agorum fund. This fund
@@ -20,10 +21,8 @@ import "./AgorumTracker.sol";
   *    are added to the official mentor list and eligible for compensation.
   * 2. Mentors are assigned to a cohort. After the cohort finishes, mentors get paid.
   */
-contract PayrollManager is AGOToken {
+contract PayrollManager is AGOToken, AgorumFactory, PayrollFactory {
   using SafeMath for uint256;
-
-  mapping (uint => Payroll) payrolls;
 
   // checks to see if the mentor has a reputation greater than the agorum requirement
   // is there a way we can query off-chain data to retrieve the reputation from user account (stored in IDX)??
@@ -33,13 +32,12 @@ contract PayrollManager is AGOToken {
     // }
   }
 
-  // THESE TWO FUNCTIONS SHOULD ONLY BE ABLE TO BE CALLED BY CREATORS
   /**
    * @dev Set the Agorum mentor requirements. At this time, the only supported requirement is a level of reputation.
    * @param _agorumID ID of Agorum
    * @param _reputationPoints the required level of points
    */
-  function setMentorRequirements(uint _agorumID, uint _reputationPoints) public {
+  function setMentorRequirements(uint _agorumID, uint _reputationPoints) external onlyCreator(agorums[_agorumID].agorumCreators) {
     payrolls[_agorumID].mentorReputationLevel = _reputationPoints;
   }
 
@@ -48,7 +46,7 @@ contract PayrollManager is AGOToken {
    * @param _agorumID ID of Agorum
    * @param _mentorPaymentRate the mentor payment rate
    */
-  function setMentorPaymentRate(uint _agorumID, uint _mentorPaymentRate) public {
+  function setMentorPaymentRate(uint _agorumID, uint _mentorPaymentRate) external onlyCreator(agorums[_agorumID].agorumCreators) {
     payrolls[_agorumID].mentorPaymentRate = _mentorPaymentRate;
   }
 
