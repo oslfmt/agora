@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/courseproposal.schema.json",
+  "title": "CourseProposal",
+  "description": "Proposals for courses made by users",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "unique identifier for proposal",
+      "type": "integer"
+    },
+    "title": {
+      "description": "the name of the proposed course",
+      "type": "string"
+    },
+    "description": {
+      "description": "the body of the proposal",
+      "type": "string"
+    },
+    "categories": {
+      "description": "categories proposed course would be in",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "deadline": {
+      "description": "when proposal will expire",
+      "type": "date"
+    },
+    "goalAmount": {
+      "description": "desired crowdfund amount of tokens",
+      "type": "number"
+    },
+    "currentAmount": {
+      "description": "the current amount of tokens donated",
+      "type": "number",
+      "exclusiveMinimum": 0 
+    },
+    "contributors": {
+      "description": "profileIDs of the people who have donated",
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    }
+  },
+  "required": ["id", "title", "description", "deadline"]
+}

@@ -29,3 +29,11 @@ having to pass in an ID and look it up (more efficient)
 - Examine external and public functions to see if they can be abused by users, and maybe change it to internal or private 
 if it can be called by another function in contract
 
+- functions can accept ether if it is declared as "payable". the ether is from the msg.value field of a transaction, and
+is automatically deposited in the contract balance
+- to withdraw ether from the contract, you need a withdraw function. you call transfer() on the payable address you wish
+to withdraw to, passing in one argument, the amount to withdraw. when withdrawing from the contract, you first
+have to get the contract balance, which you do with address(this).balance.
+
+owner.transfer(address(this).balance)
+

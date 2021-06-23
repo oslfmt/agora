@@ -41,9 +41,12 @@
       "description": "courses belonging to the agorum",
       "type": "array",
       "items": {
-        "type": "COURSE"
-      },
-      "$ref": "https://example.com/course.schema.json"
+        "$ref": "https://example.com/course.schema.json"
+      }
+    },
+    "forum": {
+      "description": "the forum of the agorum",
+      "$ref": "https://example.com/forum.schema.json"
     }
   }
 }

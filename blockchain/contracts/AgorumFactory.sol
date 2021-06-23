@@ -5,11 +5,12 @@ pragma solidity ^0.8.0;
 import "../node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol";
 // import "./Structs.sol";
 import "./PayrollFactory.sol";
+import "./CrowdfundFactory.sol";
 
 /**
  * The main contract of the app
  */
-contract AgorumFactory is PayrollFactory {
+contract AgorumFactory is PayrollFactory, CrowdfundFactory {
   using SafeCast for uint256;
 
   struct Agorum {
@@ -55,7 +56,7 @@ contract AgorumFactory is PayrollFactory {
    * @param _name the agorum name
    * @param _creators address of the creators
    */
-  function createNewAgorum(string calldata _name, address payable[] calldata _creators, uint _reputationLevel, uint _mentorPaymentRate) public {
+  function createNewAgorum(string calldata _name, address payable[] calldata _creators, uint _reputationLevel, uint _mentorPaymentRate, uint _goalAmount, uint _deadline) public {
     // New Agorum receives ID of corresponding number of Agorums
     uint agorumID = numAgorums++;
     // Assign agorum to mapping, assigning name and creators
@@ -64,8 +65,9 @@ contract AgorumFactory is PayrollFactory {
     // create and add the corresponding course to the Agorum
     addNewCourse(agorumID, _name, _creators);
 
-    // INITIALIZE CROWDFUND & PAYROLL???
-    createPayroll(agorumID, _reputationLevel, _mentorPaymentRate);
+    // initialize payroll and crowdfund objects of agorum
+    _createPayroll(agorumID, _reputationLevel, _mentorPaymentRate);
+    _createCrowdfund(agorumID, _goalAmount, _deadline);
 
     emit AgorumCreated(agorumID, _name, _creators);
   }

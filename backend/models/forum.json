@@ -7,7 +7,7 @@
   "required": ["id", "postCount", "agorumID"],
   "additionalProperties": false,
   "properties": {
-    "id": {
+    "agorumID": {
       "description": "unique forumID, which matches the agorumID that the forum is in",
       "type": "integer"
     },
@@ -19,7 +19,7 @@
       "description": "all the posts in the forum",
       "type": "array",
       "items": {
-        "type": "POST REF HERE"
+        "$ref": "https://example.com/post.schema.json"
       }
     }
   }

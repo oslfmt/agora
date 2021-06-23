@@ -34,7 +34,7 @@
       "description": "the comments on the post",
       "type": "array",
       "items": {
-        "type": "COMMENT REF HERE"
+        "$ref": "https://example.com/comment.schema.json"
       }
     }
   }

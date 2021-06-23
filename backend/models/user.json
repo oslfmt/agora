@@ -1,35 +1,42 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/user.schema.json",
   "title": "AgoraProfile",
   "description": "User profile",
   "type": "object",
   "properties": {
+    "userID": {
+      "type": "integer"
+    },
     "username": {
+      "type": "string"
+    },
+    "description": {
       "type": "string"
     },
     "activeCourses": {
       "description": "current courses user is taking",
       "type": "array",
-      "items": "COURSE",
+      "items": { "$ref": "https://example.com/course.schema.json" },
       "uniqueItems": true
     },
     "completedCourses": {
       "description": "courses the user has completed",
       "type": "array",
-      "items": "COURSE"
+      "items": { "$ref": "https://example.com/course.schema.json" }
     },
     "courseProposals": {
       "description": "a list of the course proposals user has created",
       "type": "array",
-      "items": "COURSEPROPOSALS"
+      "items": { "$ref": "https://example.com/courseproposal.schema.json"}
     },
     "proposalSupport": {
-      "description": "proposals user has supported",
-      "type": "array"
-    },
-    "contributions": {
-
+      "description": "proposalIDs of the proposals user has supported",
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
     }
   },
-  "required": ["username"]
+  "required": ["userID", "username"]
 }

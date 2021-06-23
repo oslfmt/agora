@@ -21,7 +21,7 @@ import "./PayrollFactory.sol";
   *    are added to the official mentor list and eligible for compensation.
   * 2. Mentors are assigned to a cohort. After the cohort finishes, mentors get paid.
   */
-contract PayrollManager is AGOToken, AgorumFactory, PayrollFactory {
+contract PayrollManager is AgorumFactory, AGOToken {
   using SafeMath for uint256;
 
   // checks to see if the mentor has a reputation greater than the agorum requirement
@@ -37,7 +37,7 @@ contract PayrollManager is AGOToken, AgorumFactory, PayrollFactory {
    * @param _agorumID ID of Agorum
    * @param _reputationPoints the required level of points
    */
-  function setMentorRequirements(uint _agorumID, uint _reputationPoints) external onlyCreator(agorums[_agorumID].agorumCreators) {
+  function changeMentorRequirements(uint _agorumID, uint _reputationPoints) external onlyCreator(agorums[_agorumID].agorumCreators) {
     payrolls[_agorumID].mentorReputationLevel = _reputationPoints;
   }
 
@@ -46,7 +46,7 @@ contract PayrollManager is AGOToken, AgorumFactory, PayrollFactory {
    * @param _agorumID ID of Agorum
    * @param _mentorPaymentRate the mentor payment rate
    */
-  function setMentorPaymentRate(uint _agorumID, uint _mentorPaymentRate) external onlyCreator(agorums[_agorumID].agorumCreators) {
+  function changeMentorPaymentRate(uint _agorumID, uint _mentorPaymentRate) external onlyCreator(agorums[_agorumID].agorumCreators) {
     payrolls[_agorumID].mentorPaymentRate = _mentorPaymentRate;
   }
 
@@ -57,7 +57,7 @@ contract PayrollManager is AGOToken, AgorumFactory, PayrollFactory {
    */
   function addNewMentor(uint _agorumID, address payable _mentorAddress) public mentorRequirements(_mentorAddress, _agorumID) {
     // add mentor to payroll mentors tracker and preliminarily set the payment to base payment
-    payrolls[_agorumID].mentors[_mentorAddress].mentorPayment = payrolls[_agorumID].mentorPaymentRate;
+    payrolls[_agorumID].mentors[_mentorAddress] = payrolls[_agorumID].mentorPaymentRate;
 
     emit NewMentor(_agorumID, _mentorAddress);
   }
@@ -92,9 +92,17 @@ contract PayrollManager is AGOToken, AgorumFactory, PayrollFactory {
 
   // PAYMENT FUNCTION
   // payable function that accepts token payments to an agorum
-  function acceptPayments(uint _agorumID, uint _amount) public {
-    // should increase the token balance
+  function acceptPayments(uint _agorumID, uint _amount) external payable {
+    // should increase the token balance - this isn't really balance of token, just a number
+    // the real balance is managed by ERC20 contract
     payrolls[_agorumID].balance += _amount;
+
+    // the problem with this, is that it transfers to PAYROLLMANAGER contract, not the specific payroll struct
+    // however, the PAYROLLMANAGER can HOLD all tokens, while the struct balances keep track of the specific amount
+    // that the PAYROLLMANAGER owes them
+    // in this scheme, the PAYROLLMANAGER is like a centralized bank, and the structs are customers
+    // however, no entity controls the payrollmanager, it strictly adheres to the payroll struct balances
+    transfer(address(this), _amount);
 
     emit NewPayment(_agorumID, _amount);
   }
