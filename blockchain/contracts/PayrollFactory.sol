@@ -2,14 +2,21 @@
 pragma solidity ^0.8.0;
 
 contract PayrollFactory {
+
   struct Payroll {
-    // list of contributors/mentors and their respective compensation amount
-    mapping (address => uint) contributors;
-    // uint is cohortID?
-    mapping (address => uint) mentors;
     uint mentorReputationLevel;
     uint mentorPaymentRate;
     uint balance;
+    mapping (address => uint) contributors;
+    mapping (address => Cohort) mentorToCohort;
+    address payable[] mentors;
+  }
+
+  struct Cohort {
+    uint numStudents;
+    int[] learnerRatings;
+    uint createdAt;
+    uint endingDate;
   }
 
   // payroll's ID is the same as the ID of the agorum it is associated with

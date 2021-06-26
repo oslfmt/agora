@@ -2,9 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
-import "./Structs.sol";
 import "./AGOToken.sol";
-
 import "./AgorumFactory.sol";
 import "./PayrollFactory.sol";
 
@@ -50,25 +48,40 @@ contract PayrollManager is AgorumFactory, AGOToken {
     payrolls[_agorumID].mentorPaymentRate = _mentorPaymentRate;
   }
 
-  /**
-   * @dev Adds a new mentor to an Agorum mentor list if they meet the Agorum mentor requirements
-   * @param _agorumID the ID of the Agorum mentor wishes to join
-   * @param _mentorAddress the mentor's address
-   */
-  function addNewMentor(uint _agorumID, address payable _mentorAddress) public mentorRequirements(_mentorAddress, _agorumID) {
-    // add mentor to payroll mentors tracker and preliminarily set the payment to base payment
-    payrolls[_agorumID].mentors[_mentorAddress] = payrolls[_agorumID].mentorPaymentRate;
-
+  // adds a new mentor to the mentors array of the payroll
+  function addMentor(uint _agorumID, address payable _mentorAddress) public mentorRequirements(_mentorAddress, _agorumID) {
+    payrolls[_agorumID].mentors.push(_mentorAddress);
     emit NewMentor(_agorumID, _mentorAddress);
+  }
+
+  // assigns the given mentor in the mentors array to a newly created cohort, with ratings of length _numStudents,
+  // but all spots initialized to null
+  function assignCohort(uint _agorumID, address payable _mentorAddress, uint _numStudents, uint endingDate) public {
+    int[] memory ratings = new int[](_numStudents);
+    payrolls[_agorumID].mentorToCohort[_mentorAddress] = Cohort(_numStudents, ratings, block.timestamp, endingDate);
+
+    emit CohortAssigned(_agorumID, _mentorAddress, _numStudents);
+  }
+
+  // release funds to the mentor
+  function payMentor(uint _agorumID, address payable _mentorAddress) external {
+    uint createdAt = payrolls[_agorumID].mentorToCohort[_mentorAddress].createdAt;
+    uint endingDate = payrolls[_agorumID].mentorToCohort[_mentorAddress].endingDate;
+    
+    require(block.timestamp - createdAt > endingDate, "Cohort has not finished yet");
+    uint totalPayment = _calculateFinalMentorPayment(_agorumID, _mentorAddress);
+    // transfer ERC20 tokens using ERC20 transfer function
+    transfer(_mentorAddress, totalPayment);
   }
 
   /**
    * @dev Calculates the final mentor payment, based on an average of cohort taker ratings.
+   * @dev Need to do a bunch of math checks (overflow, conversions, prevent negative compensatino amounts)
    */
-  function _calculateFinalMentorPayment(uint _agorumID, address payable _mentorAddress) internal {
+  function _calculateFinalMentorPayment(uint _agorumID, address payable _mentorAddress) view internal returns (uint256) {
     int totalRating = 0;
-    // cohorts is not available in this scope
-    int[] memory ratings = payrolls[_agorumID].mentors[_mentorAddress].learnerRatings;
+    uint basePayment = payrolls[_agorumID].mentorPaymentRate;
+    int[] memory ratings = payrolls[_agorumID].mentorToCohort[_mentorAddress].learnerRatings;
 
     // ratings can only be -2, -1, 0, 1, 2
     // negative numbers decrease the mentor payment; positive increase payment bonus
@@ -78,16 +91,8 @@ contract PayrollManager is AgorumFactory, AGOToken {
     // take average of ratings
     int bonus = totalRating / int256(ratings.length);
 
-    // for now, dox a simple adding of bonus to base rate. Later, will create a sliding bonus based on max and min payments possible.
-    payrolls[_agorumID].mentors[_mentorAddress].mentorPayment += uint256(bonus);
-  }
-
-  function payMentor(uint _agorumID, address payable _mentorAddress) internal {
-    _calculateFinalMentorPayment(_agorumID, _mentorAddress);
-    uint mentorPayment = payrolls[_agorumID].mentors[_mentorAddress].mentorPayment;
-
-    // transfer ERC20 tokens using ERC20 transfer function
-    transfer(_mentorAddress, mentorPayment);
+        // for now, do a simple adding of bonus to base rate. Later, will create a sliding bonus based on max and min payments possible.
+    return (basePayment + uint256(bonus));
   }
 
   // PAYMENT FUNCTION
@@ -121,12 +126,12 @@ contract PayrollManager is AgorumFactory, AGOToken {
   }
 
   event NewContributor(address payable contributorAddress, uint reward);
-  event NewMentor(uint agoruMID, address payable mentorAddress);
+  event NewMentor(uint agorumID, address payable mentorAddress);
   event NewPayment(uint agorumID, uint amount);
+  event CohortAssigned(uint agorumID, address payable mentorAddress, uint numStudents);
 }
 
 // TODO
-// 1. Make setter functions onlyCreator
 // 2. Make sure transfer method pays from the Payroll balance
 // 3. Subtract mentorPayment from the cohort struct
 // 4. Work on contributor methods
