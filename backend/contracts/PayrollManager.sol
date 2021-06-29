@@ -64,14 +64,23 @@ contract PayrollManager is AgorumFactory, AGOToken {
   }
 
   // release funds to the mentor
+  // the reason for this proxy function is because when calling _payMentor, the msg.sender should be the PayrollManager
+  // contract, not the EOA account; hopefully it works in the context executed, not the originator
   function payMentor(uint _agorumID, address payable _mentorAddress) external {
     uint createdAt = payrolls[_agorumID].mentorToCohort[_mentorAddress].createdAt;
     uint endingDate = payrolls[_agorumID].mentorToCohort[_mentorAddress].endingDate;
     
     require(block.timestamp - createdAt > endingDate, "Cohort has not finished yet");
     uint totalPayment = _calculateFinalMentorPayment(_agorumID, _mentorAddress);
-    // transfer ERC20 tokens using ERC20 transfer function
-    transfer(_mentorAddress, totalPayment);
+
+    _releaseFunds(_mentorAddress, totalPayment);
+  }
+
+  function _releaseFunds(address payable _recipient, uint _totalPayment) internal {
+    // transfer ERC20 tokens from PayrollManager to mentor
+    // problem is that mentor has to pay ether (gas) to receive their tokens
+    // but the gas can just be considered a % transaction fee, like most platforms have anyways!
+    transfer(_recipient, _totalPayment);
   }
 
   /**
@@ -97,7 +106,7 @@ contract PayrollManager is AgorumFactory, AGOToken {
 
   // PAYMENT FUNCTION
   // payable function that accepts token payments to an agorum
-  function acceptPayments(uint _agorumID, uint _amount) external payable {
+  function acceptPayments(uint _agorumID, uint _amount) external {
     // should increase the token balance - this isn't really balance of token, just a number
     // the real balance is managed by ERC20 contract
     payrolls[_agorumID].balance += _amount;
@@ -107,6 +116,8 @@ contract PayrollManager is AgorumFactory, AGOToken {
     // that the PAYROLLMANAGER owes them
     // in this scheme, the PAYROLLMANAGER is like a centralized bank, and the structs are customers
     // however, no entity controls the payrollmanager, it strictly adheres to the payroll struct balances
+
+    // transfer tokens from msg.sender to PayrollManager
     transfer(address(this), _amount);
 
     emit NewPayment(_agorumID, _amount);
