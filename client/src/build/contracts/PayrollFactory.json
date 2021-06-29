@@ -1,0 +1,2746 @@
+{
+  "contractName": "PayrollFactory",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "reputationLevel",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "mentorPaymentRate",
+          "type": "uint256"
+        }
+      ],
+      "name": "PayrollCreated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "payrolls",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "mentorReputationLevel",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "mentorPaymentRate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"reputationLevel\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"mentorPaymentRate\",\"type\":\"uint256\"}],\"name\":\"PayrollCreated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"payrolls\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"mentorReputationLevel\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"mentorPaymentRate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/victor/agora/backend/contracts/PayrollFactory.sol\":\"PayrollFactory\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/victor/agora/backend/contracts/PayrollFactory.sol\":{\"keccak256\":\"0x5fa3d6978ca1ccfba7295a62078a3ebb3cf3372cacc6ad97ecdbe1f0ca3e2b5e\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://12758f1565ef058f3c5ba0fe38caee8ca7de42bfaac2685264d3659bd3bda3ba\",\"dweb:/ipfs/QmQeLHyqEop2txVvNuPsy8A5qVb6HyG5pmbf8VYyjqBafn\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610167806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c80635632b1fa14610030575b600080fd5b61004a600480360381019061004591906100a1565b610062565b604051610059939291906100d9565b60405180910390f35b60006020528060005260406000206000915090508060000154908060010154908060020154905083565b60008135905061009b8161011a565b92915050565b6000602082840312156100b357600080fd5b60006100c18482850161008c565b91505092915050565b6100d381610110565b82525050565b60006060820190506100ee60008301866100ca565b6100fb60208301856100ca565b61010860408301846100ca565b949350505050565b6000819050919050565b61012381610110565b811461012e57600080fd5b5056fea264697066735822122075ec679aa1976f31887ed6cdeb5668215fce01f7cf299d4513314fbf861b6d1964736f6c63430008000033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c80635632b1fa14610030575b600080fd5b61004a600480360381019061004591906100a1565b610062565b604051610059939291906100d9565b60405180910390f35b60006020528060005260406000206000915090508060000154908060010154908060020154905083565b60008135905061009b8161011a565b92915050565b6000602082840312156100b357600080fd5b60006100c18482850161008c565b91505092915050565b6100d381610110565b82525050565b60006060820190506100ee60008301866100ca565b6100fb60208301856100ca565b61010860408301846100ca565b949350505050565b6000819050919050565b61012381610110565b811461012e57600080fd5b5056fea264697066735822122075ec679aa1976f31887ed6cdeb5668215fce01f7cf299d4513314fbf861b6d1964736f6c63430008000033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [
+    {
+      "ast": {
+        "nodeType": "YulBlock",
+        "src": "0:1200:12",
+        "statements": [
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "59:87:12",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "69:29:12",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "offset",
+                        "nodeType": "YulIdentifier",
+                        "src": "91:6:12"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "calldataload",
+                      "nodeType": "YulIdentifier",
+                      "src": "78:12:12"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "78:20:12"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "value",
+                      "nodeType": "YulIdentifier",
+                      "src": "69:5:12"
+                    }
+                  ]
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "value",
+                        "nodeType": "YulIdentifier",
+                        "src": "134:5:12"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "validator_revert_t_uint256",
+                      "nodeType": "YulIdentifier",
+                      "src": "107:26:12"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "107:33:12"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "107:33:12"
+                }
+              ]
+            },
+            "name": "abi_decode_t_uint256",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "offset",
+                "nodeType": "YulTypedName",
+                "src": "37:6:12",
+                "type": ""
+              },
+              {
+                "name": "end",
+                "nodeType": "YulTypedName",
+                "src": "45:3:12",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "value",
+                "nodeType": "YulTypedName",
+                "src": "53:5:12",
+                "type": ""
+              }
+            ],
+            "src": "7:139:12"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "218:196:12",
+              "statements": [
+                {
+                  "body": {
+                    "nodeType": "YulBlock",
+                    "src": "264:16:12",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "273:1:12",
+                              "type": "",
+                              "value": "0"
+                            },
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "276:1:12",
+                              "type": "",
+                              "value": "0"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "revert",
+                            "nodeType": "YulIdentifier",
+                            "src": "266:6:12"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "266:12:12"
+                        },
+                        "nodeType": "YulExpressionStatement",
+                        "src": "266:12:12"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "name": "dataEnd",
+                            "nodeType": "YulIdentifier",
+                            "src": "239:7:12"
+                          },
+                          {
+                            "name": "headStart",
+                            "nodeType": "YulIdentifier",
+                            "src": "248:9:12"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "sub",
+                          "nodeType": "YulIdentifier",
+                          "src": "235:3:12"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "235:23:12"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "260:2:12",
+                        "type": "",
+                        "value": "32"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "slt",
+                      "nodeType": "YulIdentifier",
+                      "src": "231:3:12"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "231:32:12"
+                  },
+                  "nodeType": "YulIf",
+                  "src": "228:2:12"
+                },
+                {
+                  "nodeType": "YulBlock",
+                  "src": "290:117:12",
+                  "statements": [
+                    {
+                      "nodeType": "YulVariableDeclaration",
+                      "src": "305:15:12",
+                      "value": {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "319:1:12",
+                        "type": "",
+                        "value": "0"
+                      },
+                      "variables": [
+                        {
+                          "name": "offset",
+                          "nodeType": "YulTypedName",
+                          "src": "309:6:12",
+                          "type": ""
+                        }
+                      ]
+                    },
+                    {
+                      "nodeType": "YulAssignment",
+                      "src": "334:63:12",
+                      "value": {
+                        "arguments": [
+                          {
+                            "arguments": [
+                              {
+                                "name": "headStart",
+                                "nodeType": "YulIdentifier",
+                                "src": "369:9:12"
+                              },
+                              {
+                                "name": "offset",
+                                "nodeType": "YulIdentifier",
+                                "src": "380:6:12"
+                              }
+                            ],
+                            "functionName": {
+                              "name": "add",
+                              "nodeType": "YulIdentifier",
+                              "src": "365:3:12"
+                            },
+                            "nodeType": "YulFunctionCall",
+                            "src": "365:22:12"
+                          },
+                          {
+                            "name": "dataEnd",
+                            "nodeType": "YulIdentifier",
+                            "src": "389:7:12"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "abi_decode_t_uint256",
+                          "nodeType": "YulIdentifier",
+                          "src": "344:20:12"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "344:53:12"
+                      },
+                      "variableNames": [
+                        {
+                          "name": "value0",
+                          "nodeType": "YulIdentifier",
+                          "src": "334:6:12"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "abi_decode_tuple_t_uint256",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "188:9:12",
+                "type": ""
+              },
+              {
+                "name": "dataEnd",
+                "nodeType": "YulTypedName",
+                "src": "199:7:12",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "211:6:12",
+                "type": ""
+              }
+            ],
+            "src": "152:262:12"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "485:53:12",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "pos",
+                        "nodeType": "YulIdentifier",
+                        "src": "502:3:12"
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "name": "value",
+                            "nodeType": "YulIdentifier",
+                            "src": "525:5:12"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "cleanup_t_uint256",
+                          "nodeType": "YulIdentifier",
+                          "src": "507:17:12"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "507:24:12"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "mstore",
+                      "nodeType": "YulIdentifier",
+                      "src": "495:6:12"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "495:37:12"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "495:37:12"
+                }
+              ]
+            },
+            "name": "abi_encode_t_uint256_to_t_uint256_fromStack",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "value",
+                "nodeType": "YulTypedName",
+                "src": "473:5:12",
+                "type": ""
+              },
+              {
+                "name": "pos",
+                "nodeType": "YulTypedName",
+                "src": "480:3:12",
+                "type": ""
+              }
+            ],
+            "src": "420:118:12"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "698:288:12",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "708:26:12",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "720:9:12"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "731:2:12",
+                        "type": "",
+                        "value": "96"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "716:3:12"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "716:18:12"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "tail",
+                      "nodeType": "YulIdentifier",
+                      "src": "708:4:12"
+                    }
+                  ]
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "value0",
+                        "nodeType": "YulIdentifier",
+                        "src": "788:6:12"
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "name": "headStart",
+                            "nodeType": "YulIdentifier",
+                            "src": "801:9:12"
+                          },
+                          {
+                            "kind": "number",
+                            "nodeType": "YulLiteral",
+                            "src": "812:1:12",
+                            "type": "",
+                            "value": "0"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "add",
+                          "nodeType": "YulIdentifier",
+                          "src": "797:3:12"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "797:17:12"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "abi_encode_t_uint256_to_t_uint256_fromStack",
+                      "nodeType": "YulIdentifier",
+                      "src": "744:43:12"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "744:71:12"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "744:71:12"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "value1",
+                        "nodeType": "YulIdentifier",
+                        "src": "869:6:12"
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "name": "headStart",
+                            "nodeType": "YulIdentifier",
+                            "src": "882:9:12"
+                          },
+                          {
+                            "kind": "number",
+                            "nodeType": "YulLiteral",
+                            "src": "893:2:12",
+                            "type": "",
+                            "value": "32"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "add",
+                          "nodeType": "YulIdentifier",
+                          "src": "878:3:12"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "878:18:12"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "abi_encode_t_uint256_to_t_uint256_fromStack",
+                      "nodeType": "YulIdentifier",
+                      "src": "825:43:12"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "825:72:12"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "825:72:12"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "value2",
+                        "nodeType": "YulIdentifier",
+                        "src": "951:6:12"
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "name": "headStart",
+                            "nodeType": "YulIdentifier",
+                            "src": "964:9:12"
+                          },
+                          {
+                            "kind": "number",
+                            "nodeType": "YulLiteral",
+                            "src": "975:2:12",
+                            "type": "",
+                            "value": "64"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "add",
+                          "nodeType": "YulIdentifier",
+                          "src": "960:3:12"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "960:18:12"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "abi_encode_t_uint256_to_t_uint256_fromStack",
+                      "nodeType": "YulIdentifier",
+                      "src": "907:43:12"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "907:72:12"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "907:72:12"
+                }
+              ]
+            },
+            "name": "abi_encode_tuple_t_uint256_t_uint256_t_uint256__to_t_uint256_t_uint256_t_uint256__fromStack_reversed",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "654:9:12",
+                "type": ""
+              },
+              {
+                "name": "value2",
+                "nodeType": "YulTypedName",
+                "src": "666:6:12",
+                "type": ""
+              },
+              {
+                "name": "value1",
+                "nodeType": "YulTypedName",
+                "src": "674:6:12",
+                "type": ""
+              },
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "682:6:12",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "tail",
+                "nodeType": "YulTypedName",
+                "src": "693:4:12",
+                "type": ""
+              }
+            ],
+            "src": "544:442:12"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "1037:32:12",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "1047:16:12",
+                  "value": {
+                    "name": "value",
+                    "nodeType": "YulIdentifier",
+                    "src": "1058:5:12"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "cleaned",
+                      "nodeType": "YulIdentifier",
+                      "src": "1047:7:12"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "cleanup_t_uint256",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "value",
+                "nodeType": "YulTypedName",
+                "src": "1019:5:12",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "cleaned",
+                "nodeType": "YulTypedName",
+                "src": "1029:7:12",
+                "type": ""
+              }
+            ],
+            "src": "992:77:12"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "1118:79:12",
+              "statements": [
+                {
+                  "body": {
+                    "nodeType": "YulBlock",
+                    "src": "1175:16:12",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "1184:1:12",
+                              "type": "",
+                              "value": "0"
+                            },
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "1187:1:12",
+                              "type": "",
+                              "value": "0"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "revert",
+                            "nodeType": "YulIdentifier",
+                            "src": "1177:6:12"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "1177:12:12"
+                        },
+                        "nodeType": "YulExpressionStatement",
+                        "src": "1177:12:12"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "name": "value",
+                            "nodeType": "YulIdentifier",
+                            "src": "1141:5:12"
+                          },
+                          {
+                            "arguments": [
+                              {
+                                "name": "value",
+                                "nodeType": "YulIdentifier",
+                                "src": "1166:5:12"
+                              }
+                            ],
+                            "functionName": {
+                              "name": "cleanup_t_uint256",
+                              "nodeType": "YulIdentifier",
+                              "src": "1148:17:12"
+                            },
+                            "nodeType": "YulFunctionCall",
+                            "src": "1148:24:12"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "eq",
+                          "nodeType": "YulIdentifier",
+                          "src": "1138:2:12"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "1138:35:12"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "iszero",
+                      "nodeType": "YulIdentifier",
+                      "src": "1131:6:12"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "1131:43:12"
+                  },
+                  "nodeType": "YulIf",
+                  "src": "1128:2:12"
+                }
+              ]
+            },
+            "name": "validator_revert_t_uint256",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "value",
+                "nodeType": "YulTypedName",
+                "src": "1111:5:12",
+                "type": ""
+              }
+            ],
+            "src": "1075:122:12"
+          }
+        ]
+      },
+      "contents": "{\n\n    function abi_decode_t_uint256(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_uint256(value)\n    }\n\n    function abi_decode_tuple_t_uint256(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert(0, 0) }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_encode_t_uint256_to_t_uint256_fromStack(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    function abi_encode_tuple_t_uint256_t_uint256_t_uint256__to_t_uint256_t_uint256_t_uint256__fromStack_reversed(headStart , value2, value1, value0) -> tail {\n        tail := add(headStart, 96)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value0,  add(headStart, 0))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value1,  add(headStart, 32))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value2,  add(headStart, 64))\n\n    }\n\n    function cleanup_t_uint256(value) -> cleaned {\n        cleaned := value\n    }\n\n    function validator_revert_t_uint256(value) {\n        if iszero(eq(value, cleanup_t_uint256(value))) { revert(0, 0) }\n    }\n\n}\n",
+      "id": 12,
+      "language": "Yul",
+      "name": "#utility.yul"
+    }
+  ],
+  "sourceMap": "61:914:5:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "61:914:5:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;503:41;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;7:139:12:-;;91:6;78:20;69:29;;107:33;134:5;107:33;:::i;:::-;59:87;;;;:::o;152:262::-;;260:2;248:9;239:7;235:23;231:32;228:2;;;276:1;273;266:12;228:2;319:1;344:53;389:7;380:6;369:9;365:22;344:53;:::i;:::-;334:63;;290:117;218:196;;;;:::o;420:118::-;507:24;525:5;507:24;:::i;:::-;502:3;495:37;485:53;;:::o;544:442::-;;731:2;720:9;716:18;708:26;;744:71;812:1;801:9;797:17;788:6;744:71;:::i;:::-;825:72;893:2;882:9;878:18;869:6;825:72;:::i;:::-;907;975:2;964:9;960:18;951:6;907:72;:::i;:::-;698:288;;;;;;:::o;992:77::-;;1058:5;1047:16;;1037:32;;;:::o;1075:122::-;1148:24;1166:5;1148:24;:::i;:::-;1141:5;1138:35;1128:2;;1187:1;1184;1177:12;1128:2;1118:79;:::o",
+  "source": "// SPDX-License-Identifier: GPL-3.0\npragma solidity ^0.8.0;\n\ncontract PayrollFactory {\n\n  struct Payroll {\n    uint mentorReputationLevel;\n    uint mentorPaymentRate;\n    uint balance;\n    mapping (address => uint) contributors;\n    mapping (address => Cohort) mentorToCohort;\n    address payable[] mentors;\n  }\n\n  struct Cohort {\n    uint numStudents;\n    int[] learnerRatings;\n    uint createdAt;\n    uint endingDate;\n  }\n\n  // payroll's ID is the same as the ID of the agorum it is associated with\n  mapping (uint => Payroll) public payrolls;\n\n  function _createPayroll(uint _agorumID, uint _reputationLevel, uint _mentorPaymentRate) internal {\n    payrolls[_agorumID].mentorReputationLevel = _reputationLevel;\n    payrolls[_agorumID].mentorPaymentRate = _mentorPaymentRate;\n    payrolls[_agorumID].balance = 0;\n\n    emit PayrollCreated(_agorumID, _reputationLevel, _mentorPaymentRate);\n  }\n\n  event PayrollCreated(uint id, uint reputationLevel, uint mentorPaymentRate);\n}",
+  "sourcePath": "/home/victor/agora/backend/contracts/PayrollFactory.sol",
+  "ast": {
+    "absolutePath": "/home/victor/agora/backend/contracts/PayrollFactory.sol",
+    "exportedSymbols": {
+      "PayrollFactory": [
+        516
+      ]
+    },
+    "id": 517,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 436,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:23:5"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 516,
+        "linearizedBaseContracts": [
+          516
+        ],
+        "name": "PayrollFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "PayrollFactory.Payroll",
+            "id": 455,
+            "members": [
+              {
+                "constant": false,
+                "id": 438,
+                "mutability": "mutable",
+                "name": "mentorReputationLevel",
+                "nodeType": "VariableDeclaration",
+                "scope": 455,
+                "src": "111:26:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 437,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "111:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 440,
+                "mutability": "mutable",
+                "name": "mentorPaymentRate",
+                "nodeType": "VariableDeclaration",
+                "scope": 455,
+                "src": "143:22:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 439,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "143:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 442,
+                "mutability": "mutable",
+                "name": "balance",
+                "nodeType": "VariableDeclaration",
+                "scope": 455,
+                "src": "171:12:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 441,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "171:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 446,
+                "mutability": "mutable",
+                "name": "contributors",
+                "nodeType": "VariableDeclaration",
+                "scope": 455,
+                "src": "189:38:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                  "typeString": "mapping(address => uint256)"
+                },
+                "typeName": {
+                  "id": 445,
+                  "keyType": {
+                    "id": 443,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "198:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "189:25:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                    "typeString": "mapping(address => uint256)"
+                  },
+                  "valueType": {
+                    "id": 444,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "209:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 451,
+                "mutability": "mutable",
+                "name": "mentorToCohort",
+                "nodeType": "VariableDeclaration",
+                "scope": 455,
+                "src": "233:42:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Cohort_$465_storage_$",
+                  "typeString": "mapping(address => struct PayrollFactory.Cohort)"
+                },
+                "typeName": {
+                  "id": 450,
+                  "keyType": {
+                    "id": 447,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "242:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "233:27:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Cohort_$465_storage_$",
+                    "typeString": "mapping(address => struct PayrollFactory.Cohort)"
+                  },
+                  "valueType": {
+                    "id": 449,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 448,
+                      "name": "Cohort",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 465,
+                      "src": "253:6:5"
+                    },
+                    "referencedDeclaration": 465,
+                    "src": "253:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Cohort_$465_storage_ptr",
+                      "typeString": "struct PayrollFactory.Cohort"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 454,
+                "mutability": "mutable",
+                "name": "mentors",
+                "nodeType": "VariableDeclaration",
+                "scope": 455,
+                "src": "281:25:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_address_payable_$dyn_storage_ptr",
+                  "typeString": "address payable[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 452,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "281:15:5",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "id": 453,
+                  "nodeType": "ArrayTypeName",
+                  "src": "281:17:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_payable_$dyn_storage_ptr",
+                    "typeString": "address payable[]"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Payroll",
+            "nodeType": "StructDefinition",
+            "scope": 516,
+            "src": "90:221:5",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "PayrollFactory.Cohort",
+            "id": 465,
+            "members": [
+              {
+                "constant": false,
+                "id": 457,
+                "mutability": "mutable",
+                "name": "numStudents",
+                "nodeType": "VariableDeclaration",
+                "scope": 465,
+                "src": "335:16:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 456,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "335:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 460,
+                "mutability": "mutable",
+                "name": "learnerRatings",
+                "nodeType": "VariableDeclaration",
+                "scope": 465,
+                "src": "357:20:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_int256_$dyn_storage_ptr",
+                  "typeString": "int256[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 458,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "357:3:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "id": 459,
+                  "nodeType": "ArrayTypeName",
+                  "src": "357:5:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_int256_$dyn_storage_ptr",
+                    "typeString": "int256[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 462,
+                "mutability": "mutable",
+                "name": "createdAt",
+                "nodeType": "VariableDeclaration",
+                "scope": 465,
+                "src": "383:14:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 461,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "383:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 464,
+                "mutability": "mutable",
+                "name": "endingDate",
+                "nodeType": "VariableDeclaration",
+                "scope": 465,
+                "src": "403:15:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 463,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "403:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Cohort",
+            "nodeType": "StructDefinition",
+            "scope": 516,
+            "src": "315:108:5",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "5632b1fa",
+            "id": 470,
+            "mutability": "mutable",
+            "name": "payrolls",
+            "nodeType": "VariableDeclaration",
+            "scope": 516,
+            "src": "503:41:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payroll_$455_storage_$",
+              "typeString": "mapping(uint256 => struct PayrollFactory.Payroll)"
+            },
+            "typeName": {
+              "id": 469,
+              "keyType": {
+                "id": 466,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "512:4:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "503:25:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payroll_$455_storage_$",
+                "typeString": "mapping(uint256 => struct PayrollFactory.Payroll)"
+              },
+              "valueType": {
+                "id": 468,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 467,
+                  "name": "Payroll",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 455,
+                  "src": "520:7:5"
+                },
+                "referencedDeclaration": 455,
+                "src": "520:7:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Payroll_$455_storage_ptr",
+                  "typeString": "struct PayrollFactory.Payroll"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 506,
+              "nodeType": "Block",
+              "src": "646:247:5",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 484,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 479,
+                          "name": "payrolls",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 470,
+                          "src": "652:8:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payroll_$455_storage_$",
+                            "typeString": "mapping(uint256 => struct PayrollFactory.Payroll storage ref)"
+                          }
+                        },
+                        "id": 481,
+                        "indexExpression": {
+                          "id": 480,
+                          "name": "_agorumID",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 472,
+                          "src": "661:9:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "652:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Payroll_$455_storage",
+                          "typeString": "struct PayrollFactory.Payroll storage ref"
+                        }
+                      },
+                      "id": 482,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "mentorReputationLevel",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 438,
+                      "src": "652:41:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 483,
+                      "name": "_reputationLevel",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 474,
+                      "src": "696:16:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "652:60:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 485,
+                  "nodeType": "ExpressionStatement",
+                  "src": "652:60:5"
+                },
+                {
+                  "expression": {
+                    "id": 491,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 486,
+                          "name": "payrolls",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 470,
+                          "src": "718:8:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payroll_$455_storage_$",
+                            "typeString": "mapping(uint256 => struct PayrollFactory.Payroll storage ref)"
+                          }
+                        },
+                        "id": 488,
+                        "indexExpression": {
+                          "id": 487,
+                          "name": "_agorumID",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 472,
+                          "src": "727:9:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "718:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Payroll_$455_storage",
+                          "typeString": "struct PayrollFactory.Payroll storage ref"
+                        }
+                      },
+                      "id": 489,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "mentorPaymentRate",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 440,
+                      "src": "718:37:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 490,
+                      "name": "_mentorPaymentRate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 476,
+                      "src": "758:18:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "718:58:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 492,
+                  "nodeType": "ExpressionStatement",
+                  "src": "718:58:5"
+                },
+                {
+                  "expression": {
+                    "id": 498,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 493,
+                          "name": "payrolls",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 470,
+                          "src": "782:8:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payroll_$455_storage_$",
+                            "typeString": "mapping(uint256 => struct PayrollFactory.Payroll storage ref)"
+                          }
+                        },
+                        "id": 495,
+                        "indexExpression": {
+                          "id": 494,
+                          "name": "_agorumID",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 472,
+                          "src": "791:9:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "782:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Payroll_$455_storage",
+                          "typeString": "struct PayrollFactory.Payroll storage ref"
+                        }
+                      },
+                      "id": 496,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "balance",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 442,
+                      "src": "782:27:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "30",
+                      "id": 497,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "812:1:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "782:31:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 499,
+                  "nodeType": "ExpressionStatement",
+                  "src": "782:31:5"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 501,
+                        "name": "_agorumID",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 472,
+                        "src": "840:9:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 502,
+                        "name": "_reputationLevel",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 474,
+                        "src": "851:16:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 503,
+                        "name": "_mentorPaymentRate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 476,
+                        "src": "869:18:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 500,
+                      "name": "PayrollCreated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 515,
+                      "src": "825:14:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,uint256,uint256)"
+                      }
+                    },
+                    "id": 504,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "825:63:5",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 505,
+                  "nodeType": "EmitStatement",
+                  "src": "820:68:5"
+                }
+              ]
+            },
+            "id": 507,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_createPayroll",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 477,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 472,
+                  "mutability": "mutable",
+                  "name": "_agorumID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 507,
+                  "src": "573:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 471,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "573:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 474,
+                  "mutability": "mutable",
+                  "name": "_reputationLevel",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 507,
+                  "src": "589:21:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 473,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "589:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 476,
+                  "mutability": "mutable",
+                  "name": "_mentorPaymentRate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 507,
+                  "src": "612:23:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 475,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "612:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "572:64:5"
+            },
+            "returnParameters": {
+              "id": 478,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "646:0:5"
+            },
+            "scope": 516,
+            "src": "549:344:5",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "anonymous": false,
+            "id": 515,
+            "name": "PayrollCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 514,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 509,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 515,
+                  "src": "918:7:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 508,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "918:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 511,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "reputationLevel",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 515,
+                  "src": "927:20:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 510,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "927:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 513,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "mentorPaymentRate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 515,
+                  "src": "949:22:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 512,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "949:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "917:55:5"
+            },
+            "src": "897:76:5"
+          }
+        ],
+        "scope": 517,
+        "src": "61:914:5"
+      }
+    ],
+    "src": "36:939:5"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/victor/agora/backend/contracts/PayrollFactory.sol",
+    "exportedSymbols": {
+      "PayrollFactory": [
+        516
+      ]
+    },
+    "id": 517,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 436,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:23:5"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 516,
+        "linearizedBaseContracts": [
+          516
+        ],
+        "name": "PayrollFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "PayrollFactory.Payroll",
+            "id": 455,
+            "members": [
+              {
+                "constant": false,
+                "id": 438,
+                "mutability": "mutable",
+                "name": "mentorReputationLevel",
+                "nodeType": "VariableDeclaration",
+                "scope": 455,
+                "src": "111:26:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 437,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "111:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 440,
+                "mutability": "mutable",
+                "name": "mentorPaymentRate",
+                "nodeType": "VariableDeclaration",
+                "scope": 455,
+                "src": "143:22:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 439,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "143:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 442,
+                "mutability": "mutable",
+                "name": "balance",
+                "nodeType": "VariableDeclaration",
+                "scope": 455,
+                "src": "171:12:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 441,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "171:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 446,
+                "mutability": "mutable",
+                "name": "contributors",
+                "nodeType": "VariableDeclaration",
+                "scope": 455,
+                "src": "189:38:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                  "typeString": "mapping(address => uint256)"
+                },
+                "typeName": {
+                  "id": 445,
+                  "keyType": {
+                    "id": 443,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "198:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "189:25:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                    "typeString": "mapping(address => uint256)"
+                  },
+                  "valueType": {
+                    "id": 444,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "209:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 451,
+                "mutability": "mutable",
+                "name": "mentorToCohort",
+                "nodeType": "VariableDeclaration",
+                "scope": 455,
+                "src": "233:42:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Cohort_$465_storage_$",
+                  "typeString": "mapping(address => struct PayrollFactory.Cohort)"
+                },
+                "typeName": {
+                  "id": 450,
+                  "keyType": {
+                    "id": 447,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "242:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "233:27:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Cohort_$465_storage_$",
+                    "typeString": "mapping(address => struct PayrollFactory.Cohort)"
+                  },
+                  "valueType": {
+                    "id": 449,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 448,
+                      "name": "Cohort",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 465,
+                      "src": "253:6:5"
+                    },
+                    "referencedDeclaration": 465,
+                    "src": "253:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Cohort_$465_storage_ptr",
+                      "typeString": "struct PayrollFactory.Cohort"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 454,
+                "mutability": "mutable",
+                "name": "mentors",
+                "nodeType": "VariableDeclaration",
+                "scope": 455,
+                "src": "281:25:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_address_payable_$dyn_storage_ptr",
+                  "typeString": "address payable[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 452,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "281:15:5",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "id": 453,
+                  "nodeType": "ArrayTypeName",
+                  "src": "281:17:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_payable_$dyn_storage_ptr",
+                    "typeString": "address payable[]"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Payroll",
+            "nodeType": "StructDefinition",
+            "scope": 516,
+            "src": "90:221:5",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "PayrollFactory.Cohort",
+            "id": 465,
+            "members": [
+              {
+                "constant": false,
+                "id": 457,
+                "mutability": "mutable",
+                "name": "numStudents",
+                "nodeType": "VariableDeclaration",
+                "scope": 465,
+                "src": "335:16:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 456,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "335:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 460,
+                "mutability": "mutable",
+                "name": "learnerRatings",
+                "nodeType": "VariableDeclaration",
+                "scope": 465,
+                "src": "357:20:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_int256_$dyn_storage_ptr",
+                  "typeString": "int256[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 458,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "357:3:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "id": 459,
+                  "nodeType": "ArrayTypeName",
+                  "src": "357:5:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_int256_$dyn_storage_ptr",
+                    "typeString": "int256[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 462,
+                "mutability": "mutable",
+                "name": "createdAt",
+                "nodeType": "VariableDeclaration",
+                "scope": 465,
+                "src": "383:14:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 461,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "383:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 464,
+                "mutability": "mutable",
+                "name": "endingDate",
+                "nodeType": "VariableDeclaration",
+                "scope": 465,
+                "src": "403:15:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 463,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "403:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Cohort",
+            "nodeType": "StructDefinition",
+            "scope": 516,
+            "src": "315:108:5",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "5632b1fa",
+            "id": 470,
+            "mutability": "mutable",
+            "name": "payrolls",
+            "nodeType": "VariableDeclaration",
+            "scope": 516,
+            "src": "503:41:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payroll_$455_storage_$",
+              "typeString": "mapping(uint256 => struct PayrollFactory.Payroll)"
+            },
+            "typeName": {
+              "id": 469,
+              "keyType": {
+                "id": 466,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "512:4:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "503:25:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payroll_$455_storage_$",
+                "typeString": "mapping(uint256 => struct PayrollFactory.Payroll)"
+              },
+              "valueType": {
+                "id": 468,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 467,
+                  "name": "Payroll",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 455,
+                  "src": "520:7:5"
+                },
+                "referencedDeclaration": 455,
+                "src": "520:7:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Payroll_$455_storage_ptr",
+                  "typeString": "struct PayrollFactory.Payroll"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 506,
+              "nodeType": "Block",
+              "src": "646:247:5",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 484,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 479,
+                          "name": "payrolls",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 470,
+                          "src": "652:8:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payroll_$455_storage_$",
+                            "typeString": "mapping(uint256 => struct PayrollFactory.Payroll storage ref)"
+                          }
+                        },
+                        "id": 481,
+                        "indexExpression": {
+                          "id": 480,
+                          "name": "_agorumID",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 472,
+                          "src": "661:9:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "652:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Payroll_$455_storage",
+                          "typeString": "struct PayrollFactory.Payroll storage ref"
+                        }
+                      },
+                      "id": 482,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "mentorReputationLevel",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 438,
+                      "src": "652:41:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 483,
+                      "name": "_reputationLevel",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 474,
+                      "src": "696:16:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "652:60:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 485,
+                  "nodeType": "ExpressionStatement",
+                  "src": "652:60:5"
+                },
+                {
+                  "expression": {
+                    "id": 491,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 486,
+                          "name": "payrolls",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 470,
+                          "src": "718:8:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payroll_$455_storage_$",
+                            "typeString": "mapping(uint256 => struct PayrollFactory.Payroll storage ref)"
+                          }
+                        },
+                        "id": 488,
+                        "indexExpression": {
+                          "id": 487,
+                          "name": "_agorumID",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 472,
+                          "src": "727:9:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "718:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Payroll_$455_storage",
+                          "typeString": "struct PayrollFactory.Payroll storage ref"
+                        }
+                      },
+                      "id": 489,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "mentorPaymentRate",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 440,
+                      "src": "718:37:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 490,
+                      "name": "_mentorPaymentRate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 476,
+                      "src": "758:18:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "718:58:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 492,
+                  "nodeType": "ExpressionStatement",
+                  "src": "718:58:5"
+                },
+                {
+                  "expression": {
+                    "id": 498,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 493,
+                          "name": "payrolls",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 470,
+                          "src": "782:8:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payroll_$455_storage_$",
+                            "typeString": "mapping(uint256 => struct PayrollFactory.Payroll storage ref)"
+                          }
+                        },
+                        "id": 495,
+                        "indexExpression": {
+                          "id": 494,
+                          "name": "_agorumID",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 472,
+                          "src": "791:9:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "782:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Payroll_$455_storage",
+                          "typeString": "struct PayrollFactory.Payroll storage ref"
+                        }
+                      },
+                      "id": 496,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "balance",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 442,
+                      "src": "782:27:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "30",
+                      "id": 497,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "812:1:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "782:31:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 499,
+                  "nodeType": "ExpressionStatement",
+                  "src": "782:31:5"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 501,
+                        "name": "_agorumID",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 472,
+                        "src": "840:9:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 502,
+                        "name": "_reputationLevel",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 474,
+                        "src": "851:16:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 503,
+                        "name": "_mentorPaymentRate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 476,
+                        "src": "869:18:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 500,
+                      "name": "PayrollCreated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 515,
+                      "src": "825:14:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,uint256,uint256)"
+                      }
+                    },
+                    "id": 504,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "825:63:5",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 505,
+                  "nodeType": "EmitStatement",
+                  "src": "820:68:5"
+                }
+              ]
+            },
+            "id": 507,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_createPayroll",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 477,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 472,
+                  "mutability": "mutable",
+                  "name": "_agorumID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 507,
+                  "src": "573:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 471,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "573:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 474,
+                  "mutability": "mutable",
+                  "name": "_reputationLevel",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 507,
+                  "src": "589:21:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 473,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "589:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 476,
+                  "mutability": "mutable",
+                  "name": "_mentorPaymentRate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 507,
+                  "src": "612:23:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 475,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "612:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "572:64:5"
+            },
+            "returnParameters": {
+              "id": 478,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "646:0:5"
+            },
+            "scope": 516,
+            "src": "549:344:5",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "anonymous": false,
+            "id": 515,
+            "name": "PayrollCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 514,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 509,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 515,
+                  "src": "918:7:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 508,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "918:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 511,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "reputationLevel",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 515,
+                  "src": "927:20:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 510,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "927:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 513,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "mentorPaymentRate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 515,
+                  "src": "949:22:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 512,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "949:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "917:55:5"
+            },
+            "src": "897:76:5"
+          }
+        ],
+        "scope": 517,
+        "src": "61:914:5"
+      }
+    ],
+    "src": "36:939:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-06-29T16:53:38.512Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
