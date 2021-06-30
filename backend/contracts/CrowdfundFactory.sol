@@ -6,9 +6,8 @@ contract CrowdfundFactory {
   struct Crowdfund {
     uint goalAmount;
     uint deadline;
+    uint createdAt;
     uint amountRaised;
-    // tracks supporters and their donated amounts
-    mapping (address => uint) supporters;
   }
 
   mapping (uint => Crowdfund) public crowdfunds;
@@ -17,6 +16,7 @@ contract CrowdfundFactory {
     crowdfunds[_agorumID].goalAmount = _goalAmount;
     crowdfunds[_agorumID].deadline = _deadline;
     crowdfunds[_agorumID].amountRaised = 0;
+    crowdfunds[_agorumID].createdAt = block.timestamp;
 
     emit CrowdfundCreated(_agorumID, _goalAmount, _deadline);
   }
