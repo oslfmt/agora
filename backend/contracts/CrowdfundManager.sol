@@ -52,3 +52,5 @@ contract CrowdfundManager is AGOToken, AgorumFactory {
   event TokensDonated(address supporter, uint id, uint amount);
   event TokensReleased(uint id, uint amount);
 }
+
+// 0.0517 ETH cost

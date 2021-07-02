@@ -94,6 +94,7 @@ contract AgorumFactory is PayrollFactory, CrowdfundFactory {
     return c;
   }
 
+  // not need this b/c of public "agorums" mapping?
   function getAgorum(uint _agorumID) external view returns (Agorum memory) {
     return agorums[_agorumID];
   }
@@ -101,3 +102,5 @@ contract AgorumFactory is PayrollFactory, CrowdfundFactory {
   event AgorumCreated(uint agorumID, string name, address payable[] agorumCreators);
   event CourseAdded(uint agorumID, string title, address payable[] courseCreators);
 }
+
+// 0.0235 ETH deploy cost

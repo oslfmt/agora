@@ -20,3 +20,5 @@ contract PayrollContributor is PayrollManager {
 
   event NewContributor(address payable contributorAddress, uint reward);
 }
+
+// 0.0615 ETH cost (why so much? cuz of inheritance?)

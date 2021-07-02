@@ -132,3 +132,5 @@ contract PayrollManager is AgorumFactory, AGOToken {
 // 2. Make sure transfer method pays from the Payroll balance
 // 3. Subtract mentorPayment from the cohort struct
 // 4. Work on contributor methods
+
+// 0.059 ETH cost
